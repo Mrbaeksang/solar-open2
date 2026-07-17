@@ -1,0 +1,8 @@
+# secrets — Upstage API key lives here
+.env
+.env.*
+!.env.example
+
+node_modules/
+dist/
+.scratch/
