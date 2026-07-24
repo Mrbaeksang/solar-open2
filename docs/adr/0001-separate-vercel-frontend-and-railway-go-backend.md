@@ -1,0 +1,3 @@
+# Separate the Vercel frontend from the Railway Go backend
+
+The public textbook runs as a Next.js frontend on the existing Vercel Pro plan, while a Go service using Eino runs on Railway Pro and connects to Railway PostgreSQL with pgvector over private networking. We choose separate deployments over embedding a static Next.js build in the Go binary because both platform commitments already exist: Vercel owns frontend delivery and preview deployments, while Railway keeps the assistant runtime and retrieval data together. The frontend never calls Upstage directly; the Go service owns the Solar Open 2 and Embed 2 credentials and exposes the AG-UI stream.
