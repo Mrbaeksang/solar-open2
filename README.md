@@ -11,7 +11,7 @@
 
 ## 로컬 실행
 
-루트 `.env`에는 `apps/api/.env.example`과 `apps/web/.env.example`의 변수 이름을 합쳐 넣는다. 실제 비밀값과 연결 주소만 채우며, 로컬과 운영은 같은 변수 계약을 쓴다.
+API는 `apps/api/.env`, Web은 Next.js 규칙에 따라 `apps/web/.env.local`을 읽는다. 각각 같은 디렉터리의 `.env.example`을 기준으로 만들며 실제 파일은 Git에서 제외한다.
 
 ```bash
 pnpm install
