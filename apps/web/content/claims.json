@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "claims": [
+    {
+      "id": "e01-goal",
+      "track": "easy",
+      "chapterSlug": "ai-is",
+      "text": "AI 시스템은 사람이 정한 목표를 위해 입력을 받아 예측·콘텐츠·추천·결정 같은 출력을 추론하는 기계 기반 시스템이다.",
+      "sources": [
+        { "id": "oecd-ai-definition-2024", "locator": "pp. 5–6, updated definition and explanatory notes" }
+      ]
+    },
+    {
+      "id": "e01-input",
+      "track": "easy",
+      "chapterSlug": "ai-is",
+      "text": "AI의 결과는 목표, 입력, 설계와 사용 환경의 영향을 받으며 사람은 이 선택에 책임이 있다.",
+      "sources": [
+        { "id": "oecd-ailit-2026", "locator": "pp. 14–19, engaging with and managing AI dimensions" },
+        { "id": "unesco-students-2024", "locator": "pp. 17–22, human-centred mindset" }
+      ]
+    },
+    {
+      "id": "e01-person",
+      "track": "easy",
+      "chapterSlug": "ai-is",
+      "text": "대화형 AI가 자연스럽게 말해도 사람의 감정·관계·책임을 가진 존재로 보아서는 안 된다.",
+      "sources": [
+        { "id": "unicef-ai-children-3", "locator": "Requirement 6, transparency, explainability and accountability for children" }
+      ]
+    },
+    {
+      "id": "s01-definition",
+      "track": "standard",
+      "chapterSlug": "ai-is",
+      "text": "AI 시스템의 작동 정의는 자율성 수준과 배치 뒤 적응 가능성이 시스템마다 다를 수 있음을 포함한다.",
+      "sources": [
+        { "id": "oecd-ai-definition-2024", "locator": "pp. 5–8, definition and characteristics of AI systems" }
+      ]
+    },
+    {
+      "id": "s01-boundary",
+      "track": "standard",
+      "chapterSlug": "ai-is",
+      "text": "AI를 평가할 때 모델뿐 아니라 목표, 데이터, 사용자, 제도와 출력이 쓰이는 환경까지 시스템 경계에 포함해야 한다.",
+      "sources": [
+        { "id": "oecd-ailit-2026", "locator": "pp. 12–19, four dimensions of AI literacy" },
+        { "id": "nist-ai-rmf-1", "locator": "pp. 20–27, MAP function and context establishment" }
+      ]
+    },
+    {
+      "id": "s01-anthropomorphism",
+      "track": "standard",
+      "chapterSlug": "ai-is",
+      "text": "유창한 상호작용을 의도·감정·도덕적 책임의 증거로 해석하면 실제 설계자와 운영자의 책임을 흐릴 수 있다.",
+      "sources": [
+        { "id": "unesco-students-2024", "locator": "pp. 17–22, human-centred mindset and human agency" },
+        { "id": "unicef-ai-children-3", "locator": "Requirement 6, age-appropriate transparency and anthropomorphic systems" }
+      ]
+    },
+    {
+      "id": "e02-pattern",
+      "track": "easy",
+      "chapterSlug": "learning-from-data",
+      "text": "기계학습 모델은 사람이 모든 규칙을 적는 대신 여러 예시에서 유용한 패턴을 찾도록 조정된다.",
+      "sources": [
+        { "id": "ai4k12-big-ideas", "locator": "Big Idea 3: Learning, grade-band progression charts" }
+      ]
+    },
+    {
+      "id": "e02-new",
+      "track": "easy",
+      "chapterSlug": "learning-from-data",
+      "text": "훈련에 쓰지 않은 새 예시로 확인해야 모델이 예시를 외운 것이 아니라 새로운 입력에도 패턴을 적용하는지 알 수 있다.",
+      "sources": [
+        { "id": "ai4k12-big-ideas", "locator": "Big Idea 3: Learning, training and testing progression" },
+        { "id": "nist-ai-rmf-1", "locator": "pp. 28–31, MEASURE 2 and evaluation in context" }
+      ]
+    },
+    {
+      "id": "e02-data",
+      "track": "easy",
+      "chapterSlug": "learning-from-data",
+      "text": "훈련 데이터에 어떤 사람이나 상황이 빠지면 모델의 성능도 그 집단이나 상황에서 나빠질 수 있다.",
+      "sources": [
+        { "id": "nist-ai-rmf-1", "locator": "pp. 14–15, fair with harmful bias managed" },
+        { "id": "oecd-ailit-2026", "locator": "managing AI dimension, data quality and representation examples" }
+      ]
+    },
+    {
+      "id": "s02-optimization",
+      "track": "standard",
+      "chapterSlug": "learning-from-data",
+      "text": "학습은 정해진 목표와 데이터에 대해 손실을 줄이도록 모델의 조정 가능한 값을 바꾸는 최적화 과정으로 볼 수 있다.",
+      "sources": [
+        { "id": "ai4k12-big-ideas", "locator": "Big Idea 3: Learning, high-school progression on model training" }
+      ]
+    },
+    {
+      "id": "s02-generalization",
+      "track": "standard",
+      "chapterSlug": "learning-from-data",
+      "text": "훈련 자료의 성능만으로 배치 환경의 성능을 추정할 수 없으므로 검증·시험 자료와 실제 맥락에서 일반화를 평가해야 한다.",
+      "sources": [
+        { "id": "nist-ai-rmf-1", "locator": "pp. 28–31, MEASURE function and test sets representative of deployment" }
+      ]
+    },
+    {
+      "id": "s02-distribution",
+      "track": "standard",
+      "chapterSlug": "learning-from-data",
+      "text": "시간·지역·사용자 구성이 바뀌어 실제 입력 분포가 훈련 분포와 달라지면 기존 평가 성능이 유지되지 않을 수 있다.",
+      "sources": [
+        { "id": "nist-ai-rmf-1", "locator": "pp. 22–31, MAP 3 and MEASURE 2 on context and emergent risks" }
+      ]
+    },
+    {
+      "id": "e03-scores",
+      "track": "easy",
+      "chapterSlug": "choosing-an-answer",
+      "text": "분류 모델은 여러 후보를 비교할 수 있는 점수를 계산하고 정한 규칙에 따라 결과를 고른다.",
+      "sources": [
+        { "id": "ai4k12-big-ideas", "locator": "Big Idea 2 and Big Idea 3 progression, classification and decision making" }
+      ]
+    },
+    {
+      "id": "e03-threshold",
+      "track": "easy",
+      "chapterSlug": "choosing-an-answer",
+      "text": "같은 점수라도 어느 지점부터 경고할지 정한 기준값에 따라 최종 결정이 달라진다.",
+      "sources": [
+        { "id": "nist-ai-rmf-1", "locator": "pp. 28–31, measurement metrics and decision criteria" }
+      ]
+    },
+    {
+      "id": "e03-token",
+      "track": "easy",
+      "chapterSlug": "choosing-an-answer",
+      "text": "언어 모델은 지금까지의 문맥을 바탕으로 다음 토큰 후보의 가능성을 계산하고 선택하는 일을 반복해 문장을 만든다.",
+      "sources": [
+        { "id": "vaswani-transformer-2017", "locator": "Sections 3 and 3.4, autoregressive decoder and output probabilities" }
+      ]
+    },
+    {
+      "id": "s03-probabilities",
+      "track": "standard",
+      "chapterSlug": "choosing-an-answer",
+      "text": "모델의 원시 점수는 정규화된 확률 형태로 바꿀 수 있지만 그 수치가 현실의 빈도와 맞는지는 별도의 보정 평가가 필요하다.",
+      "sources": [
+        { "id": "nist-ai-rmf-1", "locator": "pp. 28–31, valid and reliable measurement and uncertainty" }
+      ]
+    },
+    {
+      "id": "s03-threshold",
+      "track": "standard",
+      "chapterSlug": "choosing-an-answer",
+      "text": "분류 임계값은 거짓 양성과 거짓 음성 사이의 교환 관계를 만들므로 오류 비용과 영향을 받는 집단을 함께 고려해야 한다.",
+      "sources": [
+        { "id": "nist-ai-rmf-1", "locator": "pp. 12–15 and MEASURE 2.6, harmful bias and error analysis" }
+      ]
+    },
+    {
+      "id": "s03-decoding",
+      "track": "standard",
+      "chapterSlug": "choosing-an-answer",
+      "text": "생성 모델의 temperature나 샘플링 전략은 후보 토큰 선택의 다양성을 바꾸지만 지식의 정확성을 새로 검증하지는 않는다.",
+      "sources": [
+        { "id": "vaswani-transformer-2017", "locator": "Section 3.4, linear and softmax output over next-token probabilities" },
+        { "id": "nist-genai-profile", "locator": "Section 2.3, confabulation risk despite fluent generation" }
+      ]
+    },
+    {
+      "id": "e04-generate",
+      "track": "easy",
+      "chapterSlug": "generative-ai",
+      "text": "생성형 AI는 배운 자료의 패턴을 이용해 글·그림·소리처럼 새로운 결과물을 만들 수 있다.",
+      "sources": [
+        { "id": "oecd-ailit-2026", "locator": "creating with AI dimension and generative AI examples" }
+      ]
+    },
+    {
+      "id": "e04-context",
+      "track": "easy",
+      "chapterSlug": "generative-ai",
+      "text": "언어 모델은 문장을 토큰이라는 조각으로 다루고 앞뒤 문맥의 관계를 계산해 다음 조각을 고른다.",
+      "sources": [
+        { "id": "vaswani-transformer-2017", "locator": "Sections 3.2–3.4, attention and decoder output" }
+      ]
+    },
+    {
+      "id": "e04-fluent",
+      "track": "easy",
+      "chapterSlug": "generative-ai",
+      "text": "문장이 자연스럽다는 사실만으로 내용이 사실이거나 AI가 사람처럼 이해하고 경험한다는 뜻은 아니다.",
+      "sources": [
+        { "id": "nist-genai-profile", "locator": "Section 2.3, confabulation" },
+        { "id": "unicef-ai-children-3", "locator": "Requirement 6, explainability and anthropomorphic presentation" }
+      ]
+    },
+    {
+      "id": "s04-pretraining",
+      "track": "standard",
+      "chapterSlug": "generative-ai",
+      "text": "대규모 언어 모델의 사전학습은 많은 텍스트에서 다음 토큰 예측 같은 목표를 반복해 언어 패턴을 담는 매개변수를 조정하는 과정이다.",
+      "sources": [
+        { "id": "vaswani-transformer-2017", "locator": "Sections 3 and 5, sequence modeling and training setup" }
+      ]
+    },
+    {
+      "id": "s04-transformer",
+      "track": "standard",
+      "chapterSlug": "generative-ai",
+      "text": "Transformer의 자기어텐션은 각 위치가 같은 문맥의 다른 위치와 관련된 정도를 계산해 문맥 의존 표현을 만든다.",
+      "sources": [
+        { "id": "vaswani-transformer-2017", "locator": "Section 3.2, scaled dot-product and multi-head attention" }
+      ]
+    },
+    {
+      "id": "s04-solar",
+      "track": "standard",
+      "chapterSlug": "generative-ai",
+      "text": "이 서비스가 사용하는 Solar Open 2는 Upstage가 공개한 250B 전체·15B 활성 MoE 언어 모델이며 이 수치는 제조사의 기술 보고다.",
+      "sources": [
+        { "id": "upstage-solar-open2-report", "locator": "Model overview and Sections 2–3, architecture; manufacturer-reported" }
+      ]
+    },
+    {
+      "id": "e05-error",
+      "track": "easy",
+      "chapterSlug": "verify-errors",
+      "text": "생성형 AI는 실제 근거가 없거나 서로 맞지 않는 내용을 자연스럽고 자신 있는 문장으로 만들 수 있다.",
+      "sources": [
+        { "id": "nist-genai-profile", "locator": "Section 2.3, Confabulation" }
+      ]
+    },
+    {
+      "id": "e05-bias",
+      "track": "easy",
+      "chapterSlug": "verify-errors",
+      "text": "자료와 설계에 치우침이 있으면 생성 결과도 사람이나 집단을 불공정하게 나타낼 수 있다.",
+      "sources": [
+        { "id": "nist-genai-profile", "locator": "Section 2.5, Harmful Bias and Homogenization" },
+        { "id": "nist-ai-rmf-1", "locator": "pp. 14–15, fair with harmful bias managed" }
+      ]
+    },
+    {
+      "id": "e05-check",
+      "track": "easy",
+      "chapterSlug": "verify-errors",
+      "text": "중요한 주장은 실제 원출처, 적용 날짜, 서로 독립적인 다른 출처를 차례로 확인해야 한다.",
+      "sources": [
+        { "id": "oecd-ailit-2026", "locator": "managing AI dimension, evaluating outputs and evidence" },
+        { "id": "nist-genai-profile", "locator": "Section 2.7, Information Integrity" }
+      ]
+    },
+    {
+      "id": "s05-confabulation",
+      "track": "standard",
+      "chapterSlug": "verify-errors",
+      "text": "confabulation은 생성 모델이 통계적으로 그럴듯하지만 잘못되거나 근거 없는 내용을 자신 있게 만드는 위험을 가리킨다.",
+      "sources": [
+        { "id": "nist-genai-profile", "locator": "Section 2.3, Confabulation" }
+      ]
+    },
+    {
+      "id": "s05-uncertainty",
+      "track": "standard",
+      "chapterSlug": "verify-errors",
+      "text": "모델의 불확실성 표현, 데이터 대표성, 오류율은 배치 맥락과 영향 집단별로 측정해야 한다.",
+      "sources": [
+        { "id": "nist-ai-rmf-1", "locator": "MEASURE 2.2–2.7, metrics, uncertainty, fairness and context" }
+      ]
+    },
+    {
+      "id": "s05-protocol",
+      "track": "standard",
+      "chapterSlug": "verify-errors",
+      "text": "시의성 높거나 논쟁적인 주장은 날짜가 명확한 1차 자료와 이해관계가 다른 독립 자료를 함께 확인해야 한다.",
+      "sources": [
+        { "id": "nist-genai-profile", "locator": "Section 2.7, Information Integrity and provenance" },
+        { "id": "oecd-ailit-2026", "locator": "managing AI dimension, critical evaluation of AI output" }
+      ]
+    },
+    {
+      "id": "e06-search-generate",
+      "track": "easy",
+      "chapterSlug": "rag-and-sources",
+      "text": "RAG는 질문과 관련된 자료를 먼저 검색하고 그 자료를 문맥으로 넣어 답을 생성하는 두 일을 결합한다.",
+      "sources": [
+        { "id": "lewis-rag-2020", "locator": "Abstract and Section 2, retrieval-augmented generation formulation" }
+      ]
+    },
+    {
+      "id": "e06-source-id",
+      "track": "easy",
+      "chapterSlug": "rag-and-sources",
+      "text": "안정된 source ID는 답의 근거를 검증된 출처 목록과 연결해 모델이 임의의 링크를 만드는 일을 막는 데 도움을 준다.",
+      "sources": [
+        { "id": "nist-genai-profile", "locator": "Section 2.7 and suggested actions on content provenance" }
+      ]
+    },
+    {
+      "id": "e06-limit",
+      "track": "easy",
+      "chapterSlug": "rag-and-sources",
+      "text": "RAG도 관련 없는 부분을 찾거나 찾은 내용을 잘못 엮으면 틀릴 수 있으므로 인용된 원문을 확인해야 한다.",
+      "sources": [
+        { "id": "nist-genai-profile", "locator": "Sections 2.3 and 2.7, confabulation and information integrity" },
+        { "id": "lewis-rag-2020", "locator": "Section 5, results and limitations of retrieval quality" }
+      ]
+    },
+    {
+      "id": "s06-pipeline",
+      "track": "standard",
+      "chapterSlug": "rag-and-sources",
+      "text": "RAG 파이프라인은 질의 표현, 후보 회수, 순위화, 문맥 구성, 생성과 인용 검증을 서로 다른 품질 단계로 평가해야 한다.",
+      "sources": [
+        { "id": "lewis-rag-2020", "locator": "Sections 2–3, retriever and generator components" }
+      ]
+    },
+    {
+      "id": "s06-provenance",
+      "track": "standard",
+      "chapterSlug": "rag-and-sources",
+      "text": "인용의 존재와 인용의 정확성은 다르므로 안정된 source ID뿐 아니라 주장과 정확한 locator의 연결을 검증해야 한다.",
+      "sources": [
+        { "id": "nist-genai-profile", "locator": "Section 2.7, Information Integrity and provenance" }
+      ]
+    },
+    {
+      "id": "s06-corpus",
+      "track": "standard",
+      "chapterSlug": "rag-and-sources",
+      "text": "이 프로젝트의 production RAG는 제3자 원문 전체가 아니라 검수된 자체 원고와 claim-source 레지스트리만 코퍼스로 사용한다.",
+      "sources": [
+        { "id": "oecd-ailit-2026", "locator": "publication copyright and third-party material notice" },
+        { "id": "nist-genai-profile", "locator": "Section 2.4 and data governance suggested actions" }
+      ]
+    },
+    {
+      "id": "e07-privacy",
+      "track": "easy",
+      "chapterSlug": "responsible-use",
+      "text": "이름, 연락처, 주소, 학교, 비밀번호와 건강 정보처럼 나를 알아볼 수 있는 정보는 AI 대화에 넣지 않는 것이 안전하다.",
+      "sources": [
+        { "id": "unicef-ai-children-3", "locator": "Requirement 4, protect children's data and privacy" }
+      ]
+    },
+    {
+      "id": "e07-bias",
+      "track": "easy",
+      "chapterSlug": "responsible-use",
+      "text": "AI의 결과가 특정 사람이나 집단을 빠뜨리거나 나쁘게 단정하지 않는지 사람이 살펴야 한다.",
+      "sources": [
+        { "id": "unicef-ai-children-3", "locator": "Requirement 2, non-discrimination and fairness" },
+        { "id": "nist-ai-rmf-1", "locator": "pp. 14–15, harmful bias managed" }
+      ]
+    },
+    {
+      "id": "e07-adult",
+      "track": "easy",
+      "chapterSlug": "responsible-use",
+      "text": "건강, 안전, 괴롭힘, 돈이나 큰 불안을 다루는 결정은 AI에 맡기지 말고 믿을 수 있는 어른과 자격 있는 전문가에게 알려야 한다.",
+      "sources": [
+        { "id": "unicef-ai-children-3", "locator": "Requirements 1, 5 and 9, safety, well-being and enabling environment" }
+      ]
+    },
+    {
+      "id": "s07-rights",
+      "track": "standard",
+      "chapterSlug": "responsible-use",
+      "text": "AI에 데이터를 입력하거나 결과를 재사용할 때는 수집 목적, 동의, 최소 수집, 보관 기간, 저작권과 이의제기 수단을 확인해야 한다.",
+      "sources": [
+        { "id": "unicef-ai-children-3", "locator": "Requirements 4 and 8, privacy and inclusion" },
+        { "id": "unesco-students-2024", "locator": "AI ethics dimension, privacy and intellectual property competencies" }
+      ]
+    },
+    {
+      "id": "s07-accountability",
+      "track": "standard",
+      "chapterSlug": "responsible-use",
+      "text": "AI 출력은 책임 주체가 될 수 없으므로 설계·도입·운영·결정 권한을 가진 사람이 영향과 구제 절차에 책임져야 한다.",
+      "sources": [
+        { "id": "nist-ai-rmf-1", "locator": "pp. 12–15 and GOVERN function, accountable and transparent systems" },
+        { "id": "unesco-students-2024", "locator": "human-centred mindset and AI ethics dimensions" }
+      ]
+    },
+    {
+      "id": "s07-oversight",
+      "track": "standard",
+      "chapterSlug": "responsible-use",
+      "text": "실질적 인간 감독에는 결과를 이해할 정보, 검토할 시간, 결정을 거부·수정할 권한과 책임, 이의제기 경로가 필요하다.",
+      "sources": [
+        { "id": "nist-ai-rmf-1", "locator": "GOVERN 1–6 and MANAGE 2, roles, responsibility and response" },
+        { "id": "unicef-ai-children-3", "locator": "Requirements 5 and 6, safety, accountability and explainability" }
+      ]
+    }
+  ]
+}

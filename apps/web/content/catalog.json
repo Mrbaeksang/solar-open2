@@ -1,0 +1,341 @@
+{
+  "schemaVersion": 1,
+  "tracks": {
+    "easy": {
+      "label": "쉬운 트랙",
+      "audience": "초등 5학년–중학교 3학년",
+      "assistantName": "별빛 길잡이",
+      "assistantDescription": "따뜻하고 호기심 많은 과학 길잡이. 먼저 한 문장으로 답하고, 생활 예시와 실제 원리, 비유의 한계를 차례로 설명한다."
+    },
+    "standard": {
+      "label": "기본 트랙",
+      "audience": "고등학생 이상·비전공 성인",
+      "assistantName": "근거 연구원",
+      "assistantDescription": "차분한 연구 멘토. 핵심 주장, 작동 원리, 사례, 한계·반례, 확인 방법 순서로 설명한다."
+    }
+  },
+  "chapters": [
+    {
+      "track": "easy",
+      "number": 1,
+      "slug": "ai-is",
+      "file": "easy/01-ai-is.mdx",
+      "title": "AI란 무엇인가",
+      "eyebrow": "도구를 사람처럼 착각하지 않는 첫걸음",
+      "description": "AI가 목표와 입력을 받아 출력을 만드는 도구라는 뜻을 생활 속 사례로 살펴본다.",
+      "objectives": ["AI 시스템의 입력과 출력을 찾는다.", "AI와 단순 자동화를 구별한다.", "AI를 사람처럼 여기면 생기는 오해를 말한다."],
+      "sections": [
+        { "id": "goal-tool", "title": "목표를 따라 움직이는 도구" },
+        { "id": "input-output", "title": "입력에서 출력까지" },
+        { "id": "not-a-person", "title": "말을 잘해도 사람은 아니다" }
+      ],
+      "sourceIds": ["oecd-ai-definition-2024", "oecd-ailit-2026", "unesco-students-2024", "unicef-ai-children-3"],
+      "quiz": {
+        "question": "다음 중 AI 시스템을 가장 잘 설명한 것은?",
+        "options": ["사람처럼 마음을 가진 기계", "입력에서 목표에 맞는 출력을 추론하는 도구", "전기로 움직이는 모든 물건"],
+        "correctIndex": 1,
+        "explanation": "AI는 사람이 정한 목표와 입력을 바탕으로 예측·추천·콘텐츠 같은 출력을 만드는 기계 기반 시스템이다."
+      },
+      "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
+    },
+    {
+      "track": "standard",
+      "number": 1,
+      "slug": "ai-is",
+      "file": "standard/01-ai-is.mdx",
+      "title": "AI란 무엇인가",
+      "eyebrow": "정의보다 먼저 시스템의 경계를 그리기",
+      "description": "AI 시스템을 목표·입력·모델·출력·환경의 관계로 보고 자동화와 의인화를 구분한다.",
+      "objectives": ["AI 시스템의 작동 정의를 설명한다.", "시스템 경계와 인간의 결정을 식별한다.", "자동화·AI·의인화를 구별한다."],
+      "sections": [
+        { "id": "operational-definition", "title": "작동으로 정의하기" },
+        { "id": "system-boundary", "title": "시스템 경계와 인간의 선택" },
+        { "id": "automation-anthropomorphism", "title": "자동화와 의인화의 함정" }
+      ],
+      "sourceIds": ["oecd-ai-definition-2024", "oecd-ailit-2026", "unesco-students-2024", "unicef-ai-children-3", "nist-ai-rmf-1"],
+      "quiz": {
+        "question": "채용 추천 AI를 평가할 때 가장 먼저 함께 확인할 항목은?",
+        "options": ["모델 이름만", "입력·목표·출력과 이를 사용하는 사람·환경", "화면의 색상만"],
+        "correctIndex": 1,
+        "explanation": "모델만 떼어 보면 실제 위험과 책임을 놓친다. 데이터, 목표, 출력의 사용 방식과 결정 주체까지 시스템 경계에 넣어야 한다."
+      },
+      "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
+    },
+    {
+      "track": "easy",
+      "number": 2,
+      "slug": "learning-from-data",
+      "file": "easy/02-learning-from-data.mdx",
+      "title": "데이터로 배우고 예측하기",
+      "eyebrow": "예시를 보고 규칙을 찾아 새것에 써 보기",
+      "description": "훈련 데이터의 예시에서 패턴을 찾고 처음 보는 입력을 예측하는 과정을 살펴본다.",
+      "objectives": ["훈련 데이터와 예측을 구별한다.", "처음 보는 예시로 시험하는 이유를 말한다.", "치우친 데이터가 결과에 미치는 영향을 찾는다."],
+      "sections": [
+        { "id": "examples-patterns", "title": "예시 묶음에서 패턴 찾기" },
+        { "id": "new-example", "title": "처음 보는 예시가 진짜 시험" },
+        { "id": "data-limits", "title": "데이터가 좁으면 배움도 좁다" }
+      ],
+      "sourceIds": ["ai4k12-big-ideas", "oecd-ailit-2026", "nist-ai-rmf-1"],
+      "quiz": {
+        "question": "고양이 사진 분류기를 만든 뒤 처음 보는 사진으로 확인하는 가장 큰 이유는?",
+        "options": ["사진 수를 세려고", "외운 것이 아니라 새 입력에도 패턴을 적용하는지 보려고", "컴퓨터 화면을 밝게 하려고"],
+        "correctIndex": 1,
+        "explanation": "훈련에 없던 예시에서 잘 작동해야 배운 패턴을 새로운 상황에 적용했다고 볼 수 있다."
+      },
+      "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
+    },
+    {
+      "track": "standard",
+      "number": 2,
+      "slug": "learning-from-data",
+      "file": "standard/02-learning-from-data.mdx",
+      "title": "데이터로 배우고 예측하기",
+      "eyebrow": "최적화와 일반화를 구분하는 최소한의 틀",
+      "description": "학습을 오차를 줄이는 과정으로 보고 훈련·검증·시험과 분포 변화의 의미를 연결한다.",
+      "objectives": ["학습과 추론을 구별한다.", "훈련·검증·시험 자료의 역할을 설명한다.", "일반화 실패와 분포 변화를 진단한다."],
+      "sections": [
+        { "id": "optimization", "title": "오차를 줄이는 학습" },
+        { "id": "generalization", "title": "훈련 성능과 일반화" },
+        { "id": "distribution", "title": "데이터 분포와 대표성" }
+      ],
+      "sourceIds": ["ai4k12-big-ideas", "oecd-ailit-2026", "nist-ai-rmf-1"],
+      "quiz": {
+        "question": "훈련 정확도는 높은데 실제 서비스 정확도가 낮을 때 가장 타당한 첫 가설은?",
+        "options": ["모델이 감정을 잃었다.", "훈련 자료를 과도하게 맞췄거나 실제 입력 분포가 달라졌다.", "모든 AI는 무작위로 답한다."],
+        "correctIndex": 1,
+        "explanation": "훈련 데이터의 오차 감소가 곧 새로운 환경의 성능을 보장하지 않는다. 과적합과 분포 변화를 먼저 살펴야 한다."
+      },
+      "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
+    },
+    {
+      "track": "easy",
+      "number": 3,
+      "slug": "choosing-an-answer",
+      "file": "easy/03-choosing-an-answer.mdx",
+      "title": "모델이 답을 고르는 방법",
+      "eyebrow": "가능성 점수는 확실한 정답표가 아니다",
+      "description": "여러 후보에 점수를 주고 하나를 고르는 과정을 날씨 준비와 단어 이어 말하기로 이해한다.",
+      "objectives": ["후보별 점수와 선택을 구별한다.", "기준값에 따라 결정이 달라짐을 안다.", "가능성이 높다는 말과 사실임을 구별한다."],
+      "sections": [
+        { "id": "scores", "title": "후보마다 점수 붙이기" },
+        { "id": "threshold", "title": "어디서 선을 그을까" },
+        { "id": "next-token", "title": "다음 조각을 고르는 언어 모델" }
+      ],
+      "sourceIds": ["ai4k12-big-ideas", "oecd-ailit-2026", "vaswani-transformer-2017", "nist-ai-rmf-1"],
+      "quiz": {
+        "question": "모델이 ‘비 올 가능성 70%’에 가장 높은 점수를 줬다는 뜻은?",
+        "options": ["반드시 비가 온다.", "후보 중 그 결과를 더 알맞다고 계산했지만 틀릴 수 있다.", "모델이 비를 원한다."],
+        "correctIndex": 1,
+        "explanation": "점수는 모델이 가진 자료와 계산에 따른 선택 근거다. 현실의 확정된 사실이나 마음을 뜻하지 않는다."
+      },
+      "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
+    },
+    {
+      "track": "standard",
+      "number": 3,
+      "slug": "choosing-an-answer",
+      "file": "standard/03-choosing-an-answer.mdx",
+      "title": "모델이 답을 고르는 방법",
+      "eyebrow": "점수, 확률, 임계값, 샘플링의 역할",
+      "description": "모델의 내부 점수가 분류 결정이나 다음 토큰 선택으로 바뀌는 과정과 보정의 한계를 살펴본다.",
+      "objectives": ["점수와 확률 표현의 관계를 설명한다.", "임계값의 비용·편익을 비교한다.", "디코딩 설정과 사실 정확성을 구별한다."],
+      "sections": [
+        { "id": "logits-probabilities", "title": "점수에서 확률 표현으로" },
+        { "id": "decision-threshold", "title": "결정 임계값과 오류 비용" },
+        { "id": "decoding", "title": "생성 모델의 토큰 선택" }
+      ],
+      "sourceIds": ["ai4k12-big-ideas", "nist-ai-rmf-1", "nist-genai-profile", "vaswani-transformer-2017"],
+      "quiz": {
+        "question": "질병 선별 모델의 양성 임계값을 낮추면 일반적으로 생기는 변화는?",
+        "options": ["놓치는 양성은 줄 수 있지만 거짓 양성은 늘 수 있다.", "모든 오류가 동시에 사라진다.", "모델이 더 많은 사실을 학습한다."],
+        "correctIndex": 0,
+        "explanation": "임계값은 이미 계산된 점수를 결정으로 바꾸는 기준이다. 오류 종류 사이의 교환 관계와 실제 비용을 함께 봐야 한다."
+      },
+      "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
+    },
+    {
+      "track": "easy",
+      "number": 4,
+      "slug": "generative-ai",
+      "file": "easy/04-generative-ai.mdx",
+      "title": "생성형 AI와 언어 모델",
+      "eyebrow": "새 문장을 만들지만 경험을 가진 화자는 아니다",
+      "description": "생성형 AI가 배운 패턴으로 새 결과를 만들고 언어 모델이 글자 조각을 이어 가는 방식을 배운다.",
+      "objectives": ["분류와 생성을 구별한다.", "토큰과 문맥의 역할을 말한다.", "자연스러운 문장과 인간의 이해를 구별한다."],
+      "sections": [
+        { "id": "generate", "title": "분류를 넘어 새 결과 만들기" },
+        { "id": "tokens-context", "title": "토큰과 문맥" },
+        { "id": "fluent-not-human", "title": "자연스러움은 사람의 경험이 아니다" }
+      ],
+      "sourceIds": ["oecd-ailit-2026", "nist-genai-profile", "vaswani-transformer-2017", "unicef-ai-children-3"],
+      "quiz": {
+        "question": "언어 모델이 문장을 만드는 설명으로 가장 알맞은 것은?",
+        "options": ["직접 겪은 추억을 말한다.", "주어진 문맥에서 다음 토큰 후보를 계산하며 이어 간다.", "인터넷의 한 문장을 그대로 항상 복사한다."],
+        "correctIndex": 1,
+        "explanation": "언어 모델은 문맥 속 패턴으로 다음 토큰을 반복해 고른다. 결과가 새로울 수 있지만 사람의 경험이나 의식이 생긴 것은 아니다."
+      },
+      "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
+    },
+    {
+      "track": "standard",
+      "number": 4,
+      "slug": "generative-ai",
+      "file": "standard/04-generative-ai.mdx",
+      "title": "생성형 AI와 언어 모델",
+      "eyebrow": "사전학습, 문맥 표현, 추론을 한 흐름으로 보기",
+      "description": "대규모 언어 모델의 사전학습과 추론, Transformer 문맥 처리, 생성 결과 해석의 경계를 정리한다.",
+      "objectives": ["생성 모델의 학습 목표와 추론을 구별한다.", "Transformer가 문맥 관계를 다루는 방식을 개괄한다.", "유창성·추론 흔적·사실성을 분리해 평가한다."],
+      "sections": [
+        { "id": "pretraining-inference", "title": "사전학습과 추론" },
+        { "id": "transformer-context", "title": "Transformer와 문맥 표현" },
+        { "id": "interpretation", "title": "유창한 출력의 올바른 해석" }
+      ],
+      "sourceIds": ["vaswani-transformer-2017", "nist-genai-profile", "upstage-solar-open2-report"],
+      "quiz": {
+        "question": "언어 모델의 답이 논리적으로 매끄럽다는 관찰만으로 결론 내릴 수 없는 것은?",
+        "options": ["문장 구조가 자연스럽다.", "출력 토큰이 이어졌다.", "주장의 사실성과 출처가 검증되었다."],
+        "correctIndex": 2,
+        "explanation": "유창성은 생성 품질의 한 측면일 뿐이다. 사실성과 근거는 별도 검색·원출처 확인·교차 검증이 필요하다."
+      },
+      "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
+    },
+    {
+      "track": "easy",
+      "number": 5,
+      "slug": "verify-errors",
+      "file": "easy/05-verify-errors.mdx",
+      "title": "AI가 틀리는 이유와 검증법",
+      "eyebrow": "그럴듯함에서 멈추지 않는 세 번의 확인",
+      "description": "AI가 자신 있게 틀릴 수 있는 이유를 알고 원출처·날짜·다른 근거를 확인하는 습관을 기른다.",
+      "objectives": ["그럴듯한 오류를 발견한다.", "편향과 빈 정보의 영향을 찾는다.", "원출처를 확인하는 세 단계를 적용한다."],
+      "sections": [
+        { "id": "plausible-error", "title": "그럴듯하게 틀릴 수 있다" },
+        { "id": "bias-gaps", "title": "치우침과 빈칸" },
+        { "id": "three-checks", "title": "출처·날짜·교차 확인" }
+      ],
+      "sourceIds": ["nist-genai-profile", "nist-ai-rmf-1", "oecd-ailit-2026"],
+      "quiz": {
+        "question": "AI가 알려 준 ‘세계 최초’ 기록을 확인하는 가장 좋은 순서는?",
+        "options": ["문장이 멋진지 본다.", "원출처와 날짜를 열고 다른 믿을 만한 출처와 비교한다.", "같은 AI에게 똑같이 한 번 더 묻는다."],
+        "correctIndex": 1,
+        "explanation": "같은 모델의 반복 답변은 독립 확인이 아니다. 실제 원문, 적용 날짜, 다른 기관 자료를 확인해야 한다."
+      },
+      "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
+    },
+    {
+      "track": "standard",
+      "number": 5,
+      "slug": "verify-errors",
+      "file": "standard/05-verify-errors.mdx",
+      "title": "AI가 틀리는 이유와 검증법",
+      "eyebrow": "confabulation, 편향, 불확실성을 검증 절차로 다루기",
+      "description": "생성 오류와 데이터 편향을 구분하고 주장 유형에 맞는 1차 자료·시점·독립 교차 검증을 설계한다.",
+      "objectives": ["생성 오류와 불확실성의 원인을 구분한다.", "편향된 전제와 자료 대표성을 점검한다.", "주장별 검증 강도를 설계한다."],
+      "sections": [
+        { "id": "confabulation", "title": "confabulation과 정보 공백" },
+        { "id": "bias-uncertainty", "title": "편향과 불확실성" },
+        { "id": "verification-protocol", "title": "주장별 검증 프로토콜" }
+      ],
+      "sourceIds": ["nist-genai-profile", "nist-ai-rmf-1", "oecd-ailit-2026"],
+      "quiz": {
+        "question": "제품 제조사의 벤치마크 표를 인용할 때 가장 적절한 처리 방식은?",
+        "options": ["독립적 사실로 단정한다.", "제조사 보고임을 표시하고 평가 조건과 독립 자료를 함께 확인한다.", "숫자가 높으면 출처를 생략한다."],
+        "correctIndex": 1,
+        "explanation": "1차 제품 자료는 제품 사실에 유용하지만 이해관계가 있다. 보고 주체·조건을 드러내고 독립 검증과 구별해야 한다."
+      },
+      "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
+    },
+    {
+      "track": "easy",
+      "number": 6,
+      "slug": "rag-and-sources",
+      "file": "easy/06-rag-and-sources.mdx",
+      "title": "RAG와 출처 기반 답변",
+      "eyebrow": "책장을 먼저 찾고, 찾은 쪽을 보며 답하기",
+      "description": "질문과 가까운 교재 부분을 찾은 뒤 답을 만드는 RAG와 출처 번호의 역할을 배운다.",
+      "objectives": ["검색과 생성을 구별한다.", "source ID가 필요한 이유를 말한다.", "RAG도 틀릴 수 있는 지점을 찾는다."],
+      "sections": [
+        { "id": "library-analogy", "title": "도서관 길잡이처럼 찾기" },
+        { "id": "source-id", "title": "출처 번호는 주소표" },
+        { "id": "rag-limits", "title": "찾았다고 항상 맞는 것은 아니다" }
+      ],
+      "sourceIds": ["lewis-rag-2020", "nist-genai-profile", "oecd-ailit-2026"],
+      "quiz": {
+        "question": "RAG 답변이 틀릴 수 있는 경우는?",
+        "options": ["검색한 부분이 질문과 다르거나 생성 과정에서 뜻을 잘못 엮은 경우", "출처 번호가 있다는 이유만으로는 절대 없다.", "글꼴이 작을 때만"],
+        "correctIndex": 0,
+        "explanation": "RAG에는 검색과 생성 두 단계가 있다. 잘못 찾거나, 맞게 찾은 내용을 잘못 사용하면 답이 틀릴 수 있다."
+      },
+      "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
+    },
+    {
+      "track": "standard",
+      "number": 6,
+      "slug": "rag-and-sources",
+      "file": "standard/06-rag-and-sources.mdx",
+      "title": "RAG와 출처 기반 답변",
+      "eyebrow": "검색 파이프라인과 provenance를 분리해 평가하기",
+      "description": "임베딩·전문 검색·문맥 우선순위·source registry로 구성된 실제 RAG 흐름과 실패 모드를 분석한다.",
+      "objectives": ["RAG 파이프라인의 단계를 설명한다.", "하이브리드 검색과 문맥 우선순위를 비교한다.", "인용의 존재와 인용의 정확성을 구별한다."],
+      "sections": [
+        { "id": "pipeline", "title": "회수에서 생성까지" },
+        { "id": "hybrid-provenance", "title": "하이브리드 검색과 provenance" },
+        { "id": "failure-modes", "title": "RAG의 실패 모드" }
+      ],
+      "sourceIds": ["lewis-rag-2020", "nist-genai-profile", "oecd-ailit-2026"],
+      "quiz": {
+        "question": "답변 뒤에 링크가 있다는 사실만으로 확인되지 않는 것은?",
+        "options": ["링크 문자열이 존재한다.", "링크의 원문이 실제 주장과 정확히 연결된다.", "답변 UI가 출처를 표시한다."],
+        "correctIndex": 1,
+        "explanation": "인용 정확성은 별도 품질이다. source ID가 등록되어 있어도 locator가 해당 주장을 지지하는지 확인해야 한다."
+      },
+      "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
+    },
+    {
+      "track": "easy",
+      "number": 7,
+      "slug": "responsible-use",
+      "file": "easy/07-responsible-use.mdx",
+      "title": "AI를 책임 있게 사용하기",
+      "eyebrow": "멈추고, 숨기고, 어른과 함께 결정할 때",
+      "description": "개인정보·저작권·편향을 살피고 건강·안전·돈과 관련된 결정은 믿을 만한 어른과 확인한다.",
+      "objectives": ["AI에 넣지 말아야 할 개인정보를 찾는다.", "창작물과 사람을 존중하는 사용을 고른다.", "어른의 도움이 필요한 상황을 구별한다."],
+      "sections": [
+        { "id": "privacy-copyright", "title": "내 정보와 남의 창작물 지키기" },
+        { "id": "bias-respect", "title": "누가 빠졌는지 살피기" },
+        { "id": "trusted-adult", "title": "중요한 결정은 믿을 만한 어른과" }
+      ],
+      "sourceIds": ["unicef-ai-children-3", "nist-ai-rmf-1", "unesco-students-2024"],
+      "quiz": {
+        "question": "AI에게 받은 건강 조언 때문에 불안할 때 가장 안전한 행동은?",
+        "options": ["혼자 바로 약을 먹는다.", "개인정보를 더 보내 설득한다.", "사용을 멈추고 보호자·교사·의료인처럼 믿을 만한 어른에게 보여 준다."],
+        "correctIndex": 2,
+        "explanation": "AI는 의료인이나 보호자가 아니다. 건강·안전·위기 문제는 혼자 결정하지 말고 자격과 책임이 있는 사람에게 연결해야 한다."
+      },
+      "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
+    },
+    {
+      "track": "standard",
+      "number": 7,
+      "slug": "responsible-use",
+      "file": "standard/07-responsible-use.mdx",
+      "title": "AI를 책임 있게 사용하기",
+      "eyebrow": "위험, 권리, 감독, 책임 주체를 분리하기",
+      "description": "개인정보·저작권·편향·고위험 사용을 사례로 분석하고 사람의 감독이 실제 책임으로 이어지는 조건을 정리한다.",
+      "objectives": ["AI 사용의 이해관계자와 책임 주체를 식별한다.", "개인정보·저작권·편향 위험을 비교한다.", "고위험 상황의 인간 감독 조건을 설계한다."],
+      "sections": [
+        { "id": "rights-data", "title": "권리와 데이터 처리" },
+        { "id": "bias-accountability", "title": "편향과 책임의 귀속" },
+        { "id": "meaningful-oversight", "title": "형식이 아닌 실질적 인간 감독" }
+      ],
+      "sourceIds": ["unicef-ai-children-3", "nist-ai-rmf-1", "unesco-students-2024"],
+      "quiz": {
+        "question": "대출 심사에서 ‘사람이 마지막 승인 버튼을 누른다’는 사실만으로 충분하지 않은 이유는?",
+        "options": ["버튼 색이 다를 수 있어서", "담당자가 근거를 이해하고 거부·수정할 권한과 시간을 가져야 실질적 감독이 되기 때문에", "AI는 언제나 완벽해서"],
+        "correctIndex": 1,
+        "explanation": "사람이 명목상 끼어 있는 것과 의미 있게 감독하는 것은 다르다. 정보·권한·시간·책임과 이의제기 절차가 필요하다."
+      },
+      "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
+    }
+  ]
+}

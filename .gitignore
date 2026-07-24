@@ -6,3 +6,11 @@
 node_modules/
 dist/
 .scratch/
+.next/
+.vercel/
+coverage/
+playwright-report/
+test-results/
+*.out
+*.tsbuildinfo
+apps/api/server

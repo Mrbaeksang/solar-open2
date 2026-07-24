@@ -1,0 +1,39 @@
+{
+  "name": "@solar-open2/web",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "content:build": "node scripts/build-content.mjs",
+    "dev": "next dev",
+    "build": "pnpm content:build && next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@ag-ui/client": "0.0.57",
+    "@assistant-ui/react": "0.14.27",
+    "@assistant-ui/react-ag-ui": "0.0.45",
+    "@next/mdx": "16.2.11",
+    "next": "16.2.11",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.12.1",
+    "@mdx-js/loader": "3.1.1",
+    "@mdx-js/react": "3.1.1",
+    "@playwright/test": "1.61.1",
+    "@types/mdx": "2.0.13",
+    "@types/node": "24.10.1",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@vitest/coverage-v8": "4.1.10",
+    "typescript": "5.9.3",
+    "vitest": "4.1.10"
+  }
+}

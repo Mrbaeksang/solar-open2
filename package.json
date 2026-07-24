@@ -1,0 +1,22 @@
+{
+  "name": "solar-open2",
+  "private": true,
+  "packageManager": "pnpm@10.33.2",
+  "scripts": {
+    "build": "pnpm content:build && pnpm --filter @solar-open2/web build && pnpm api:build",
+    "content:build": "pnpm --filter @solar-open2/web content:build",
+    "dev": "pnpm --parallel --filter @solar-open2/web dev",
+    "typecheck": "pnpm --filter @solar-open2/web typecheck && pnpm api:test",
+    "test": "pnpm content:build && pnpm --filter @solar-open2/web test && pnpm api:test",
+    "test:e2e": "pnpm content:build && pnpm --filter @solar-open2/web test:e2e",
+    "eval": "cd apps/api && go test ./internal/evals -count=1",
+    "api:build": "cd apps/api && go build ./...",
+    "api:test": "cd apps/api && go test ./..."
+  },
+  "pnpm": {
+    "overrides": {
+      "postcss": "8.5.22",
+      "sharp": "0.35.3"
+    }
+  }
+}

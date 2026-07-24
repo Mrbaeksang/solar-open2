@@ -1,0 +1,923 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "oecd-ailit-2026",
+      "publisher": "OECD · European Union",
+      "title": "Empowering Learners for the Age of AI: An AI Literacy Framework for Primary and Secondary Education",
+      "editionOrVersion": "Final, 64 pages",
+      "publishedAt": "2026-06-18",
+      "summary": "초·중등 학습자의 AI 리터러시를 지식·기술·태도와 네 차원으로 정리한 최종 공동 프레임워크다.",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://www.oecd.org/en/publications/empowering-learners-for-the-age-of-ai_65cd27d4-en.html",
+      "reviewedAt": "2026-07-24",
+      "kind": "independent-public",
+      "usage": "교육과정 주축. 한국어 원고는 직접 번역이 아니라 독립 집필했으며 개념을 대조했다."
+    },
+    {
+      "id": "oecd-ai-definition-2024",
+      "publisher": "OECD",
+      "title": "Explanatory Memorandum on the Updated OECD Definition of an AI System",
+      "editionOrVersion": "OECD Artificial Intelligence Papers No. 8",
+      "publishedAt": "2024-03",
+      "summary": "AI 시스템을 입력에서 예측·콘텐츠·추천·결정 같은 출력으로 추론하는 기계 기반 시스템으로 설명한다.",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://doi.org/10.1787/623da898-en",
+      "reviewedAt": "2026-07-24",
+      "kind": "independent-public",
+      "usage": "AI 시스템의 작동 범위와 사람의 목표 설정을 설명하는 사실 근거로 사용했다."
+    },
+    {
+      "id": "unesco-students-2024",
+      "publisher": "UNESCO",
+      "title": "AI Competency Framework for Students",
+      "editionOrVersion": "First edition, ISBN 978-92-3-100709-5",
+      "publishedAt": "2024-08-08",
+      "summary": "인간 중심 사고, 윤리, 기술과 응용, 시스템 설계의 네 차원과 12개 학생 역량을 제시한다.",
+      "license": "CC BY-SA 3.0 IGO",
+      "licenseUrl": "https://www.unesco.org/en/open-access/cc-sa",
+      "url": "https://unesdoc.unesco.org/ark:/48223/pf0000391105",
+      "reviewedAt": "2026-07-24",
+      "kind": "independent-public",
+      "usage": "표나 문장을 번역·복제하지 않고 인간 중심·윤리 역량을 교차 검증했다."
+    },
+    {
+      "id": "ai4k12-big-ideas",
+      "publisher": "AI4K12 Initiative",
+      "title": "Five Big Ideas in Artificial Intelligence and Grade Band Progression Charts",
+      "editionOrVersion": "Living curriculum guidance, accessed 2026-07-24",
+      "publishedAt": "2020",
+      "summary": "K–12 AI 교육을 인식, 표현과 추론, 학습, 자연스러운 상호작용, 사회적 영향의 다섯 생각으로 조직한다.",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://ai4k12.org/licensing-terms/",
+      "url": "https://ai4k12.org/gradeband-progression-charts/",
+      "reviewedAt": "2026-07-24",
+      "kind": "education-consortium",
+      "usage": "문장·활동을 번역하지 않고 연령별 개념 누락을 확인하는 내부 대조표로만 사용했다."
+    },
+    {
+      "id": "nist-ai-rmf-1",
+      "publisher": "National Institute of Standards and Technology",
+      "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+      "editionOrVersion": "NIST AI 100-1",
+      "publishedAt": "2023-01-26",
+      "summary": "신뢰할 수 있는 AI의 특성과 위험을 GOVERN, MAP, MEASURE, MANAGE 기능으로 다루는 자발적 프레임워크다.",
+      "license": "NIST public-domain and worldwide reuse terms",
+      "licenseUrl": "https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications",
+      "url": "https://doi.org/10.6028/NIST.AI.100-1",
+      "reviewedAt": "2026-07-24",
+      "kind": "independent-public",
+      "usage": "정확성·투명성·사생활·편향·사람의 감독에 관한 위험 설명을 검증했다."
+    },
+    {
+      "id": "nist-genai-profile",
+      "publisher": "National Institute of Standards and Technology",
+      "title": "Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile",
+      "editionOrVersion": "NIST AI 600-1",
+      "publishedAt": "2024-07-26",
+      "summary": "생성형 AI의 confabulation, 데이터 사생활, 유해 편향, 정보 무결성 등 고유 위험과 대응을 정리한다.",
+      "license": "NIST public-domain and worldwide reuse terms",
+      "licenseUrl": "https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications",
+      "url": "https://doi.org/10.6028/NIST.AI.600-1",
+      "reviewedAt": "2026-07-24",
+      "kind": "independent-public",
+      "usage": "환각, 검증, RAG의 한계, 생성형 AI 위험을 설명하는 사실 근거로 사용했다."
+    },
+    {
+      "id": "unicef-ai-children-3",
+      "publisher": "UNICEF Innocenti",
+      "title": "Guidance on AI and Children",
+      "editionOrVersion": "Version 3.0",
+      "publishedAt": "2025-12",
+      "summary": "아동의 안전, 사생활, 공정성, 설명 가능성, 복지와 포용을 중심에 둔 AI 정책·제품 지침이다.",
+      "license": "CC BY 4.0 (excluding logos, photos and separately credited material)",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://www.unicef.org/innocenti/reports/policy-guidance-ai-children",
+      "reviewedAt": "2026-07-24",
+      "kind": "independent-public",
+      "usage": "미성년 독자의 개인정보, 의인화, 위험 상황 연결과 제품 보호 정책을 검증했다."
+    },
+    {
+      "id": "vaswani-transformer-2017",
+      "publisher": "NeurIPS",
+      "title": "Attention Is All You Need",
+      "editionOrVersion": "NeurIPS 2017 paper, arXiv v7",
+      "publishedAt": "2017-06-12",
+      "summary": "자기어텐션을 중심으로 한 Transformer 구조를 제안한 1차 연구 논문이다.",
+      "license": "arXiv non-exclusive distribution license; factual citation only",
+      "licenseUrl": "https://info.arxiv.org/help/license/index.html",
+      "url": "https://arxiv.org/abs/1706.03762",
+      "reviewedAt": "2026-07-24",
+      "kind": "primary-research",
+      "usage": "문장이나 도표를 복제하지 않고 Transformer와 문맥 처리의 역사적·기술적 사실을 인용했다."
+    },
+    {
+      "id": "lewis-rag-2020",
+      "publisher": "NeurIPS",
+      "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "editionOrVersion": "NeurIPS 2020 paper, arXiv v4",
+      "publishedAt": "2020-05-22",
+      "summary": "검색으로 얻은 외부 문서와 생성 모델을 결합하는 RAG 접근을 제시한 1차 연구 논문이다.",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://arxiv.org/abs/2005.11401",
+      "reviewedAt": "2026-07-24",
+      "kind": "primary-research",
+      "usage": "RAG의 검색·생성 결합 원리와 한계를 독립 집필한 설명의 근거로 사용했다."
+    },
+    {
+      "id": "upstage-solar-open2-report",
+      "publisher": "Upstage AI",
+      "title": "Solar Open 2 Technical Report and Model Card",
+      "editionOrVersion": "Technical report v1 · Solar-Open2-250B model card",
+      "publishedAt": "2026-07-22",
+      "summary": "Solar Open 2의 모델 구조, 언어, 문맥 길이, 훈련·평가 조건을 개발사가 공개한 1차 자료다.",
+      "license": "Technical report CC BY 4.0; model weights use the separate Upstage Solar License",
+      "licenseUrl": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/LICENSE",
+      "url": "https://arxiv.org/abs/2607.20062",
+      "reviewedAt": "2026-07-24",
+      "kind": "vendor-primary",
+      "usage": "제품별 사실에만 사용했다. 제조사 보고 수치이며 독립 검증이나 교육 효과의 증거로 취급하지 않는다."
+    }
+  ],
+  "passages": [
+    {
+      "id": "easy:ai-is:goal-tool",
+      "track": "easy",
+      "chapterId": "ai-is",
+      "chapterTitle": "AI란 무엇인가",
+      "sectionId": "goal-tool",
+      "sectionTitle": "목표를 따라 움직이는 도구",
+      "text": "운동회 날 우산을 챙길지 알려 주는 AI를 상상해 봅시다. 이 도구의 목표는 “비에 젖을 가능성을 줄이도록 돕기”입니다. 오늘의 구름, 습도, 과거 날씨 같은 정보를 받고 “우산을 챙겨요” 같은 결과를 냅니다. 목표 없이 스스로 하고 싶은 일을 정한 것이 아니라, 사람이 정한 문제 안에서 계산한 것입니다. AI 시스템은 사람이 정한 목표를 위해 입력을 받아 예측·콘텐츠·추천·결정 같은 출력을 추론하는 기계 기반 시스템입니다. 여기서 추론은 탐정처럼 마음속 생각을 한다는 말이 아닙니다. 배운 패턴이나 정해진 계산을 새 입력에 적용해 결과를 만드는 과정이라는 뜻입니다. 계산기가 정확한 규칙을 따르는 도구라면, 많은 AI는 자료에서 찾은 패턴을 사용한다는 차이가 있습니다. 사진 앱의 “눈 감은 사진 찾기” 기능에서 사람이 정한 목표를 한 문장으로 써 보세요. “좋은 사진을 안다”보다 “눈을 감은 얼굴이 있는 사진을 표시한다”처럼 관찰 가능한 말이 좋습니다.",
+      "sourceIds": [
+        "oecd-ai-definition-2024"
+      ],
+      "claimIds": [
+        "e01-goal"
+      ]
+    },
+    {
+      "id": "easy:ai-is:input-output",
+      "track": "easy",
+      "chapterId": "ai-is",
+      "chapterTitle": "AI란 무엇인가",
+      "sectionId": "input-output",
+      "sectionTitle": "입력에서 출력까지",
+      "text": "AI를 만날 때는 네 칸을 그려 보면 좋습니다. 목표 → 입력 → 계산 → 출력입니다. 음악 추천이라면 듣기 기록이 입력이고, 추천 목록이 출력입니다. 그런데 같은 입력도 “새 음악을 발견하게 하기”와 “앱에 오래 머물게 하기” 중 어느 목표를 택했는지에 따라 추천이 달라질 수 있습니다. AI의 결과는 목표, 입력, 설계와 사용 환경의 영향을 받으며 사람은 이 선택에 책임이 있습니다. 그래서 “AI가 골랐어”라는 말로 이야기를 끝내면 안 됩니다. 누가 목표를 정했는지, 어떤 자료를 넣었는지, 결과를 누가 사용했는지를 물어야 합니다. 자동문처럼 센서가 켜지면 항상 정해진 동작을 하는 장치는 자동화이지만, 모든 자동화가 AI인 것은 아닙니다. 반대로 AI가 들어간 기능도 전원, 화면, 규칙 같은 여러 자동화 부품과 함께 작동합니다. AI와 자동화의 경계는 늘 칼로 자른 듯 선명하지 않습니다. 이름보다 입력과 출력, 학습 여부, 사람이 정한 규칙을 확인하는 습관이 더 중요합니다.",
+      "sourceIds": [
+        "oecd-ailit-2026",
+        "unesco-students-2024"
+      ],
+      "claimIds": [
+        "e01-input"
+      ]
+    },
+    {
+      "id": "easy:ai-is:not-a-person",
+      "track": "easy",
+      "chapterId": "ai-is",
+      "chapterTitle": "AI란 무엇인가",
+      "sectionId": "not-a-person",
+      "sectionTitle": "말을 잘해도 사람은 아니다",
+      "text": "대화형 AI가 “반가워요”라고 쓰면 누군가 정말 반가워하는 듯 느껴질 수 있습니다. 하지만 이 문장은 대화를 편하게 하도록 만든 출력입니다. AI는 몸으로 하루를 보내거나, 상처받거나, 약속에 책임지는 사람이 아닙니다. 친절한 말투는 유용한 인터페이스이지 감정의 증명서가 아닙니다. 대화형 AI가 자연스럽게 말해도 사람의 감정·관계·책임을 가진 존재로 보아서는 안 됩니다. 이 차이를 알면 AI를 무시하게 되는 것이 아니라 더 잘 사용할 수 있습니다. 설명을 요청하고 아이디어를 얻되, 중요한 사실은 확인합니다. 외롭거나 위험한 일을 겪을 때는 AI를 친구나 상담사로 믿고 혼자 버티지 말고 믿을 수 있는 어른에게 알립니다. AI가 틀렸다면 책임을 물을 대상도 AI의 “마음”이 아니라 그것을 설계하고 제공하고 사용한 사람과 조직입니다. “AI가 내가 이 영상을 좋아할 줄 알았어”를 시스템의 작동이 드러나는 문장으로 바꿔 보세요. 예: “추천 시스템이 내 시청 기록과 비슷한 패턴에 높은 점수를 줬어.”",
+      "sourceIds": [
+        "unicef-ai-children-3"
+      ],
+      "claimIds": [
+        "e01-person"
+      ]
+    },
+    {
+      "id": "standard:ai-is:operational-definition",
+      "track": "standard",
+      "chapterId": "ai-is",
+      "chapterTitle": "AI란 무엇인가",
+      "sectionId": "operational-definition",
+      "sectionTitle": "작동으로 정의하기",
+      "text": "OECD의 최신 작동 정의는 AI 시스템을 입력에서 예측, 콘텐츠, 추천, 결정 같은 출력을 추론하는 기계 기반 시스템으로 봅니다. 이 정의는 인간과 비슷한 지능을 가졌는지 묻지 않습니다. 관찰 가능한 입출력과 추론 과정에 초점을 맞춥니다. AI 시스템의 작동 정의는 자율성 수준과 배치 뒤 적응 가능성이 시스템마다 다를 수 있음을 포함합니다. “자율성”도 책임에서 벗어난다는 뜻이 아닙니다. 사람이 매번 중간 계산을 지시하지 않아도 출력할 수 있다는 정도의 특성입니다. 규칙 기반 전문가 시스템, 학습한 분류기, 생성형 언어 모델은 방법이 다르지만 이 작동 정의 안에서 비교할 수 있습니다. 반대로 단순한 타이머도 사람의 개입 없이 움직이지만, 입력으로부터 결과를 추론한다고 보기 어렵다면 AI라고 부를 이유가 적습니다. 스팸 메일 필터와 예약 전송 기능을 각각 목표·입력·추론·출력 네 칸으로 적어 보세요. 어느 칸에서 두 기능의 차이가 선명해지는지 표시합니다.",
+      "sourceIds": [
+        "oecd-ai-definition-2024"
+      ],
+      "claimIds": [
+        "s01-definition"
+      ]
+    },
+    {
+      "id": "standard:ai-is:system-boundary",
+      "track": "standard",
+      "chapterId": "ai-is",
+      "chapterTitle": "AI란 무엇인가",
+      "sectionId": "system-boundary",
+      "sectionTitle": "시스템 경계와 인간의 선택",
+      "text": "모델 파일만 조사해서는 실제 작동을 설명할 수 없습니다. 채용 추천 모델을 예로 들면, 과거 이력서와 평가가 데이터가 되고, “성공한 직원과 비슷함” 같은 대리 목표가 쓰일 수 있습니다. 담당자가 추천 순위를 어떻게 읽는지, 탈락자가 이의를 제기할 수 있는지까지 결과를 바꿉니다. AI를 평가할 때 모델뿐 아니라 목표, 데이터, 사용자, 제도와 출력이 쓰이는 환경까지 시스템 경계에 포함해야 합니다. 경계를 그리면 책임도 보입니다. 데이터 항목을 고른 팀, 목표 지표를 승인한 조직, 경고를 무시하거나 맹신한 운영자에게 서로 다른 책임이 있습니다. “모델이 결정했다”는 문장은 이 연쇄를 감춥니다. 특히 추천은 명령이 아니지만, 사용자가 거부하기 어렵거나 자동으로 다음 절차에 연결되면 사실상 결정과 비슷한 힘을 가질 수 있습니다. 시스템 경계는 분석 목적에 따라 달라집니다. 기술 성능을 재려면 모델과 데이터가 중심이지만, 권리 침해를 평가하려면 조직의 절차와 구제 수단까지 넓혀야 합니다.",
+      "sourceIds": [
+        "oecd-ailit-2026",
+        "nist-ai-rmf-1"
+      ],
+      "claimIds": [
+        "s01-boundary"
+      ]
+    },
+    {
+      "id": "standard:ai-is:automation-anthropomorphism",
+      "track": "standard",
+      "chapterId": "ai-is",
+      "chapterTitle": "AI란 무엇인가",
+      "sectionId": "automation-anthropomorphism",
+      "sectionTitle": "자동화와 의인화의 함정",
+      "text": "자동화는 정해진 과정을 기계가 수행하도록 만드는 넓은 개념입니다. AI는 그 안에서 학습이나 추론을 이용하는 한 갈래가 될 수 있습니다. “AI 탑재”라는 표시만으로 더 유연하거나 공정하다고 결론 낼 수 없습니다. 단순 규칙이 더 투명하고 안전한 문제도 있습니다. 유창한 상호작용을 의도·감정·도덕적 책임의 증거로 해석하면 실제 설계자와 운영자의 책임을 흐릴 수 있습니다. 의인화는 인터페이스 이해를 돕기도 합니다. “도우미가 찾아봤다”는 표현은 짧고 편합니다. 다만 시스템이 무엇을 저장하는지, 왜 그 답을 냈는지, 누가 오류를 고칠 수 있는지를 가리는 순간 문제가 됩니다. 능력은 과대평가하고 책임은 AI에 떠넘기는 조합이 특히 위험합니다. 유용한 도구로 대하되, 주체성과 책임을 자동으로 부여하지 않는 것이 출발점입니다. “AI가 지원자를 떨어뜨렸다”를 최소 세 행위자의 선택이 드러나는 문장으로 다시 씁니다. 모델 제공자, 도입 조직, 최종 담당자의 역할을 구분해 보세요.",
+      "sourceIds": [
+        "unesco-students-2024",
+        "unicef-ai-children-3"
+      ],
+      "claimIds": [
+        "s01-anthropomorphism"
+      ]
+    },
+    {
+      "id": "easy:learning-from-data:examples-patterns",
+      "track": "easy",
+      "chapterId": "learning-from-data",
+      "chapterTitle": "데이터로 배우고 예측하기",
+      "sectionId": "examples-patterns",
+      "sectionTitle": "예시 묶음에서 패턴 찾기",
+      "text": "사진 분류기를 만들 때 사람은 “귀가 삼각형이면 고양이” 같은 모든 규칙을 적기 어렵습니다. 대신 고양이와 고양이가 아닌 사진, 그리고 각 사진의 정답표를 준비할 수 있습니다. 모델은 예측과 정답의 차이가 줄어들도록 내부 숫자를 조금씩 바꿉니다. 기계학습 모델은 사람이 모든 규칙을 적는 대신 여러 예시에서 유용한 패턴을 찾도록 조정됩니다. 여기서 데이터는 그냥 많이 모으면 되는 재료가 아닙니다. 사진이 흐린지, 정답표가 정확한지, 실제로 만날 고양이의 모습이 들어 있는지가 중요합니다. 목표도 사람이 정합니다. “동물 종류 맞히기”와 “보호소에서 치료가 급한 동물 찾기”는 같은 사진을 보더라도 필요한 정답과 실수의 무게가 다릅니다. 사과와 토마토 사진을 색만 보고 나눈 분류기는 어떤 실수를 할까요? 색 이외에 필요할 수 있는 특징 두 가지를 적어 보세요.",
+      "sourceIds": [
+        "ai4k12-big-ideas"
+      ],
+      "claimIds": [
+        "e02-pattern"
+      ]
+    },
+    {
+      "id": "easy:learning-from-data:new-example",
+      "track": "easy",
+      "chapterId": "learning-from-data",
+      "chapterTitle": "데이터로 배우고 예측하기",
+      "sectionId": "new-example",
+      "sectionTitle": "처음 보는 예시가 진짜 시험",
+      "text": "시험 문제와 답을 미리 모두 외운 학생은 그 시험에서 높은 점수를 받을 수 있습니다. 하지만 숫자와 상황이 바뀐 새 문제를 풀지 못하면 원리를 배웠다고 말하기 어렵습니다. 모델도 훈련에 쓴 자료에서만 잘하면 부족합니다. 훈련에 쓰지 않은 새 예시로 확인해야 모델이 예시를 외운 것이 아니라 새로운 입력에도 패턴을 적용하는지 알 수 있습니다. 그래서 자료를 훈련용과 시험용으로 나눕니다. 시험용 정답은 학습 중에 보여 주지 않습니다. 그래도 교실 시험과 다른 점이 있습니다. 실제 세상은 계속 바뀝니다. 겨울 사진만 배운 자전거 탐지기는 여름의 새로운 자전거 모양을 놓칠 수 있어요. 배포한 뒤에도 여러 상황에서 다시 확인해야 합니다. “외웠다”는 말은 이해를 돕는 비유입니다. 모델이 사람처럼 기억을 떠올린다는 뜻은 아닙니다. 훈련 예시에 지나치게 맞아 새 입력의 성능이 낮은 상태를 가리킵니다.",
+      "sourceIds": [
+        "ai4k12-big-ideas",
+        "nist-ai-rmf-1"
+      ],
+      "claimIds": [
+        "e02-new"
+      ]
+    },
+    {
+      "id": "easy:learning-from-data:data-limits",
+      "track": "easy",
+      "chapterId": "learning-from-data",
+      "chapterTitle": "데이터로 배우고 예측하기",
+      "sectionId": "data-limits",
+      "sectionTitle": "데이터가 좁으면 배움도 좁다",
+      "text": "손 씻기 자세를 알려 주는 카메라가 어른의 손 사진만 배웠다면 어린이의 작은 손이나 보조 기구를 쓰는 손에서 잘 작동하지 않을 수 있습니다. 전체 평균 점수가 높아도 어떤 사람에게는 계속 실패할 수 있습니다. 훈련 데이터에 어떤 사람이나 상황이 빠지면 모델의 성능도 그 집단이나 상황에서 나빠질 수 있습니다. 이 문제를 고치려면 “모델이 편견을 가졌다”고만 말하기보다 빠진 자료와 잘못 붙은 정답, 목표의 문제를 찾습니다. 더 다양한 자료를 정당한 방법으로 모으고, 집단별 성능을 따로 확인하고, AI 결과를 사람이 되돌릴 수 있게 해야 합니다. 개인정보를 함부로 더 모으는 것이 답은 아닙니다. 필요한 만큼만 안전하게 다루는 조건도 함께 지켜야 합니다. 학교 급식의 남은 양을 예측하려고 지난 한 달 자료만 썼습니다. 소풍날, 시험 기간, 알레르기 대체식처럼 빠졌을 수 있는 상황을 세 가지 찾아보세요.",
+      "sourceIds": [
+        "nist-ai-rmf-1",
+        "oecd-ailit-2026"
+      ],
+      "claimIds": [
+        "e02-data"
+      ]
+    },
+    {
+      "id": "standard:learning-from-data:optimization",
+      "track": "standard",
+      "chapterId": "learning-from-data",
+      "chapterTitle": "데이터로 배우고 예측하기",
+      "sectionId": "optimization",
+      "sectionTitle": "오차를 줄이는 학습",
+      "text": "지도학습의 간단한 형태를 생각해 봅시다. 입력 \\(x\\)와 원하는 정답 \\(y\\)의 쌍을 준비하고, 모델 \\(f\\theta(x)\\)의 예측이 정답과 얼마나 다른지 손실 함수로 계산합니다. 학습 알고리즘은 이 손실을 줄이는 방향으로 매개변수 \\(\\theta\\)를 반복해서 조정합니다. 학습은 정해진 목표와 데이터에 대해 손실을 줄이도록 모델의 조정 가능한 값을 바꾸는 최적화 과정으로 볼 수 있습니다. 손실 함수는 가치 판단을 포함합니다. 평균 오차를 줄일지, 큰 오류에 더 무거운 벌점을 줄지, 어떤 집단의 오류를 따로 볼지에 따라 모델이 선호하는 해가 달라집니다. 비지도학습이나 강화학습은 정답표의 모양이 다르지만, 표현이나 보상을 무엇으로 삼는지 사람이 설계한다는 점은 같습니다. 배달 도착 시간을 예측할 때 평균 오차와 “30분 이상 늦은 예측 횟수” 중 무엇을 줄일지 비교하세요. 고객과 기사에게 생기는 결과가 어떻게 달라질까요?",
+      "sourceIds": [
+        "ai4k12-big-ideas"
+      ],
+      "claimIds": [
+        "s02-optimization"
+      ]
+    },
+    {
+      "id": "standard:learning-from-data:generalization",
+      "track": "standard",
+      "chapterId": "learning-from-data",
+      "chapterTitle": "데이터로 배우고 예측하기",
+      "sectionId": "generalization",
+      "sectionTitle": "훈련 성능과 일반화",
+      "text": "훈련 오차가 매우 낮아도 새 입력의 오차가 낮다는 보장은 없습니다. 모델이 우연한 배경, 파일 이름, 촬영 장비처럼 훈련 자료에만 있는 단서를 이용했을 수 있습니다. 이를 발견하려고 훈련 자료와 분리한 검증 자료로 설정을 고르고, 마지막 시험 자료로 선택이 끝난 뒤의 성능을 추정합니다. 훈련 자료의 성능만으로 배치 환경의 성능을 추정할 수 없으므로 검증·시험 자료와 실제 맥락에서 일반화를 평가해야 합니다. 시험 자료도 완전한 미래는 아닙니다. 같은 수집 과정에서 무작위로 나눈 시험 세트는 새로운 병원, 다른 언어, 다음 해의 사용자를 대표하지 못할 수 있습니다. 따라서 평균 지표 하나 외에 오류 사례, 집단별 성능, 민감도 분석, 배포 후 모니터링이 필요합니다. 높은 벤치마크 점수는 명시된 조건에서의 증거이지 모든 상황의 보증서가 아닙니다. 검증 세트는 모델 설정을 고르는 데 반복 사용되므로 사실상 학습 과정의 일부가 됩니다. 최종 시험 세트를 여러 번 보며 고치면 그 시험도 더 이상 독립 평가가 아닙니다.",
+      "sourceIds": [
+        "nist-ai-rmf-1"
+      ],
+      "claimIds": [
+        "s02-generalization"
+      ]
+    },
+    {
+      "id": "standard:learning-from-data:distribution",
+      "track": "standard",
+      "chapterId": "learning-from-data",
+      "chapterTitle": "데이터로 배우고 예측하기",
+      "sectionId": "distribution",
+      "sectionTitle": "데이터 분포와 대표성",
+      "text": "대출 연체 예측 모델이 안정된 고용 형태가 많던 시기의 자료로 학습되었다고 합시다. 경제 충격 뒤 고용 구조가 바뀌면 입력의 비율뿐 아니라 같은 입력과 결과의 관계도 달라질 수 있습니다. 이를 넓게 분포 변화라고 부릅니다. 시간·지역·사용자 구성이 바뀌어 실제 입력 분포가 훈련 분포와 달라지면 기존 평가 성능이 유지되지 않을 수 있습니다. 대표성은 단순히 모든 사람을 같은 수로 모으는 문제가 아닙니다. 사용 목적, 오류의 영향, 역사적 불평등을 함께 봐야 합니다. 과거의 인사 평가를 정답으로 삼으면 과거 차별이 정답표에 들어갈 수 있습니다. 데이터가 많아도 측정 대상과 대리 변수가 어긋나면 잘못된 목표를 정밀하게 학습합니다. 데이터 계보, 수집 동의, 누락과 오류, 배포 맥락을 문서화해야 하는 이유입니다. 온라인 수업 참여 예측 모델을 대면 수업에 옮겼더니 성능이 떨어졌습니다. 입력 분포 변화, 목표 정의 변화, 측정 방식 변화에 해당하는 가설을 하나씩 적어 보세요.",
+      "sourceIds": [
+        "nist-ai-rmf-1"
+      ],
+      "claimIds": [
+        "s02-distribution"
+      ]
+    },
+    {
+      "id": "easy:choosing-an-answer:scores",
+      "track": "easy",
+      "chapterId": "choosing-an-answer",
+      "chapterTitle": "모델이 답을 고르는 방법",
+      "sectionId": "scores",
+      "sectionTitle": "후보마다 점수 붙이기",
+      "text": "급식 사진에서 사과, 귤, 바나나를 찾는 모델은 입력 사진을 보고 세 후보마다 내부 점수를 만듭니다. 사과 2.1, 귤 0.4, 바나나 -0.2처럼 사람이 바로 읽기 어려운 숫자일 수도 있습니다. 이 숫자를 서로 비교하기 쉬운 0부터 100% 사이의 모습으로 바꿀 수도 있습니다. 분류 모델은 여러 후보를 비교할 수 있는 점수를 계산하고 정한 규칙에 따라 결과를 고릅니다. 가장 높은 점수는 “이 후보가 현재 모델과 입력에서 가장 잘 맞았다”는 뜻입니다. “세상에서 참이라고 증명되었다”는 뜻이 아닙니다. 사진이 어둡거나 처음 보는 품종이면 틀릴 수 있습니다. 점수가 90%처럼 보여도 실제로 비슷한 경우 100번 중 90번 맞는지 따로 시험해야 합니다. 모델의 결과가 ‘강아지 60%, 여우 35%, 고양이 5%’라면 모델이 고를 후보와 아직 확인해야 할 사실을 각각 써 보세요.",
+      "sourceIds": [
+        "ai4k12-big-ideas"
+      ],
+      "claimIds": [
+        "e03-scores"
+      ]
+    },
+    {
+      "id": "easy:choosing-an-answer:threshold",
+      "track": "easy",
+      "chapterId": "choosing-an-answer",
+      "chapterTitle": "모델이 답을 고르는 방법",
+      "sectionId": "threshold",
+      "sectionTitle": "어디서 선을 그을까",
+      "text": "화재 연기를 찾는 모델이 연기 점수 55%를 냈습니다. 50%부터 경보를 울리게 했다면 알림이 나가고, 70%부터 울리게 했다면 조용합니다. 모델의 점수는 같은데 사람이 정한 선 때문에 행동이 달라졌습니다. 같은 점수라도 어느 지점부터 경고할지 정한 기준값에 따라 최종 결정이 달라집니다. 선을 낮추면 실제 연기를 놓치는 일은 줄 수 있지만, 요리 김을 연기로 잘못 알리는 횟수가 늘 수 있습니다. 어떤 실수가 더 위험한지에 따라 기준이 달라집니다. 병원, 학교, 놀이 추천처럼 사람에게 미치는 영향이 다른 곳에서 같은 기준을 복사하면 안 됩니다. 모델을 만든 사람뿐 아니라 기준을 승인하고 알림에 대응하는 사람도 결정에 참여합니다. 점수를 자로 재듯 완벽한 사실로 생각하면 안 됩니다. 입력이 바뀌거나 자료가 부족하면 점수의 믿을 만함도 달라집니다.",
+      "sourceIds": [
+        "nist-ai-rmf-1"
+      ],
+      "claimIds": [
+        "e03-threshold"
+      ]
+    },
+    {
+      "id": "easy:choosing-an-answer:next-token",
+      "track": "easy",
+      "chapterId": "choosing-an-answer",
+      "chapterTitle": "모델이 답을 고르는 방법",
+      "sectionId": "next-token",
+      "sectionTitle": "다음 조각을 고르는 언어 모델",
+      "text": "언어 모델은 “오늘 점심은” 다음에 올 후보를 계산합니다. “김밥”, “맛있다”, “학교에서” 같은 토큰에 서로 다른 가능성을 줍니다. 하나를 고른 뒤에는 새로 이어진 문장 전체를 다시 보고 다음 토큰을 고릅니다. 이 일을 여러 번 반복하면 긴 답이 됩니다. 언어 모델은 지금까지의 문맥을 바탕으로 다음 토큰 후보의 가능성을 계산하고 선택하는 일을 반복해 문장을 만듭니다. 토큰은 꼭 낱말 하나와 같지 않습니다. 글자 일부나 문장 부호가 될 수도 있습니다. “이어 말하기” 비유는 선택 과정을 보여 주지만 한계가 있습니다. 큰 언어 모델은 아주 많은 문맥 관계를 계산하므로 단순 끝말잇기보다 복잡합니다. 그래도 다음 토큰이 그럴듯하다는 계산이 인용한 사실의 진위를 자동으로 확인해 주지는 않습니다. “운동장에 비가 와서 우리는” 뒤에 올 후보 세 개를 만들고, 앞 문장이 달라지면 후보 점수가 어떻게 바뀔지 이야기해 보세요.",
+      "sourceIds": [
+        "vaswani-transformer-2017"
+      ],
+      "claimIds": [
+        "e03-token"
+      ]
+    },
+    {
+      "id": "standard:choosing-an-answer:logits-probabilities",
+      "track": "standard",
+      "chapterId": "choosing-an-answer",
+      "chapterTitle": "모델이 답을 고르는 방법",
+      "sectionId": "logits-probabilities",
+      "sectionTitle": "점수에서 확률 표현으로",
+      "text": "분류기의 마지막 층은 후보마다 logit이라 부르는 원시 점수를 낼 수 있습니다. softmax 같은 함수를 적용하면 합이 1인 분포로 바뀌어 후보 사이의 상대적 선호를 읽기 쉬워집니다. 하지만 수학적으로 합이 1이라는 사실과 현실에서 0.8인 예측이 80% 맞는다는 사실은 다릅니다. 모델의 원시 점수는 정규화된 확률 형태로 바꿀 수 있지만 그 수치가 현실의 빈도와 맞는지는 별도의 보정 평가가 필요합니다. 보정은 대표적인 검증 자료에서 예측 확률과 실제 빈도를 비교합니다. 전체에서는 잘 맞아도 특정 집단이나 새로운 시기에는 어긋날 수 있습니다. “확신도 95%” 같은 UI는 모델 종류, 평가 조건, 분포 변화를 설명하지 않으면 과도한 신뢰를 만들 수 있습니다. 이 교재가 숫자형 신뢰도 대신 근거 상태와 실제 출처 수를 표시하는 이유도 여기에 있습니다. 0.8 이상이라고 예측한 100건 중 실제 정답이 52건이었다면 어떤 문제가 있습니까? 순위 성능이 좋을 가능성과 확률 보정이 나쁠 가능성을 구분해 설명해 보세요.",
+      "sourceIds": [
+        "nist-ai-rmf-1"
+      ],
+      "claimIds": [
+        "s03-probabilities"
+      ]
+    },
+    {
+      "id": "standard:choosing-an-answer:decision-threshold",
+      "track": "standard",
+      "chapterId": "choosing-an-answer",
+      "chapterTitle": "모델이 답을 고르는 방법",
+      "sectionId": "decision-threshold",
+      "sectionTitle": "결정 임계값과 오류 비용",
+      "text": "연속 점수를 이진 결정으로 바꾸려면 임계값이 필요합니다. 임계값을 낮추면 보통 더 많은 사례를 양성으로 잡아 민감도가 오르지만, 거짓 양성이 늘 수 있습니다. 어느 지점이 적절한지는 통계 지표만으로 정해지지 않습니다. 분류 임계값은 거짓 양성과 거짓 음성 사이의 교환 관계를 만들므로 오류 비용과 영향을 받는 집단을 함께 고려해야 합니다. 암 선별에서 놓침과 추가 검사의 비용은 다르고, 스팸 필터에서는 정상 메일 차단과 광고 노출의 비용이 다릅니다. 집단별 기초 비율이 다르면 동일 임계값도 서로 다른 오류율을 만들 수 있습니다. 운영자는 임계값, 후속 검토, 이의제기 절차를 함께 설계해야 합니다. 모델 점수는 정책 결정을 대신하지 않습니다. 임계값을 바꾸는 것은 모델이 새 지식을 학습하는 일이 아닙니다. 같은 점수를 어떤 행동으로 연결할지 바꾸는 제품·정책 선택입니다.",
+      "sourceIds": [
+        "nist-ai-rmf-1"
+      ],
+      "claimIds": [
+        "s03-threshold"
+      ]
+    },
+    {
+      "id": "standard:choosing-an-answer:decoding",
+      "track": "standard",
+      "chapterId": "choosing-an-answer",
+      "chapterTitle": "모델이 답을 고르는 방법",
+      "sectionId": "decoding",
+      "sectionTitle": "생성 모델의 토큰 선택",
+      "text": "자기회귀 언어 모델은 현재 문맥에서 다음 토큰 분포를 계산합니다. 매번 가장 높은 후보를 고르는 방식, 일부 상위 후보에서 표본을 뽑는 방식, 분포를 더 평평하거나 뾰족하게 만드는 temperature 등이 있습니다. 선택 규칙은 반복성, 다양성, 표현의 폭을 바꿉니다. 생성 모델의 temperature나 샘플링 전략은 후보 토큰 선택의 다양성을 바꾸지만 지식의 정확성을 새로 검증하지는 않습니다. 낮은 temperature가 단정적인 문장을 만들 수는 있어도 잘못 학습한 정보나 검색되지 않은 최신 사실을 고치지는 않습니다. 높은 temperature가 창의적 표현을 늘릴 수는 있어도 아이디어의 안전성을 보증하지 않습니다. 디코딩 설정, 검색 근거, 사실 검증을 별도 층으로 관리해야 합니다. 그럴듯한 문장의 생성 확률과 명제의 참일 확률은 같은 대상이 아닙니다. 시 쓰기와 법률 조항 요약에 같은 디코딩 설정을 쓰면 어떤 문제가 생길까요? 다양성 목표와 사실성 검증 절차를 각각 제안해 보세요.",
+      "sourceIds": [
+        "vaswani-transformer-2017",
+        "nist-genai-profile"
+      ],
+      "claimIds": [
+        "s03-decoding"
+      ]
+    },
+    {
+      "id": "easy:generative-ai:generate",
+      "track": "easy",
+      "chapterId": "generative-ai",
+      "chapterTitle": "생성형 AI와 언어 모델",
+      "sectionId": "generate",
+      "sectionTitle": "분류를 넘어 새 결과 만들기",
+      "text": "분류 모델은 준비된 후보 중 하나를 고르는 데 주로 쓰입니다. 생성 모델은 글, 그림, 소리, 코드의 다음 부분을 계속 만들어 더 긴 결과를 구성합니다. “강아지인가?”와 “강아지가 주인공인 이야기 써 줘”는 목표가 다릅니다. 생성형 AI는 배운 자료의 패턴을 이용해 글·그림·소리처럼 새로운 결과물을 만들 수 있습니다. 새 결과라는 말도 조심해서 써야 합니다. 학습 자료의 긴 조각을 지나치게 비슷하게 내놓거나, 실제 사람의 화풍과 목소리를 흉내 낼 수 있습니다. 따라서 결과가 처음 보는 조합이라고 해서 저작권과 창작자의 권리를 자동으로 벗어나는 것은 아닙니다. 어떤 자료로 배웠고 결과를 어떻게 사용할지 사람이 확인해야 합니다. “사진의 식물 이름 표시”, “식물을 주제로 짧은 동시 쓰기”, “사진이 흐린지 판단”을 분류와 생성으로 나눠 보세요. 둘을 함께 쓰는 기능도 찾아봅니다.",
+      "sourceIds": [
+        "oecd-ailit-2026"
+      ],
+      "claimIds": [
+        "e04-generate"
+      ]
+    },
+    {
+      "id": "easy:generative-ai:tokens-context",
+      "track": "easy",
+      "chapterId": "generative-ai",
+      "chapterTitle": "생성형 AI와 언어 모델",
+      "sectionId": "tokens-context",
+      "sectionTitle": "토큰과 문맥",
+      "text": "언어 모델은 글 전체를 한 번에 마법처럼 쓰지 않습니다. 입력을 토큰이라는 작은 단위로 바꾸고, 지금까지 주어진 토큰 사이의 관계를 계산합니다. “배가” 뒤에는 과일 이야기인지 탈것 이야기인지 앞 문맥에 따라 다른 말이 잘 어울립니다. 언어 모델은 문장을 토큰이라는 조각으로 다루고 앞뒤 문맥의 관계를 계산해 다음 조각을 고릅니다. Transformer라는 구조는 문맥 안의 여러 위치가 서로 얼마나 관련 있는지 살피는 계산을 사용합니다. “민지가 수아에게 우산을 주었다. 그는 고마워했다”처럼 대명사가 누구를 가리키는지 문맥을 보는 데 도움이 됩니다. 하지만 긴 글의 중요한 내용을 놓치거나 서로 먼 지시를 잘못 잇기도 합니다. 문맥 창이 길다는 숫자만으로 모든 내용을 똑같이 잘 이해한다는 뜻은 아닙니다. 레고 블록 비유는 토큰이 이어진다는 점을 보여 주지만, 토큰마다 고정된 뜻 블록이 있다는 뜻은 아닙니다. 같은 토큰도 주변 문맥에 따라 표현이 달라집니다.",
+      "sourceIds": [
+        "vaswani-transformer-2017"
+      ],
+      "claimIds": [
+        "e04-context"
+      ]
+    },
+    {
+      "id": "easy:generative-ai:fluent-not-human",
+      "track": "easy",
+      "chapterId": "generative-ai",
+      "chapterTitle": "생성형 AI와 언어 모델",
+      "sectionId": "fluent-not-human",
+      "sectionTitle": "자연스러움은 사람의 경험이 아니다",
+      "text": "언어 모델은 편지, 설명, 역할극을 아주 자연스럽게 만들 수 있습니다. “어제 공원에서 속상했어”라고 말할 수도 있습니다. 그러나 AI가 실제로 어제를 보내거나 공원의 바람을 느낀 것은 아닙니다. 문맥에 잘 이어지는 말의 형태를 만든 것입니다. 문장이 자연스럽다는 사실만으로 내용이 사실이거나 AI가 사람처럼 이해하고 경험한다는 뜻은 아닙니다. 이 한계를 안다고 생성형 AI가 쓸모없어지는 것은 아닙니다. 어려운 문장을 다른 방식으로 설명받고, 생각할 질문을 얻고, 초안의 구조를 비교할 수 있습니다. 다만 이름, 출처, 숫자, 최신 사건은 확인합니다. 감정적 위로나 건강·안전 결정이 필요하면 책임을 질 수 있는 사람에게 도움을 구합니다. AI가 만든 매끄러운 박물관 소개에서 검증해야 할 항목을 표시해 보세요. 개관 연도, 감상 표현, 입장료, 추천 이유는 각각 어떤 확인이 필요할까요?",
+      "sourceIds": [
+        "nist-genai-profile",
+        "unicef-ai-children-3"
+      ],
+      "claimIds": [
+        "e04-fluent"
+      ]
+    },
+    {
+      "id": "standard:generative-ai:pretraining-inference",
+      "track": "standard",
+      "chapterId": "generative-ai",
+      "chapterTitle": "생성형 AI와 언어 모델",
+      "sectionId": "pretraining-inference",
+      "sectionTitle": "사전학습과 추론",
+      "text": "사전학습 단계에서 모델은 많은 토큰 열을 보고 가려진 부분이나 다음 부분을 예측하는 목표를 반복합니다. 예측 오차가 줄도록 수많은 매개변수가 조정되면서 문법, 표현, 함께 나타나는 개념과 일부 세계 지식의 패턴이 형성됩니다. 대규모 언어 모델의 사전학습은 많은 텍스트에서 다음 토큰 예측 같은 목표를 반복해 언어 패턴을 담는 매개변수를 조정하는 과정입니다. 사용자가 질문할 때는 보통 가중치를 다시 학습하지 않고, 이미 조정된 모델에 현재 프롬프트를 넣어 출력을 생성합니다. 이를 추론 단계라고 합니다. 지시 학습, 선호 최적화, 도구 사용 학습 같은 후속 과정은 기본 모델의 응답 방식을 바꿀 수 있지만, 각 과정의 데이터와 목표 역시 사람이 고릅니다. “스스로 배운다”는 표현은 이 설계 연쇄를 가릴 수 있습니다. 사용자가 대화창에서 오타를 고쳐 준 경우와 개발사가 그 대화를 모아 다음 버전을 훈련한 경우를 구분하세요. 어느 시점에 모델의 매개변수가 바뀌는지 적습니다.",
+      "sourceIds": [
+        "vaswani-transformer-2017"
+      ],
+      "claimIds": [
+        "s04-pretraining"
+      ]
+    },
+    {
+      "id": "standard:generative-ai:transformer-context",
+      "track": "standard",
+      "chapterId": "generative-ai",
+      "chapterTitle": "생성형 AI와 언어 모델",
+      "sectionId": "transformer-context",
+      "sectionTitle": "Transformer와 문맥 표현",
+      "text": "Transformer는 토큰을 벡터 표현으로 바꾸고 여러 층에서 문맥 관계를 계산합니다. 자기어텐션은 한 위치의 질의와 다른 위치의 키 사이 관련도를 구해, 값 표현을 가중 결합합니다. 여러 헤드는 서로 다른 관계를 병렬로 포착할 수 있습니다. Transformer의 자기어텐션은 각 위치가 같은 문맥의 다른 위치와 관련된 정도를 계산해 문맥 의존 표현을 만듭니다. 이 설명을 “모든 단어를 똑같이 자세히 읽는다”로 받아들이면 안 됩니다. 어텐션 가중치는 모델 내부 계산의 한 부분이며 곧바로 인간이 이해할 수 있는 이유가 아닙니다. 긴 문맥의 위치, 방해 정보, 학습 분포에 따라 중요한 근거를 놓칠 수 있습니다. 최근 모델은 선형 어텐션, 혼합 전문가 구조 등 여러 변형을 쓰지만, 구조의 규모가 사실 검증을 대신하지는 않습니다. 어텐션 시각화는 탐색 도구가 될 수 있지만, 높은 가중치 하나만으로 인과적 설명이나 모델의 의도를 입증할 수 없습니다.",
+      "sourceIds": [
+        "vaswani-transformer-2017"
+      ],
+      "claimIds": [
+        "s04-transformer"
+      ]
+    },
+    {
+      "id": "standard:generative-ai:interpretation",
+      "track": "standard",
+      "chapterId": "generative-ai",
+      "chapterTitle": "생성형 AI와 언어 모델",
+      "sectionId": "interpretation",
+      "sectionTitle": "유창한 출력의 올바른 해석",
+      "text": "언어 모델이 단계적인 설명을 내놓으면 추론 과정처럼 보일 수 있습니다. 그러나 출력된 설명도 같은 생성 과정의 결과입니다. 정답과 일치할 때도 있고, 결론을 그럴듯하게 꾸미거나 실제 내부 계산과 어긋날 때도 있습니다. 검증 가능한 중간 계산은 외부 도구와 자료로 다시 확인해야 합니다. 이 서비스가 사용하는 Solar Open 2는 Upstage가 공개한 250B 전체·15B 활성 MoE 언어 모델이며 이 수치는 제조사의 기술 보고입니다. 제품별 구조와 벤치마크는 개발사의 1차 자료가 가장 빠른 출처지만 이해관계가 있습니다. 따라서 “Upstage가 보고했다”라고 표시하고 독립 검증과 구별합니다. 이 서비스도 모델 이름을 품질 보증으로 사용하지 않습니다. 검수된 교재 검색, 안정된 source ID, 근거 상태, 범위 밖 응답을 별도 층으로 두어 생성 능력과 증거 품질을 분리합니다. 한 답변을 유창성, 논리적 일관성, 사실 근거 세 줄로 따로 평가하세요. 한 줄의 높은 점수가 다른 줄을 자동으로 올리지 않는 사례를 적습니다.",
+      "sourceIds": [
+        "upstage-solar-open2-report"
+      ],
+      "claimIds": [
+        "s04-solar"
+      ]
+    },
+    {
+      "id": "easy:verify-errors:plausible-error",
+      "track": "easy",
+      "chapterId": "verify-errors",
+      "chapterTitle": "AI가 틀리는 이유와 검증법",
+      "sectionId": "plausible-error",
+      "sectionTitle": "그럴듯하게 틀릴 수 있다",
+      "text": "AI에게 없는 책의 줄거리를 물으면 실제 책처럼 보이는 제목, 작가, 사건을 만들어 낼 수 있습니다. 문장 모양이 자연스럽고 세부 내용도 많아 더 믿기 쉽습니다. 하지만 세부 내용의 양은 근거의 양이 아닙니다. 생성형 AI는 실제 근거가 없거나 서로 맞지 않는 내용을 자연스럽고 자신 있는 문장으로 만들 수 있습니다. 이런 위험을 NIST 자료는 confabulation이라고 부릅니다. 흔히 “환각”이라고도 하지만, 사람의 감각 경험과 같다는 뜻은 아닙니다. 모델이 생성한 내용과 확인 가능한 근거가 맞지 않는 상태에 초점을 둡니다. 답변이 “확실합니다”라고 말하거나 출처처럼 보이는 제목을 붙여도 실제 링크와 원문을 열어야 합니다. 가짜 동물 ‘달빛수달’의 학명과 발견 연도를 AI가 자세히 답했다고 합시다. 문장 안에서 사실 확인이 필요한 주장과 단순 묘사를 다른 색으로 표시해 보세요.",
+      "sourceIds": [
+        "nist-genai-profile"
+      ],
+      "claimIds": [
+        "e05-error"
+      ]
+    },
+    {
+      "id": "easy:verify-errors:bias-gaps",
+      "track": "easy",
+      "chapterId": "verify-errors",
+      "chapterTitle": "AI가 틀리는 이유와 검증법",
+      "sectionId": "bias-gaps",
+      "sectionTitle": "치우침과 빈칸",
+      "text": "AI는 자료에 자주 나타난 연결을 더 쉽게 배울 수 있습니다. 특정 직업 사진에 한 성별만 많이 있었다면 “간호사”나 “공학자”를 묘사할 때 그 치우침을 되풀이할 수 있습니다. 드물게 기록된 언어와 문화는 설명이 얕거나 잘못될 수 있습니다. 자료와 설계에 치우침이 있으면 생성 결과도 사람이나 집단을 불공정하게 나타낼 수 있습니다. 질문도 결과를 한쪽으로 몰 수 있습니다. “왜 A팀 학생들은 게으른가?”처럼 이미 나쁜 결론을 넣은 질문은 편향된 전제를 가집니다. “A팀과 B팀의 참여 차이가 실제로 있는가? 있다면 자료 수집 방식과 다른 원인은 무엇인가?”처럼 전제를 확인하는 질문으로 바꿉니다. 어떤 집단을 한 특징으로 단정하는 답은 멈추고 근거와 반례를 찾습니다. 편향을 고친다는 이유로 개인정보를 무조건 더 모으면 새로운 위험이 생깁니다. 필요한 자료인지, 안전하게 동의받았는지, 덜 침해적인 방법이 있는지 함께 확인해야 합니다.",
+      "sourceIds": [
+        "nist-genai-profile",
+        "nist-ai-rmf-1"
+      ],
+      "claimIds": [
+        "e05-bias"
+      ]
+    },
+    {
+      "id": "easy:verify-errors:three-checks",
+      "track": "easy",
+      "chapterId": "verify-errors",
+      "chapterTitle": "AI가 틀리는 이유와 검증법",
+      "sectionId": "three-checks",
+      "sectionTitle": "출처·날짜·교차 확인",
+      "text": "첫째, 원출처를 엽니다. 검색 결과의 요약문이나 AI 답변이 아니라 실제 보고서, 공식 통계, 연구 논문에서 해당 문장을 찾습니다. 둘째, 날짜와 범위를 봅니다. 옛 규칙인지, 어느 나라와 집단에 해당하는지 확인합니다. 셋째, 이해관계가 다른 독립 출처와 비교합니다. 중요한 주장은 실제 원출처, 적용 날짜, 서로 독립적인 다른 출처를 차례로 확인해야 합니다. 모든 문장에 같은 힘을 쓸 필요는 없습니다. 이야기 아이디어는 가볍게 확인할 수 있지만 건강, 안전, 돈, 법, 학교 평가에 영향을 주는 주장은 더 강하게 검증합니다. 이 교재의 출처 번호도 시작점입니다. 번호를 눌러 정확한 위치가 정말 앞 문장을 지지하는지 직접 봅니다. AI가 “청소년은 하루에 반드시 10시간 자야 한다”고 답했습니다. 원출처의 기관, 발행 날짜, 권장 범위, 비교할 두 번째 출처를 적는 확인 카드를 만들어 보세요.",
+      "sourceIds": [
+        "oecd-ailit-2026",
+        "nist-genai-profile"
+      ],
+      "claimIds": [
+        "e05-check"
+      ]
+    },
+    {
+      "id": "standard:verify-errors:confabulation",
+      "track": "standard",
+      "chapterId": "verify-errors",
+      "chapterTitle": "AI가 틀리는 이유와 검증법",
+      "sectionId": "confabulation",
+      "sectionTitle": "confabulation과 정보 공백",
+      "text": "언어 모델의 생성 목표는 보통 다음 토큰의 적합성을 높이는 것이지 각 명제의 참을 데이터베이스와 대조하는 것이 아닙니다. 학습 자료에 정보가 희박하거나 서로 충돌하고, 질문이 존재하지 않는 전제를 요구하면 모델은 그럴듯한 연결을 만들어 빈칸을 채울 수 있습니다. confabulation은 생성 모델이 통계적으로 그럴듯하지만 잘못되거나 근거 없는 내용을 자신 있게 만드는 위험을 가리킵니다. 검색이나 도구 사용은 이 위험을 줄일 수 있지만 없애지 못합니다. 검색 결과가 부정확할 수 있고, 모델이 올바른 문서를 잘못 해석할 수 있으며, 인용 표식을 엉뚱한 문장 뒤에 붙일 수 있습니다. “모델이 출처를 제시했다”가 아니라 URL이 존재하는지, locator의 문장이 해당 주장을 지지하는지, 답변이 원문의 범위를 넓히지 않았는지 확인해야 합니다. 존재하지 않는 판례를 인용한 답변에서 생성 오류, 검색 오류, 출처 연결 오류, 사용자 질문의 잘못된 전제를 각각 확인할 질문을 만드세요.",
+      "sourceIds": [
+        "nist-genai-profile"
+      ],
+      "claimIds": [
+        "s05-confabulation"
+      ]
+    },
+    {
+      "id": "standard:verify-errors:bias-uncertainty",
+      "track": "standard",
+      "chapterId": "verify-errors",
+      "chapterTitle": "AI가 틀리는 이유와 검증법",
+      "sectionId": "bias-uncertainty",
+      "sectionTitle": "편향과 불확실성",
+      "text": "오류는 무작위로 고르게 발생하지 않습니다. 언어, 성별, 지역, 장애, 직업에 대한 자료량과 표현 방식이 다르면 특정 집단에서 성능이 낮거나 고정관념이 강화될 수 있습니다. 전체 평균만 보고 집단별 오류를 숨기면 실제 피해를 놓칩니다. 모델의 불확실성 표현, 데이터 대표성, 오류율은 배치 맥락과 영향 집단별로 측정해야 합니다. 모델이 스스로 적은 “확신합니다”는 측정된 불확실성이 아닙니다. 확률 보정, 반복 평가, 데이터 계보, 인간 검토 결과 같은 외부 측정이 필요합니다. 질문에 “A집단이 더 위험한 이유”가 포함되어 있다면 차이가 존재한다는 전제를 먼저 검증합니다. 대리 변수, 표본 선택, 역사적 차별이 예측에 들어갔는지도 살핍니다. 공정성 지표끼리 동시에 만족할 수 없는 조건이 있습니다. 단일 수치로 ‘편향 없음’을 선언하기보다 목적, 오류 비용, 영향을 받는 사람과 구제 절차를 문서화해야 합니다.",
+      "sourceIds": [
+        "nist-ai-rmf-1"
+      ],
+      "claimIds": [
+        "s05-uncertainty"
+      ]
+    },
+    {
+      "id": "standard:verify-errors:verification-protocol",
+      "track": "standard",
+      "chapterId": "verify-errors",
+      "chapterTitle": "AI가 틀리는 이유와 검증법",
+      "sectionId": "verification-protocol",
+      "sectionTitle": "주장별 검증 프로토콜",
+      "text": "주장을 유형별로 나누면 검증 경로가 선명해집니다. 날짜·가격·법령은 최신 공식 원문을, 연구 효과는 연구 설계와 표본을, 제품 사양은 제조사 1차 자료를 확인합니다. 제품의 우수성처럼 이해관계가 큰 해석은 독립 평가와 함께 봅니다. 시의성 높거나 논쟁적인 주장은 날짜가 명확한 1차 자료와 이해관계가 다른 독립 자료를 함께 확인해야 합니다. 검증 기록에는 source ID, 정확한 절·쪽, 확인 날짜, 출처 유형, 원문이 지지하는 범위를 남깁니다. 반대 근거가 있으면 숨기지 않고 불확실성을 설명합니다. 같은 보도자료를 재인용한 기사 여러 개는 독립 출처 여러 개가 아닙니다. 최종 판단이 중요한 경우에는 해당 분야의 자격과 책임이 있는 전문가가 검토해야 합니다. “우리 모델이 업계 최고다”라는 발표를 받았습니다. 평가 데이터, 비교 모델 버전, 측정 날짜, 재현 가능성, 독립 평가 여부를 묻는 검토표를 만드세요.",
+      "sourceIds": [
+        "nist-genai-profile",
+        "oecd-ailit-2026"
+      ],
+      "claimIds": [
+        "s05-protocol"
+      ]
+    },
+    {
+      "id": "easy:rag-and-sources:library-analogy",
+      "track": "easy",
+      "chapterId": "rag-and-sources",
+      "chapterTitle": "RAG와 출처 기반 답변",
+      "sectionId": "library-analogy",
+      "sectionTitle": "도서관 길잡이처럼 찾기",
+      "text": "RAG는 Retrieval-Augmented Generation의 줄임말입니다. retrieval은 회수 또는 검색, generation은 생성을 뜻합니다. 질문이 오면 검색기가 가까운 문서 조각을 고르고, 언어 모델은 질문과 그 조각을 함께 받아 답을 만듭니다. RAG는 질문과 관련된 자료를 먼저 검색하고 그 자료를 문맥으로 넣어 답을 생성하는 두 일을 결합합니다. 이 교재 도우미는 지금 읽는 절, 챕터, 트랙을 먼저 살핍니다. 같은 질문이라도 쉬운 트랙에서는 쉬운 트랙 원고만, 기본 트랙에서는 기본 트랙 원고만 찾습니다. 두 원고는 목표만 공유하고 예시와 설명을 따로 썼기 때문입니다. 공통 출처 설명은 별도 서가처럼 검색합니다. “이게 뭐야?”보다 검색하기 좋은 질문을 만들어 보세요. 지금 절의 제목과 궁금한 낱말을 넣어 한 문장으로 바꿉니다.",
+      "sourceIds": [
+        "lewis-rag-2020"
+      ],
+      "claimIds": [
+        "e06-search-generate"
+      ]
+    },
+    {
+      "id": "easy:rag-and-sources:source-id",
+      "track": "easy",
+      "chapterId": "rag-and-sources",
+      "chapterTitle": "RAG와 출처 기반 답변",
+      "sectionId": "source-id",
+      "sectionTitle": "출처 번호는 주소표",
+      "text": "답변에 [1]이 있다면 숫자만 믿지 말고 눌러 봅니다. 이 서비스에서 숫자는 source ID와 연결되고, source ID는 출처 목록의 기관, 제목, 판, 날짜, 링크로 이어집니다. 모델이 주소를 직접 쓰지 않고 서버가 등록된 주소만 열어 줍니다. 안정된 source ID는 답의 근거를 검증된 출처 목록과 연결해 모델이 임의의 링크를 만드는 일을 막는 데 도움을 줍니다. 정확한 위치도 중요합니다. 60쪽 보고서 전체를 링크하는 것보다 “12쪽의 이 절”처럼 앞 문장을 확인할 곳을 알려 주어야 합니다. 출처 카드의 기관과 날짜, 라이선스, 마지막 검토일도 살펴봅니다. 제조사가 자기 제품을 설명한 자료는 “제조사 1차 자료”라고 따로 표시됩니다. source ID가 등록되어 있다는 사실은 출처가 존재함을 보여 줍니다. 그 출처가 답변의 모든 문장을 지지한다는 뜻은 아니므로 locator를 직접 확인해야 합니다.",
+      "sourceIds": [
+        "nist-genai-profile"
+      ],
+      "claimIds": [
+        "e06-source-id"
+      ]
+    },
+    {
+      "id": "easy:rag-and-sources:rag-limits",
+      "track": "easy",
+      "chapterId": "rag-and-sources",
+      "chapterTitle": "RAG와 출처 기반 답변",
+      "sectionId": "rag-limits",
+      "sectionTitle": "찾았다고 항상 맞는 것은 아니다",
+      "text": "검색기는 낱말이 비슷하지만 질문과 다른 부분을 가져올 수 있습니다. 언어 모델은 올바른 부분을 받아도 숫자를 바꾸거나 두 문장을 잘못 합칠 수 있습니다. 오래된 자료가 검색되면 최신 질문에 맞지 않을 수도 있습니다. RAG도 관련 없는 부분을 찾거나 찾은 내용을 잘못 엮으면 틀릴 수 있으므로 인용된 원문을 확인해야 합니다. 그래서 도우미는 결과를 세 상태로 표시합니다. 충분한 교재 부분을 찾으면 “교재 근거 있음”, 가까운 부분은 있지만 답하기 모자라면 “근거 부족”, 교재 주제가 아니면 “교재 범위 밖”입니다. 근거가 없을 때 출처를 만들어 채우지 않습니다. 숫자형 확신도 대신 실제 출처 수를 보여 줍니다. 검색 결과는 ‘고래는 포유류’인데 답변은 ‘고래는 물고기’라고 했습니다. 검색 단계와 생성 단계 중 어디서 오류가 났는지 설명하세요. 반대 사례도 하나 만듭니다.",
+      "sourceIds": [
+        "nist-genai-profile",
+        "lewis-rag-2020"
+      ],
+      "claimIds": [
+        "e06-limit"
+      ]
+    },
+    {
+      "id": "standard:rag-and-sources:pipeline",
+      "track": "standard",
+      "chapterId": "rag-and-sources",
+      "chapterTitle": "RAG와 출처 기반 답변",
+      "sectionId": "pipeline",
+      "sectionTitle": "회수에서 생성까지",
+      "text": "먼저 질문을 임베딩 벡터나 전문 검색 질의로 표현합니다. 코퍼스에서 후보 passage를 찾고 관련도와 현재 맥락으로 순위를 조정합니다. 상위 passage를 source ID와 함께 프롬프트에 넣고 모델이 답을 생성합니다. 마지막으로 응답의 source ID와 인용 표식을 레지스트리와 대조합니다. RAG 파이프라인은 질의 표현, 후보 회수, 순위화, 문맥 구성, 생성과 인용 검증을 서로 다른 품질 단계로 평가해야 합니다. 이 서비스는 Upstage Embed 2의 질의·passage 임베딩과 PostgreSQL 전문 검색을 결합합니다. 현재 절, 현재 챕터, 현재 트랙 순으로 가점을 주며 다른 트랙의 원고는 후보에서 제외합니다. 의미 유사도만 쓰면 정확한 용어를 놓칠 수 있고, 낱말 일치만 쓰면 표현이 다른 같은 뜻을 놓칠 수 있어 두 신호를 함께 씁니다. 근거 문서는 코퍼스에 있지만 답변에 나오지 않았습니다. 질의 표현, 회수 top-k, 순위 가점, 문맥 길이, 생성 단계별 가설을 하나씩 적어 보세요.",
+      "sourceIds": [
+        "lewis-rag-2020"
+      ],
+      "claimIds": [
+        "s06-pipeline"
+      ]
+    },
+    {
+      "id": "standard:rag-and-sources:hybrid-provenance",
+      "track": "standard",
+      "chapterId": "rag-and-sources",
+      "chapterTitle": "RAG와 출처 기반 답변",
+      "sectionId": "hybrid-provenance",
+      "sectionTitle": "하이브리드 검색과 provenance",
+      "text": "문서의 내용과 출처 정보는 분리해 관리합니다. passage는 검색할 원고 조각이고, claim registry는 어떤 문장이 어떤 source ID와 locator에 기대는지 기록합니다. source registry는 기관, 판, 날짜, URL, 라이선스, 검토일을 보관합니다. 인용의 존재와 인용의 정확성은 다르므로 안정된 source ID뿐 아니라 주장과 정확한 locator의 연결을 검증해야 합니다. 모델에는 임의 URL을 만들 권한을 주지 않습니다. 모델이 반환한 source ID는 Go 서버가 레지스트리에 있는지 검증하고, UI는 그 ID에 연결된 URL만 엽니다. 답변 텍스트와 source/data event를 AG-UI 스트림에서 분리하면 표현을 바꾸더라도 출처 계약을 별도로 검사할 수 있습니다. 출처 수는 검증을 통과한 고유 ID의 실제 개수입니다. 의미 검색 점수는 질문과 문서의 가까움을 근사할 뿐, 문서가 참이거나 locator가 주장을 지지함을 판정하지 않습니다. provenance 검토가 별도로 필요합니다.",
+      "sourceIds": [
+        "nist-genai-profile"
+      ],
+      "claimIds": [
+        "s06-provenance"
+      ]
+    },
+    {
+      "id": "standard:rag-and-sources:failure-modes",
+      "track": "standard",
+      "chapterId": "rag-and-sources",
+      "chapterTitle": "RAG와 출처 기반 답변",
+      "sectionId": "failure-modes",
+      "sectionTitle": "RAG의 실패 모드",
+      "text": "회수 실패에는 코퍼스 누락, 부적절한 chunk, 임베딩 불일치, 전문 검색 형태소 문제, 잘못된 맥락 가점이 있습니다. 생성 실패에는 근거 무시, 수치 변형, 서로 다른 passage의 부당한 결합이 있습니다. 인용 실패에는 존재하지 않는 ID, 맞지 않는 locator, 오래된 판 연결이 있습니다. 이 프로젝트의 production RAG는 제3자 원문 전체가 아니라 검수된 자체 원고와 claim-source 레지스트리만 코퍼스로 사용합니다. 이 경계는 저작권과 품질을 함께 다룹니다. 외부 원문 전체를 무단 적재하지 않고, 원문을 확인해 독립 집필한 교재 passage만 검색합니다. 답할 자료가 없으면 “근거 부족” 또는 “교재 범위 밖”으로 멈춥니다. RAG는 정확성 보증 장치가 아니라 근거를 회수하고 검증 가능하게 만드는 구조입니다. 답변 한 문장을 고르고 source ID, locator, 원문 문장, 답변의 해석 범위를 네 열로 적으세요. 원문보다 넓어진 표현이 있으면 수정합니다.",
+      "sourceIds": [
+        "oecd-ailit-2026",
+        "nist-genai-profile"
+      ],
+      "claimIds": [
+        "s06-corpus"
+      ]
+    },
+    {
+      "id": "easy:responsible-use:privacy-copyright",
+      "track": "easy",
+      "chapterId": "responsible-use",
+      "chapterTitle": "AI를 책임 있게 사용하기",
+      "sectionId": "privacy-copyright",
+      "sectionTitle": "내 정보와 남의 창작물 지키기",
+      "text": "대화창에는 일기처럼 많은 정보를 쓰기 쉽습니다. 하지만 이름, 전화번호, 집과 학교 주소, 비밀번호, 얼굴 사진, 건강 기록은 나를 알아볼 수 있게 합니다. 꼭 필요하지 않다면 넣지 않습니다. 과제 질문도 개인 이름을 빼고 상황을 일반적인 말로 바꿀 수 있습니다. 이름, 연락처, 주소, 학교, 비밀번호와 건강 정보처럼 나를 알아볼 수 있는 정보는 AI 대화에 넣지 않는 것이 안전합니다. 다른 사람의 정보도 허락 없이 넣지 않습니다. AI가 만든 그림이나 글을 내가 전부 직접 만든 것처럼 내는 것도 피합니다. 학급과 학교의 규칙을 확인하고, 도움받은 부분을 밝힙니다. 좋아하는 작가의 문장이나 화풍을 그대로 흉내 내 달라고 하기보다 내가 원하는 분위기와 목적을 일반적인 특징으로 설명합니다. “서울 별빛초 6학년 2반 김OO인데, 내 진료 기록을 보고 알려 줘”에서 개인정보를 지우고도 도움을 받을 수 있는 일반 질문으로 바꿔 보세요.",
+      "sourceIds": [
+        "unicef-ai-children-3"
+      ],
+      "claimIds": [
+        "e07-privacy"
+      ]
+    },
+    {
+      "id": "easy:responsible-use:bias-respect",
+      "track": "easy",
+      "chapterId": "responsible-use",
+      "chapterTitle": "AI를 책임 있게 사용하기",
+      "sectionId": "bias-respect",
+      "sectionTitle": "누가 빠졌는지 살피기",
+      "text": "AI에게 “과학자 그림”을 여러 장 부탁했는데 비슷한 사람만 나온다면 질문합니다. 다른 성별, 나이, 피부색, 장애, 지역의 사람은 왜 보이지 않을까요? 많이 나온 결과가 세상의 전부는 아닙니다. AI의 결과가 특정 사람이나 집단을 빠뜨리거나 나쁘게 단정하지 않는지 사람이 살펴야 합니다. 사람을 평가하는 일에서는 더 조심합니다. 말투, 이름, 사는 곳으로 성실함이나 능력을 단정하면 안 됩니다. AI가 만든 놀림말이나 가짜 사진도 실제 사람에게 피해를 줍니다. 재미를 이유로 공유하기 전에 대상이 동의했는지, 오해와 괴롭힘을 만들지 생각합니다. 문제를 발견하면 결과를 사용하지 않고 어른이나 서비스 운영자에게 알립니다. 다양한 결과를 한 번 요청하는 것만으로 공정성이 완성되지는 않습니다. 자료, 목표, 실제 사용 결과와 피해를 계속 살펴야 합니다.",
+      "sourceIds": [
+        "unicef-ai-children-3",
+        "nist-ai-rmf-1"
+      ],
+      "claimIds": [
+        "e07-bias"
+      ]
+    },
+    {
+      "id": "easy:responsible-use:trusted-adult",
+      "track": "easy",
+      "chapterId": "responsible-use",
+      "chapterTitle": "AI를 책임 있게 사용하기",
+      "sectionId": "trusted-adult",
+      "sectionTitle": "중요한 결정은 믿을 만한 어른과",
+      "text": "AI가 “이 약을 먹어”, “친구에게 아무 말도 하지 마”, “지금 결제하면 해결돼”라고 말한다면 멈춥니다. AI는 의사, 보호자, 교사, 상담사나 금융 전문가가 아니며 여러분의 상황을 책임질 수 없습니다. 건강, 안전, 괴롭힘, 돈이나 큰 불안을 다루는 결정은 AI에 맡기지 말고 믿을 수 있는 어른과 자격 있는 전문가에게 알려야 합니다. 믿을 만한 어른은 여러분의 말을 듣고 실제로 도움을 연결할 수 있는 보호자, 교사, 학교 상담 인력, 의료인 등이 될 수 있습니다. 한 사람이 듣지 않으면 다른 어른에게 다시 말합니다. AI 도우미가 친절하게 말해도 사람이나 친구인 척하지 않아야 하고, 비밀을 요구하거나 물건을 사게 설득해서도 안 됩니다. 건강, 돈, 개인정보, 괴롭힘 상황마다 “AI 사용을 멈추는 문장”과 “도움을 요청할 사람”을 한 쌍씩 적어 나만의 안전 카드를 만드세요.",
+      "sourceIds": [
+        "unicef-ai-children-3"
+      ],
+      "claimIds": [
+        "e07-adult"
+      ]
+    },
+    {
+      "id": "standard:responsible-use:rights-data",
+      "track": "standard",
+      "chapterId": "responsible-use",
+      "chapterTitle": "AI를 책임 있게 사용하기",
+      "sectionId": "rights-data",
+      "sectionTitle": "권리와 데이터 처리",
+      "text": "AI 서비스에 정보를 넣는 순간 입력이 어디로 전송되고 얼마나 보관되는지 질문해야 합니다. 서비스 제공에 꼭 필요한가, 다른 목적으로 재사용되는가, 삭제와 열람이 가능한가를 확인합니다. 미성년자, 건강, 생체, 위치 정보는 특히 큰 피해를 만들 수 있습니다. AI에 데이터를 입력하거나 결과를 재사용할 때는 수집 목적, 동의, 최소 수집, 보관 기간, 저작권과 이의제기 수단을 확인해야 합니다. 생성 결과의 저작권 상태도 “AI가 만들었으니 자유”라는 한 문장으로 정리되지 않습니다. 학습 자료, 프롬프트에 넣은 원문, 출력의 실질적 유사성, 관할 법과 계약 조건이 관련됩니다. 교육 과제에서는 허용된 도움 범위와 표시 규칙을 먼저 확인합니다. 개인정보나 저작물을 처리하지 않는 대안, 로컬 처리, 최소한의 발췌를 우선 검토합니다. 회의록 요약 AI를 도입한다고 가정하고 수집, 전송, 처리, 보관, 삭제 단계마다 데이터 주체와 책임자를 표시하세요. 꼭 필요하지 않은 필드를 지웁니다.",
+      "sourceIds": [
+        "unicef-ai-children-3",
+        "unesco-students-2024"
+      ],
+      "claimIds": [
+        "s07-rights"
+      ]
+    },
+    {
+      "id": "standard:responsible-use:bias-accountability",
+      "track": "standard",
+      "chapterId": "responsible-use",
+      "chapterTitle": "AI를 책임 있게 사용하기",
+      "sectionId": "bias-accountability",
+      "sectionTitle": "편향과 책임의 귀속",
+      "text": "모델 출력이 차별적일 때 “데이터가 그랬다”는 설명은 원인을 일부 말할 뿐 책임을 끝내지 않습니다. 어떤 자료와 목표를 승인했는지, 집단별 오류를 측정했는지, 불리한 결정을 뒤집을 절차가 있는지를 봐야 합니다. AI 출력은 책임 주체가 될 수 없으므로 설계·도입·운영·결정 권한을 가진 사람이 영향과 구제 절차에 책임져야 합니다. 채용 모델 제공자는 기술 한계와 평가 자료를 공개할 책임이 있고, 도입 조직은 직무 타당성과 차별 영향을 검토할 책임이 있습니다. 담당자는 추천을 비판적으로 읽어야 하지만 충분한 정보와 권한을 받지 못했다면 모든 책임을 개인에게 떠넘길 수 없습니다. 영향을 받은 지원자에게 설명과 이의제기 경로를 제공해야 합니다. 공정성은 모델 지표만의 성질이 아닙니다. 목표가 부당하거나 구제 절차가 없다면 집단별 오류율을 맞춘 모델도 책임 있는 시스템이 아닐 수 있습니다.",
+      "sourceIds": [
+        "nist-ai-rmf-1",
+        "unesco-students-2024"
+      ],
+      "claimIds": [
+        "s07-accountability"
+      ]
+    },
+    {
+      "id": "standard:responsible-use:meaningful-oversight",
+      "track": "standard",
+      "chapterId": "responsible-use",
+      "chapterTitle": "AI를 책임 있게 사용하기",
+      "sectionId": "meaningful-oversight",
+      "sectionTitle": "형식이 아닌 실질적 인간 감독",
+      "text": "“최종 결정은 사람이 한다”는 문구는 자주 안전장치로 제시됩니다. 그러나 담당자가 하루에 수천 건을 처리하고 모델 근거를 볼 수 없으며 거부하면 불이익을 받는다면 승인 버튼은 고무도장에 가깝습니다. 실질적 인간 감독에는 결과를 이해할 정보, 검토할 시간, 결정을 거부·수정할 권한과 책임, 이의제기 경로가 필요합니다. 고위험 사용에서는 AI를 쓰지 않는 선택도 검토해야 합니다. 의료 진단, 형사 사법, 복지 자격처럼 오류가 생명과 권리에 큰 영향을 미치면 사전 영향평가, 분야 전문가 검토, 지속 모니터링과 중단 기준이 필요합니다. 효율 향상이 권리 침해를 정당화하지 않습니다. 시스템을 누가 멈출 수 있는지가 책임 구조의 실제 시험입니다. 학교의 AI 부정행위 탐지 결과를 교사가 검토합니다. 교사에게 필요한 정보·시간·권한, 학생의 이의제기 절차, 시스템 중단 기준을 각각 적으세요.",
+      "sourceIds": [
+        "nist-ai-rmf-1",
+        "unicef-ai-children-3"
+      ],
+      "claimIds": [
+        "s07-oversight"
+      ]
+    },
+    {
+      "id": "common:source:oecd-ailit-2026",
+      "track": "common",
+      "chapterId": "sources",
+      "chapterTitle": "검증된 출처",
+      "sectionId": "oecd-ailit-2026",
+      "sectionTitle": "Empowering Learners for the Age of AI: An AI Literacy Framework for Primary and Secondary Education",
+      "text": "OECD · European Union. Empowering Learners for the Age of AI: An AI Literacy Framework for Primary and Secondary Education. 초·중등 학습자의 AI 리터러시를 지식·기술·태도와 네 차원으로 정리한 최종 공동 프레임워크다. 이용 범위: 교육과정 주축. 한국어 원고는 직접 번역이 아니라 독립 집필했으며 개념을 대조했다.",
+      "sourceIds": [
+        "oecd-ailit-2026"
+      ],
+      "claimIds": []
+    },
+    {
+      "id": "common:source:oecd-ai-definition-2024",
+      "track": "common",
+      "chapterId": "sources",
+      "chapterTitle": "검증된 출처",
+      "sectionId": "oecd-ai-definition-2024",
+      "sectionTitle": "Explanatory Memorandum on the Updated OECD Definition of an AI System",
+      "text": "OECD. Explanatory Memorandum on the Updated OECD Definition of an AI System. AI 시스템을 입력에서 예측·콘텐츠·추천·결정 같은 출력으로 추론하는 기계 기반 시스템으로 설명한다. 이용 범위: AI 시스템의 작동 범위와 사람의 목표 설정을 설명하는 사실 근거로 사용했다.",
+      "sourceIds": [
+        "oecd-ai-definition-2024"
+      ],
+      "claimIds": []
+    },
+    {
+      "id": "common:source:unesco-students-2024",
+      "track": "common",
+      "chapterId": "sources",
+      "chapterTitle": "검증된 출처",
+      "sectionId": "unesco-students-2024",
+      "sectionTitle": "AI Competency Framework for Students",
+      "text": "UNESCO. AI Competency Framework for Students. 인간 중심 사고, 윤리, 기술과 응용, 시스템 설계의 네 차원과 12개 학생 역량을 제시한다. 이용 범위: 표나 문장을 번역·복제하지 않고 인간 중심·윤리 역량을 교차 검증했다.",
+      "sourceIds": [
+        "unesco-students-2024"
+      ],
+      "claimIds": []
+    },
+    {
+      "id": "common:source:ai4k12-big-ideas",
+      "track": "common",
+      "chapterId": "sources",
+      "chapterTitle": "검증된 출처",
+      "sectionId": "ai4k12-big-ideas",
+      "sectionTitle": "Five Big Ideas in Artificial Intelligence and Grade Band Progression Charts",
+      "text": "AI4K12 Initiative. Five Big Ideas in Artificial Intelligence and Grade Band Progression Charts. K–12 AI 교육을 인식, 표현과 추론, 학습, 자연스러운 상호작용, 사회적 영향의 다섯 생각으로 조직한다. 이용 범위: 문장·활동을 번역하지 않고 연령별 개념 누락을 확인하는 내부 대조표로만 사용했다.",
+      "sourceIds": [
+        "ai4k12-big-ideas"
+      ],
+      "claimIds": []
+    },
+    {
+      "id": "common:source:nist-ai-rmf-1",
+      "track": "common",
+      "chapterId": "sources",
+      "chapterTitle": "검증된 출처",
+      "sectionId": "nist-ai-rmf-1",
+      "sectionTitle": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+      "text": "National Institute of Standards and Technology. Artificial Intelligence Risk Management Framework (AI RMF 1.0). 신뢰할 수 있는 AI의 특성과 위험을 GOVERN, MAP, MEASURE, MANAGE 기능으로 다루는 자발적 프레임워크다. 이용 범위: 정확성·투명성·사생활·편향·사람의 감독에 관한 위험 설명을 검증했다.",
+      "sourceIds": [
+        "nist-ai-rmf-1"
+      ],
+      "claimIds": []
+    },
+    {
+      "id": "common:source:nist-genai-profile",
+      "track": "common",
+      "chapterId": "sources",
+      "chapterTitle": "검증된 출처",
+      "sectionId": "nist-genai-profile",
+      "sectionTitle": "Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile",
+      "text": "National Institute of Standards and Technology. Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile. 생성형 AI의 confabulation, 데이터 사생활, 유해 편향, 정보 무결성 등 고유 위험과 대응을 정리한다. 이용 범위: 환각, 검증, RAG의 한계, 생성형 AI 위험을 설명하는 사실 근거로 사용했다.",
+      "sourceIds": [
+        "nist-genai-profile"
+      ],
+      "claimIds": []
+    },
+    {
+      "id": "common:source:unicef-ai-children-3",
+      "track": "common",
+      "chapterId": "sources",
+      "chapterTitle": "검증된 출처",
+      "sectionId": "unicef-ai-children-3",
+      "sectionTitle": "Guidance on AI and Children",
+      "text": "UNICEF Innocenti. Guidance on AI and Children. 아동의 안전, 사생활, 공정성, 설명 가능성, 복지와 포용을 중심에 둔 AI 정책·제품 지침이다. 이용 범위: 미성년 독자의 개인정보, 의인화, 위험 상황 연결과 제품 보호 정책을 검증했다.",
+      "sourceIds": [
+        "unicef-ai-children-3"
+      ],
+      "claimIds": []
+    },
+    {
+      "id": "common:source:vaswani-transformer-2017",
+      "track": "common",
+      "chapterId": "sources",
+      "chapterTitle": "검증된 출처",
+      "sectionId": "vaswani-transformer-2017",
+      "sectionTitle": "Attention Is All You Need",
+      "text": "NeurIPS. Attention Is All You Need. 자기어텐션을 중심으로 한 Transformer 구조를 제안한 1차 연구 논문이다. 이용 범위: 문장이나 도표를 복제하지 않고 Transformer와 문맥 처리의 역사적·기술적 사실을 인용했다.",
+      "sourceIds": [
+        "vaswani-transformer-2017"
+      ],
+      "claimIds": []
+    },
+    {
+      "id": "common:source:lewis-rag-2020",
+      "track": "common",
+      "chapterId": "sources",
+      "chapterTitle": "검증된 출처",
+      "sectionId": "lewis-rag-2020",
+      "sectionTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "text": "NeurIPS. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. 검색으로 얻은 외부 문서와 생성 모델을 결합하는 RAG 접근을 제시한 1차 연구 논문이다. 이용 범위: RAG의 검색·생성 결합 원리와 한계를 독립 집필한 설명의 근거로 사용했다.",
+      "sourceIds": [
+        "lewis-rag-2020"
+      ],
+      "claimIds": []
+    },
+    {
+      "id": "common:source:upstage-solar-open2-report",
+      "track": "common",
+      "chapterId": "sources",
+      "chapterTitle": "검증된 출처",
+      "sectionId": "upstage-solar-open2-report",
+      "sectionTitle": "Solar Open 2 Technical Report and Model Card",
+      "text": "Upstage AI. Solar Open 2 Technical Report and Model Card. Solar Open 2의 모델 구조, 언어, 문맥 길이, 훈련·평가 조건을 개발사가 공개한 1차 자료다. 이용 범위: 제품별 사실에만 사용했다. 제조사 보고 수치이며 독립 검증이나 교육 효과의 증거로 취급하지 않는다.",
+      "sourceIds": [
+        "upstage-solar-open2-report"
+      ],
+      "claimIds": []
+    }
+  ]
+}
