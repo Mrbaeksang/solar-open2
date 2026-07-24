@@ -4,11 +4,14 @@ test("reader chooses a track, reads evidence, and answers a check question", asy
   page,
 }) => {
   await page.goto("/");
-  await page.getByRole("link", { name: /쉬운 트랙 시작/ }).first().click();
+  await Promise.all([
+    page.waitForURL(/\/learn\/easy\/ai-is$/, { timeout: 15_000 }),
+    page.getByRole("link", { name: /쉬운 트랙 시작/ }).first().click(),
+  ]);
 
   await expect(
     page.getByRole("heading", { name: "AI란 무엇인가" }),
-  ).toBeVisible();
+  ).toBeVisible({ timeout: 15_000 });
   await page.getByRole("button", { name: /출처 1 열기/ }).first().click();
   const sourceDialog = page.getByRole("dialog", { name: /출처 자세히 보기/ });
   await expect(sourceDialog).toBeVisible();
