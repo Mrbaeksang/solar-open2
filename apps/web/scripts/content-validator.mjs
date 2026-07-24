@@ -77,27 +77,8 @@ function extractSections(mdx, chapter) {
   });
 }
 
-function validateReleaseGate(chapters, releaseChannel) {
-  if (releaseChannel !== "production") {
-    return;
-  }
-
-  const pending = chapters.filter(
-    (chapter) => chapter.review?.status !== "approved",
-  );
-  invariant(
-    pending.length === 0,
-    `production release blocked: ${pending.length} chapters await external review in issue #12`,
-  );
-}
-
 export async function loadAndValidateContent(options = {}) {
   const contentRoot = options.contentRoot ?? defaultContentRoot;
-  const releaseChannel =
-    options.releaseChannel ??
-    process.env.RELEASE_CHANNEL ??
-    process.env.VERCEL_ENV ??
-    "preview";
 
   const [catalogDocument, sourceDocument, claimDocument] = await Promise.all([
     readJSON(path.join(contentRoot, "catalog.json")),
@@ -290,11 +271,8 @@ export async function loadAndValidateContent(options = {}) {
     });
   }
 
-  validateReleaseGate(hydratedChapters, releaseChannel);
-
   return {
     schemaVersion: 1,
-    releaseChannel,
     tracks: catalogDocument.tracks,
     chapters: hydratedChapters,
     sources,

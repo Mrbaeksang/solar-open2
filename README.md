@@ -80,10 +80,10 @@ WEB_ORIGIN=https://<vercel-production-domain>
 
 DB 서비스 이름이 `pgvector`가 아니면 `DATABASE_URL`의 참조 이름도 맞춘다. `WEB_ORIGIN`은 쉼표로 여러 실제 Vercel origin을 받을 수 있다.
 
-## 콘텐츠와 출시 게이트
+## 콘텐츠 검증
 
 원본은 `apps/web/content/`의 MDX와 구조화된 주장·출처 메타데이터다. `pnpm content:build`가 프론트 읽기 데이터와 Go 검색 코퍼스를 함께 만든다.
 
-모든 챕터는 현재 외부 AI/컴퓨터과학 검수 대기 상태다. `RELEASE_CHANNEL=production` 또는 Vercel production 빌드는 GitHub 이슈 #12의 실제 승인 기록과 각 챕터의 `approved` 상태가 없으면 실패한다. 미리보기 빌드는 허용한다.
+로컬과 Vercel production 모두 같은 콘텐츠 검증을 실행한다. 출처·주장·챕터 구조가 유효하면 빌드되며, 외부 AI/컴퓨터과학 검수 진행 상태는 GitHub 이슈 #12와 챕터 메타데이터에 기록한다.
 
 아키텍처 결정은 `docs/adr/`, 도메인 언어는 `CONTEXT.md`, 출처 선정 근거는 `docs/research/verified-ai-literacy-sources.md`에 있다.

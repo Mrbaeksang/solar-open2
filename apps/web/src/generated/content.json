@@ -1,6 +1,5 @@
 {
   "schemaVersion": 1,
-  "releaseChannel": "preview",
   "tracks": {
     "easy": {
       "label": "쉬운 트랙",

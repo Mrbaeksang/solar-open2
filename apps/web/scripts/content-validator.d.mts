@@ -23,7 +23,6 @@ export interface ContentClaim {
 
 export interface ContentBuild {
   schemaVersion: 1;
-  releaseChannel: string;
   tracks: Record<string, unknown>;
   chapters: Array<{
     track: "easy" | "standard";
@@ -48,5 +47,4 @@ export interface ContentBuild {
 
 export function loadAndValidateContent(options?: {
   contentRoot?: string;
-  releaseChannel?: string;
 }): Promise<ContentBuild>;

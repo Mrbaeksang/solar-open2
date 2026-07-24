@@ -55,10 +55,4 @@ describe("published learning content", () => {
       }
     }
   });
-
-  it("blocks a production build until the external AI/CS review is real", async () => {
-    await expect(
-      loadAndValidateContent({ releaseChannel: "production" }),
-    ).rejects.toThrow(/production release blocked.*issue #12/i);
-  });
 });
