@@ -148,9 +148,6 @@ func dependencies(
 	closeStore := func() {}
 	databaseURL := strings.TrimSpace(os.Getenv("DATABASE_URL"))
 	if databaseURL == "" {
-		if strings.EqualFold(os.Getenv("APP_ENV"), "production") {
-			return nil, nil, nil, closeStore, errors.New("DATABASE_URL is required in production")
-		}
 		logger.Warn("using in-memory lexical retrieval", "persistence", false)
 		return store, embedder, model, closeStore, nil
 	}

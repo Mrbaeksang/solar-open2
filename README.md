@@ -11,6 +11,8 @@
 
 ## 로컬 실행
 
+루트 `.env`에는 `apps/api/.env.example`과 `apps/web/.env.example`의 변수 이름을 합쳐 넣는다. 실제 비밀값과 연결 주소만 채우며, 로컬과 운영은 같은 변수 계약을 쓴다.
+
 ```bash
 pnpm install
 pnpm content:build
@@ -19,14 +21,13 @@ pnpm content:build
 터미널 1:
 
 ```bash
-cd apps/api
-PROVIDER_MODE=deterministic go run ./cmd/server
+pnpm dev:api
 ```
 
 터미널 2:
 
 ```bash
-NEXT_PUBLIC_API_URL=http://127.0.0.1:8080 pnpm --filter @solar-open2/web dev
+pnpm dev:web
 ```
 
 검증:
@@ -40,7 +41,7 @@ pnpm test:e2e
 docker build --tag solar-open2-api:local apps/api
 ```
 
-실제 Upstage 호출은 `.env.example`의 서버 변수를 Railway에 설정한다. `UPSTAGE_API_KEY`는 브라우저 변수나 Git에 넣지 않는다. PostgreSQL을 쓰면 `DATABASE_URL`과 `AUTO_INDEX=true`를 설정한다.
+`UPSTAGE_API_KEY`는 브라우저 변수나 Git에 넣지 않는다. `PROVIDER_MODE=deterministic`은 자동화 테스트에서만 사용하며 로컬 실서비스와 Railway에는 설정하지 않는다.
 
 ## 배포 연결
 
@@ -67,18 +68,13 @@ Railway API 서비스 설정:
 일반 PostgreSQL이 아니라 PostgreSQL + pgvector 템플릿을 추가한다. API 서비스 변수:
 
 ```dotenv
-APP_ENV=production
-PROVIDER_MODE=upstage
 UPSTAGE_API_KEY=<secret>
-UPSTAGE_BASE_URL=https://api.upstage.ai/v1
-UPSTAGE_CHAT_MODEL=solar-open2
-UPSTAGE_CHAT_PROTOCOL=openai
 DATABASE_URL=${{pgvector.DATABASE_URL}}
 AUTO_INDEX=true
 WEB_ORIGIN=https://<vercel-production-domain>
 ```
 
-DB 서비스 이름이 `pgvector`가 아니면 `DATABASE_URL`의 참조 이름도 맞춘다. `WEB_ORIGIN`은 쉼표로 여러 실제 Vercel origin을 받을 수 있다.
+DB 서비스 이름이 `pgvector`가 아니면 `DATABASE_URL`의 참조 이름도 맞춘다. `WEB_ORIGIN`은 쉼표로 여러 실제 Vercel origin을 받을 수 있다. Railway가 주입하는 `PORT`와 나머지 Suggested Variables는 추가하지 않는다.
 
 ## 콘텐츠 검증
 
