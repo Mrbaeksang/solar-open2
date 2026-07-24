@@ -1493,7 +1493,6 @@ summary:focus-visible {
   transform: translateX(calc(100% + 30px));
   transition:
     transform 220ms ease,
-    opacity 160ms ease,
     visibility 220ms;
   overflow: hidden;
   flex-direction: column;
@@ -1788,8 +1787,8 @@ summary:focus-visible {
 
 .assistant-privacy {
   margin: 8px 14px 11px;
-  color: #7d8582;
-  font-size: 8px;
+  color: var(--ink-soft);
+  font-size: 10px;
   line-height: 1.4;
 }
 
