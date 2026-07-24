@@ -480,7 +480,13 @@ const AssistantMessage: FC = () => (
           {({ part }) =>
             part.type === "text" ? (
               <p className="chat-answer">
-                <MessagePartPrimitive.Text smooth />
+                <MessagePartPrimitive.Text
+                  smooth={{
+                    drainMs: 650,
+                    maxCharsPerFrame: 10,
+                    minCommitMs: 16,
+                  }}
+                />
                 <MessagePartPrimitive.InProgress>
                   <span className="stream-caret" aria-label="답변 작성 중" />
                 </MessagePartPrimitive.InProgress>
