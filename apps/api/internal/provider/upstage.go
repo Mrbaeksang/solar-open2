@@ -365,7 +365,7 @@ func (Deterministic) Stream(_ context.Context, request ChatRequest) (domain.Text
 	if strings.Contains(request.SystemPrompt, "고등학생 이상") {
 		answer = "주장: AI는 명시적 또는 암묵적 목표에 따라 입력으로부터 예측·추천·결정을 산출하는 기계 기반 시스템입니다. 메커니즘은 데이터와 모델을 이용한 규칙 추정입니다. 다만 출력의 유창함은 이해나 진실성을 보장하지 않습니다. [1]"
 	}
-	return domain.NewSliceTextStream(answer, 10_000), nil
+	return domain.NewSliceTextStream(answer, 18), nil
 }
 
 func deterministicVector(text string) []float32 {

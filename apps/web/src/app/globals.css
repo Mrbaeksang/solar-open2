@@ -1,3 +1,4 @@
+@layer app {
 :root {
   --ink: #17201e;
   --ink-soft: #52605c;
@@ -2483,4 +2484,5 @@ summary:focus-visible {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+}
 }

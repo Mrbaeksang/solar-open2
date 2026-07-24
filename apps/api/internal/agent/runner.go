@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"io"
 	"regexp"
 	"strconv"
 	"strings"
@@ -14,11 +13,13 @@ import (
 	"github.com/Mrbaeksang/solar-open2/apps/api/internal/provider"
 	"github.com/Mrbaeksang/solar-open2/apps/api/internal/retrieval"
 	"github.com/cloudwego/eino/compose"
+	"github.com/cloudwego/eino/schema"
 )
 
 const (
 	evaluateNode = "evaluate-policy"
 	prepareNode  = "retrieve-and-ground"
+	generateNode = "solar-open2"
 )
 
 var (
@@ -39,15 +40,14 @@ type preparedRequest struct {
 	DirectAnswer string
 }
 
-// Runner executes a small Eino graph before invoking the streaming model.
+// Runner executes Eino graphs for grounding and live model generation.
 type Runner struct {
-	graph     compose.Runnable[domain.AgentRequest, preparedRequest]
-	model     provider.ChatModel
-	registry  map[string]domain.Source
-	chunkSize int
+	grounding  compose.Runnable[domain.AgentRequest, preparedRequest]
+	generation compose.Runnable[[]*schema.Message, *schema.Message]
+	registry   map[string]domain.Source
 }
 
-// NewRunner builds and compiles the policy -> hybrid retrieval Eino graph.
+// NewRunner builds the policy/retrieval graph and an Eino chat-model graph.
 func NewRunner(
 	ctx context.Context,
 	store retrieval.Store,
@@ -113,15 +113,33 @@ func NewRunner(
 	if err := graph.AddEdge(prepareNode, compose.END); err != nil {
 		return nil, fmt.Errorf("connect graph end: %w", err)
 	}
-	compiled, err := graph.Compile(ctx, compose.WithMaxRunSteps(4))
+	grounding, err := graph.Compile(ctx, compose.WithMaxRunSteps(4))
 	if err != nil {
 		return nil, fmt.Errorf("compile agent graph: %w", err)
 	}
+
+	generationGraph := compose.NewGraph[[]*schema.Message, *schema.Message]()
+	if err := generationGraph.AddChatModelNode(
+		generateNode,
+		einoChatModel{inner: model},
+	); err != nil {
+		return nil, fmt.Errorf("add Eino chat model: %w", err)
+	}
+	if err := generationGraph.AddEdge(compose.START, generateNode); err != nil {
+		return nil, fmt.Errorf("connect generation start: %w", err)
+	}
+	if err := generationGraph.AddEdge(generateNode, compose.END); err != nil {
+		return nil, fmt.Errorf("connect generation end: %w", err)
+	}
+	generation, err := generationGraph.Compile(ctx, compose.WithMaxRunSteps(2))
+	if err != nil {
+		return nil, fmt.Errorf("compile generation graph: %w", err)
+	}
+
 	return &Runner{
-		graph:     compiled,
-		model:     model,
-		registry:  registry,
-		chunkSize: 48,
+		grounding:  grounding,
+		generation: generation,
+		registry:   registry,
 	}, nil
 }
 
@@ -201,7 +219,7 @@ func prepare(
 
 // Run invokes the compiled Eino graph and returns registry-constrained evidence.
 func (r *Runner) Run(ctx context.Context, request domain.AgentRequest) (*domain.AgentResult, error) {
-	prepared, err := r.graph.Invoke(ctx, request)
+	prepared, err := r.grounding.Invoke(ctx, request)
 	if err != nil {
 		return nil, err
 	}
@@ -223,24 +241,16 @@ func (r *Runner) Run(ctx context.Context, request domain.AgentRequest) (*domain.
 		}, nil
 	}
 
-	stream, err := r.model.Stream(ctx, provider.ChatRequest{
-		SystemPrompt: prepared.SystemPrompt,
-		UserPrompt:   prepared.UserPrompt,
+	stream, err := r.generation.Stream(ctx, []*schema.Message{
+		schema.SystemMessage(prepared.SystemPrompt),
+		schema.UserMessage(prepared.UserPrompt),
 	})
 	if err != nil {
 		return nil, err
 	}
-	answer, err := collectAnswer(stream, 12_000)
-	if err != nil {
-		return nil, err
-	}
-	answer = sanitizeAnswer(answer, len(prepared.Evidence.SourceIDs))
-	if answer == "" {
-		return nil, errors.New("model returned an empty answer")
-	}
 	return &domain.AgentResult{
 		Evidence: prepared.Evidence,
-		Stream:   domain.NewSliceTextStream(answer, r.chunkSize),
+		Stream:   newSafeMessageStream(stream, len(prepared.Evidence.SourceIDs)),
 	}, nil
 }
 
@@ -269,7 +279,6 @@ func NewDeterministicRunner(sources []domain.Source) domain.Runner {
 	if err != nil {
 		return &failedRunner{err: err}
 	}
-	runner.chunkSize = 10_000
 	return runner
 }
 
@@ -366,42 +375,4 @@ func outsideTextbook(question string) bool {
 		}
 	}
 	return false
-}
-
-func collectAnswer(stream domain.TextStream, maxRunes int) (string, error) {
-	defer stream.Close()
-	var builder strings.Builder
-	count := 0
-	for {
-		chunk, err := stream.Recv()
-		if errors.Is(err, io.EOF) {
-			break
-		}
-		if err != nil {
-			return "", err
-		}
-		count += len([]rune(chunk))
-		if count > maxRunes {
-			return "", errors.New("model answer exceeded the output limit")
-		}
-		builder.WriteString(chunk)
-	}
-	return domain.CompactText(builder.String()), nil
-}
-
-func sanitizeAnswer(answer string, sourceCount int) string {
-	answer = urlPattern.ReplaceAllString(answer, "[링크 제거]")
-	answer = citationPattern.ReplaceAllStringFunc(answer, func(match string) string {
-		parts := citationPattern.FindStringSubmatch(match)
-		number, err := strconv.Atoi(parts[1])
-		if err != nil || number < 1 || number > sourceCount {
-			return ""
-		}
-		return match
-	})
-	answer = domain.CompactText(answer)
-	if sourceCount > 0 && !citationPattern.MatchString(answer) {
-		answer += " [1]"
-	}
-	return answer
 }

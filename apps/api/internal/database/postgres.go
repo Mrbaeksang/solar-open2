@@ -21,6 +21,10 @@ type Postgres struct {
 	pool *pgxpool.Pool
 }
 
+var ErrVectorUnavailable = errors.New(
+	"pgvector extension is unavailable in this PostgreSQL server; Railway's standard PostgreSQL image does not bundle pgvector, so attach a pgvector-enabled database service and point DATABASE_URL to it",
+)
+
 // Open connects using DATABASE_URL, including Railway private-network URLs.
 func Open(ctx context.Context, databaseURL string) (*Postgres, error) {
 	if strings.TrimSpace(databaseURL) == "" {
@@ -50,6 +54,21 @@ func (p *Postgres) Close() {
 
 // Migrate applies the idempotent pgvector schema.
 func (p *Postgres) Migrate(ctx context.Context) error {
+	var vectorAvailable bool
+	if err := p.pool.QueryRow(
+		ctx,
+		`SELECT EXISTS (
+			SELECT 1
+			FROM pg_available_extensions
+			WHERE name = 'vector'
+		)`,
+	).Scan(&vectorAvailable); err != nil {
+		return fmt.Errorf("inspect PostgreSQL extensions: %w", err)
+	}
+	if !vectorAvailable {
+		return ErrVectorUnavailable
+	}
+
 	schema, err := migrations.ReadFile("migrations/001_init.sql")
 	if err != nil {
 		return fmt.Errorf("read migration: %w", err)
@@ -58,6 +77,18 @@ func (p *Postgres) Migrate(ctx context.Context) error {
 		return fmt.Errorf("apply migration: %w", err)
 	}
 	return nil
+}
+
+// VectorVersion reports the installed pgvector version for readiness metadata.
+func (p *Postgres) VectorVersion(ctx context.Context) (string, error) {
+	var version string
+	if err := p.pool.QueryRow(
+		ctx,
+		`SELECT extversion FROM pg_extension WHERE extname = 'vector'`,
+	).Scan(&version); err != nil {
+		return "", fmt.Errorf("read pgvector version: %w", err)
+	}
+	return version, nil
 }
 
 // Search combines cosine similarity and PostgreSQL full-text rank.

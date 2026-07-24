@@ -37,7 +37,7 @@ func run(logger *slog.Logger) error {
 	if err != nil {
 		return fmt.Errorf("load reviewed corpus: %w", err)
 	}
-	store, embedder, model, closeStore, err := dependencies(ctx, corpus, logger)
+	store, embedder, model, retrievalMode, closeStore, err := dependencies(ctx, corpus, logger)
 	if err != nil {
 		return err
 	}
@@ -64,7 +64,11 @@ func run(logger *slog.Logger) error {
 		}
 		response.Header().Set("Content-Type", "application/json")
 		response.Header().Set("Cache-Control", "no-store")
-		_, _ = response.Write([]byte(`{"status":"ok"}`))
+		_, _ = fmt.Fprintf(
+			response,
+			`{"status":"ok","retrieval":"%s"}`,
+			retrievalMode,
+		)
 	})
 
 	port := strings.TrimSpace(os.Getenv("PORT"))
@@ -87,6 +91,8 @@ func run(logger *slog.Logger) error {
 			port,
 			"providerMode",
 			providerMode(),
+			"retrieval",
+			retrievalMode,
 			"rawChatPersistence",
 			false,
 		)
@@ -114,6 +120,7 @@ func dependencies(
 	retrieval.Store,
 	retrieval.Embedder,
 	provider.ChatModel,
+	string,
 	func(),
 	error,
 ) {
@@ -136,39 +143,50 @@ func dependencies(
 			ChatProtocol: os.Getenv("UPSTAGE_CHAT_PROTOCOL"),
 		})
 		if err != nil {
-			return nil, nil, nil, func() {}, err
+			return nil, nil, nil, "", func() {}, err
 		}
 		embedder = upstage
 		model = upstage
 	default:
-		return nil, nil, nil, func() {}, errors.New("PROVIDER_MODE must be upstage or deterministic")
+		return nil, nil, nil, "", func() {}, errors.New("PROVIDER_MODE must be upstage or deterministic")
 	}
 
 	var store retrieval.Store = retrieval.NewMemoryStore(corpus.Passages)
 	closeStore := func() {}
 	databaseURL := strings.TrimSpace(os.Getenv("DATABASE_URL"))
 	if databaseURL == "" {
+		if strings.EqualFold(os.Getenv("AUTO_INDEX"), "true") {
+			return nil, nil, nil, "", closeStore, errors.New(
+				"AUTO_INDEX=true requires DATABASE_URL; semantic retrieval cannot start without a pgvector-enabled PostgreSQL service",
+			)
+		}
 		logger.Warn("using in-memory lexical retrieval", "persistence", false)
-		return store, embedder, model, closeStore, nil
+		return store, embedder, model, "memory-lexical", closeStore, nil
 	}
 	postgres, err := database.Open(ctx, databaseURL)
 	if err != nil {
-		return nil, nil, nil, closeStore, err
+		return nil, nil, nil, "", closeStore, err
 	}
 	closeStore = postgres.Close
 	if err := postgres.Migrate(ctx); err != nil {
 		closeStore()
-		return nil, nil, nil, func() {}, err
+		return nil, nil, nil, "", func() {}, err
+	}
+	vectorVersion, err := postgres.VectorVersion(ctx)
+	if err != nil {
+		closeStore()
+		return nil, nil, nil, "", func() {}, err
 	}
 	if strings.EqualFold(os.Getenv("AUTO_INDEX"), "true") {
 		if err := postgres.ReplaceCorpus(ctx, corpus.Sources, corpus.Passages, embedder); err != nil {
 			closeStore()
-			return nil, nil, nil, func() {}, err
+			return nil, nil, nil, "", func() {}, err
 		}
 		logger.Info("reviewed corpus indexed", "passages", len(corpus.Passages), "sources", len(corpus.Sources))
 	}
+	logger.Info("pgvector retrieval ready", "version", vectorVersion)
 	store = postgres
-	return store, embedder, model, closeStore, nil
+	return store, embedder, model, "postgres-pgvector", closeStore, nil
 }
 
 func providerMode() string {

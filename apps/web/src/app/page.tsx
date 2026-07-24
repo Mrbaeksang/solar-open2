@@ -1,4 +1,6 @@
-import Link from "next/link";
+import { Badge } from "@astryxdesign/core/Badge";
+import { Button } from "@astryxdesign/core/Button";
+import { Card } from "@astryxdesign/core/Card";
 
 const trackCards = [
   {
@@ -41,13 +43,21 @@ export default function HomePage() {
             도우미에게 물을 수 있어요.
           </p>
           <div className="hero-actions">
-            <Link href="/learn/easy/ai-is" className="button button-primary">
-              쉬운 트랙 시작
-              <span aria-hidden="true"> →</span>
-            </Link>
-            <Link href="/learn/standard/ai-is" className="button button-ghost">
-              기본 트랙 시작
-            </Link>
+            <Button
+              label="쉬운 트랙 시작"
+              href="/learn/easy/ai-is"
+              variant="primary"
+              size="lg"
+              className="button button-primary"
+              endContent={<span aria-hidden="true">→</span>}
+            />
+            <Button
+              label="기본 트랙 시작"
+              href="/learn/standard/ai-is"
+              variant="secondary"
+              size="lg"
+              className="button button-ghost"
+            />
           </div>
         </div>
         <div className="hero-proof" aria-label="교과서의 세 가지 약속">
@@ -86,31 +96,39 @@ export default function HomePage() {
         </div>
         <div className="track-card-grid">
           {trackCards.map((card, index) => (
-            <article
-              className={`track-card track-card-${card.track}`}
-              key={card.track}
-            >
-              <div className="track-card-top">
-                <span className="track-index">0{index + 1}</span>
-                <span className="track-age">{card.age}</span>
-              </div>
-              <p className="track-label">{card.label}</p>
-              <h3>{card.title}</h3>
-              <p>{card.description}</p>
-              <div className="track-assistant">
-                <span aria-hidden="true">✦</span>
-                <div>
-                  <small>전용 AI 도우미</small>
-                  <strong>{card.assistant}</strong>
-                </div>
-              </div>
-              <Link
-                href={`/learn/${card.track}/ai-is`}
-                className="track-link"
+            <article key={card.track}>
+              <Card
+                padding={6}
+                className={`track-card track-card-${card.track}`}
               >
-                {card.label} 시작
-                <span aria-hidden="true">↗</span>
-              </Link>
+                <div className="track-card-top">
+                  <span className="track-index">0{index + 1}</span>
+                  <Badge
+                    variant={card.track === "easy" ? "green" : "blue"}
+                    label={card.age}
+                    className="track-age"
+                  />
+                </div>
+                <p className="track-label">{card.label}</p>
+                <h3>{card.title}</h3>
+                <p>{card.description}</p>
+                <div className="track-assistant">
+                  <span aria-hidden="true">AI</span>
+                  <div>
+                    <small>전용 교재 도우미</small>
+                    <strong>{card.assistant}</strong>
+                  </div>
+                </div>
+                <Button
+                  label={`${card.label} 시작`}
+                  href={`/learn/${card.track}/ai-is`}
+                  variant="secondary"
+                  size="lg"
+                  width="100%"
+                  className="track-link"
+                  endContent={<span aria-hidden="true">→</span>}
+                />
+              </Card>
             </article>
           ))}
         </div>

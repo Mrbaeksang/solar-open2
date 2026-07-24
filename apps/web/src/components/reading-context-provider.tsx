@@ -24,6 +24,7 @@ interface SectionContext {
 interface ReadingContextValue {
   context: ReadingContext;
   chapterTitle: string;
+  sectionTitle: string;
   transitionNotice?: string;
   syncChapter: (input: {
     chapterId: string;
@@ -177,6 +178,7 @@ export function ReadingContextProvider({
     () => ({
       context,
       chapterTitle,
+      sectionTitle: sections[context.sectionId]?.title ?? context.sectionId,
       transitionNotice,
       syncChapter,
       askSection,
@@ -187,6 +189,7 @@ export function ReadingContextProvider({
       chapterTitle,
       context,
       openAssistant,
+      sections,
       syncChapter,
       transitionNotice,
     ],

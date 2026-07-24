@@ -61,16 +61,25 @@ func TestHandlerStreamsProtocolEventsAndRegistryBackedEvidence(t *testing.T) {
 		eventTypes = append(eventTypes, event.Type)
 	}
 
-	want := []string{
-		"RUN_STARTED",
-		"CUSTOM",
-		"TEXT_MESSAGE_START",
-		"TEXT_MESSAGE_CONTENT",
-		"TEXT_MESSAGE_END",
-		"RUN_FINISHED",
+	if len(eventTypes) < 7 {
+		t.Fatalf("event sequence too short: %v", eventTypes)
 	}
-	if strings.Join(eventTypes, ",") != strings.Join(want, ",") {
-		t.Fatalf("event order = %v, want %v", eventTypes, want)
+	if strings.Join(eventTypes[:4], ",") !=
+		"RUN_STARTED,STATE_SNAPSHOT,CUSTOM,TEXT_MESSAGE_START" {
+		t.Fatalf("event prefix = %v", eventTypes[:4])
+	}
+	contentEvents := eventTypes[4 : len(eventTypes)-2]
+	if len(contentEvents) < 2 {
+		t.Fatalf("answer was not delivered as incremental deltas: %v", eventTypes)
+	}
+	for _, eventType := range contentEvents {
+		if eventType != "TEXT_MESSAGE_CONTENT" {
+			t.Fatalf("unexpected event inside text stream: %v", eventTypes)
+		}
+	}
+	if strings.Join(eventTypes[len(eventTypes)-2:], ",") !=
+		"TEXT_MESSAGE_END,RUN_FINISHED" {
+		t.Fatalf("event suffix = %v", eventTypes[len(eventTypes)-2:])
 	}
 }
 

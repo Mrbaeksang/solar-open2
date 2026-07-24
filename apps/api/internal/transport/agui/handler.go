@@ -144,6 +144,18 @@ func (h *Handler) ServeHTTP(response http.ResponseWriter, request *http.Request)
 		return
 	}
 	if err := writeEvent(response, map[string]any{
+		"type": "STATE_SNAPSHOT",
+		"snapshot": map[string]any{
+			"evidence": map[string]any{
+				"status":      result.Evidence.Status,
+				"sourceIds":   result.Evidence.SourceIDs,
+				"sourceCount": len(result.Evidence.SourceIDs),
+			},
+		},
+	}); err != nil {
+		return
+	}
+	if err := writeEvent(response, map[string]any{
 		"type": "CUSTOM",
 		"name": "evidence",
 		"value": map[string]any{

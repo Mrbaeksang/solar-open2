@@ -1,3 +1,5 @@
+import { Badge } from "@astryxdesign/core/Badge";
+import { ProgressBar } from "@astryxdesign/core/ProgressBar";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -73,7 +75,11 @@ export default async function ChapterPage({
       />
       <div className="reader-topbar">
         <div>
-          <span className="track-pill">{trackInfo.label}</span>
+          <Badge
+            className="track-pill"
+            variant={track === "easy" ? "green" : "blue"}
+            label={trackInfo.label}
+          />
           <span>{trackInfo.audience}</span>
         </div>
         <Link href={`/learn/${alternateTrack}/${slug}`}>
@@ -139,6 +145,18 @@ export default async function ChapterPage({
               <span>약 {Math.max(6, chapter.number + 5)}분</span>
               <span>출처 {chapter.sourceIds.length}개</span>
               <span>확인 문제 1개</span>
+            </div>
+            <div className="chapter-progress">
+              <span>
+                전체 {trackChapters.length}장 중 {chapter.number}장
+              </span>
+              <ProgressBar
+                label={`${trackInfo.label} 학습 진도`}
+                value={chapter.number}
+                max={trackChapters.length}
+                isLabelHidden
+                variant="accent"
+              />
             </div>
             <section className="learning-objectives" aria-label="이 장의 목표">
               <strong>읽고 나면</strong>

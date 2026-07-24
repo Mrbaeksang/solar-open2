@@ -6,7 +6,8 @@
 - 기본 트랙: 고등학교 1학년 이상 비전공자
 - 7개 챕터를 트랙별로 독립 집필
 - 주장 단위 출처, 출처 인덱스, 세 상태의 근거 표시
-- Next.js/Vercel 프론트 + Go/Eino/Railway API
+- Next.js + assistant-ui + Astryx/Vercel 프론트
+- Go + Eino + AG-UI/Railway API
 - Solar Open 2 채팅 + Solar Embedding 2 + PostgreSQL/pgvector 하이브리드 검색
 
 ## 로컬 실행
@@ -65,7 +66,7 @@ Railway API 서비스 설정:
 - Public Networking에서 도메인 생성
 - Railway가 주입하는 `PORT`는 직접 만들지 않음
 
-일반 PostgreSQL이 아니라 PostgreSQL + pgvector 템플릿을 추가한다. API 서비스 변수:
+[Railway 공식 pgvector 가이드](https://docs.railway.com/guides/rag-pipeline-pgvector)에 따라 일반 PostgreSQL이 아니라 PostgreSQL + pgvector 템플릿을 추가한다. Railway 기본 PostgreSQL 이미지에는 pgvector가 없다. API 서비스 변수:
 
 ```dotenv
 UPSTAGE_API_KEY=<secret>
@@ -75,6 +76,14 @@ WEB_ORIGIN=https://<vercel-production-domain>
 ```
 
 DB 서비스 이름이 `pgvector`가 아니면 `DATABASE_URL`의 참조 이름도 맞춘다. `WEB_ORIGIN`은 쉼표로 여러 실제 Vercel origin을 받을 수 있다. Railway가 주입하는 `PORT`와 나머지 Suggested Variables는 추가하지 않는다.
+
+배포 후 `GET /healthz`가 아래 값을 반환해야 시멘틱 검색이 실제 활성화된 상태다.
+
+```json
+{"status":"ok","retrieval":"postgres-pgvector"}
+```
+
+`memory-lexical`이면 DB 없는 로컬용 키워드 검색일 뿐 시멘틱 검색이 아니다. `DATABASE_URL`이 일반 PostgreSQL을 가리키면 API는 시작 단계에서 pgvector 부재를 명시적으로 실패시킨다.
 
 ## 콘텐츠 검증
 
