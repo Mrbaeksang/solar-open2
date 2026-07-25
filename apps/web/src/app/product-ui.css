@@ -1640,6 +1640,11 @@
     box-shadow: var(--shadow-sm);
   }
 
+  .assistant-viewport:has(.evidence-sources[open]) .assistant-scroll-bottom {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
   .assistant-composer-sticky {
     position: sticky;
     z-index: 2;

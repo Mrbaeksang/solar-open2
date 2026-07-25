@@ -200,6 +200,7 @@ test("mobile assistant keeps the conversation chrome readable and inside the she
   await sourceDisclosure.locator("summary").click();
   const firstSource = sourceDisclosure.locator("a").first();
   await expect(firstSource).toBeVisible();
+  await expect(drawer.locator(".assistant-scroll-bottom")).toBeHidden();
   const firstSourceBox = await firstSource.boundingBox();
   expect(firstSourceBox).not.toBeNull();
   expect(firstSourceBox!.height).toBeGreaterThanOrEqual(44);
