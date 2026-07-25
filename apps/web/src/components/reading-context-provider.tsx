@@ -70,6 +70,17 @@ export function ReadingContextProvider({
     y: number;
   }>();
 
+  useEffect(() => {
+    if (!transitionNotice) {
+      return;
+    }
+    const timeout = window.setTimeout(
+      () => setTransitionNotice(undefined),
+      4_500,
+    );
+    return () => window.clearTimeout(timeout);
+  }, [transitionNotice]);
+
   const openAssistant = useCallback(() => {
     window.dispatchEvent(new CustomEvent("solar:assistant-open"));
   }, []);

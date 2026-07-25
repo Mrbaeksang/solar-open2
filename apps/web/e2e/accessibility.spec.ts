@@ -58,6 +58,8 @@ test("assistant conversation has no detectable WCAG A/AA violations", async ({
   await expect(page.getByText("교재 근거로 답함")).toBeVisible({
     timeout: 15_000,
   });
+  await page.locator(".evidence-sources summary").click();
+  await expect(page.locator(".evidence-sources ol")).toBeVisible();
 
   const result = await new AxeBuilder({ page })
     .include(".assistant-drawer")

@@ -1212,7 +1212,7 @@
     border: 1px solid #cad5cf;
     border-radius: 22px;
     color: var(--ink);
-    background: #fbfcfa;
+    background: #f8faf8;
     box-shadow: 0 28px 90px rgb(17 37 29 / 24%);
     opacity: 1;
     transform: none;
@@ -1228,9 +1228,11 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid #dce4df;
     color: var(--ink);
-    background: #fff;
+    background:
+      linear-gradient(115deg, rgb(232 245 238 / 48%), transparent 42%),
+      #fff;
   }
 
   .assistant-identity {
@@ -1282,8 +1284,8 @@
     gap: 1px 10px;
     border: 0;
     border-radius: 12px;
-    color: #394740;
-    background: #edf4f0;
+    color: #34433c;
+    background: #eaf3ee;
   }
 
   .reading-context-chip > span {
@@ -1409,6 +1411,20 @@
 
   .assistant-message-list {
     width: 100%;
+    height: auto;
+    min-height: auto;
+    flex: 0 0 auto;
+  }
+
+  /*
+   * Astryx ChatMessageList fills a ChatLayout with flex: 1 by default.
+   * Here assistant-ui owns the scrolling viewport, so both Astryx list
+   * wrappers must size to their messages instead of collapsing to 0px.
+   */
+  .assistant-message-list > div {
+    height: auto;
+    min-height: auto;
+    flex: 0 0 auto;
   }
 
   .chat-message {
@@ -1436,7 +1452,8 @@
   .chat-message-user .chat-message-body {
     max-width: 92%;
     color: white;
-    background: #285f50;
+    background: #176852;
+    box-shadow: 0 5px 14px rgb(18 78 62 / 13%);
   }
 
   .chat-message-user .chat-message-body > p {
@@ -1476,6 +1493,9 @@
     width: 100%;
     max-width: 100%;
     padding-inline: 0;
+    border-color: #d9e2dd;
+    background: #fff;
+    box-shadow: 0 2px 7px rgb(28 45 37 / 4%);
   }
 
   .chat-answer {
@@ -1499,10 +1519,28 @@
 
   .evidence-panel {
     margin: 8px 0 20px;
-    border-color: #d1ddd7;
+    border-color: #cbdcd3;
     border-radius: 13px;
-    background: #f3f7f4;
+    background: #f0f7f3;
     box-shadow: none;
+  }
+
+  .evidence-supported .astryx-badge {
+    border-color: #b9d9cb;
+    color: #0d5b48;
+    background: #dcefe7;
+  }
+
+  .evidence-insufficient .astryx-badge {
+    border-color: #ead2aa;
+    color: #75460f;
+    background: #faecd4;
+  }
+
+  .evidence-out_of_scope .astryx-badge {
+    border-color: #d0d8d4;
+    color: #48564f;
+    background: #e7ece9;
   }
 
   .evidence-heading {
@@ -1524,22 +1562,68 @@
     line-height: 1.55;
   }
 
+  .evidence-sources {
+    margin-top: 9px;
+    border-top: 1px solid #dbe4df;
+  }
+
+  .evidence-sources summary {
+    display: flex;
+    min-height: 44px;
+    padding: 9px 2px 7px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--forest);
+    font-size: 11px;
+    font-weight: 720;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .evidence-sources summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .evidence-sources summary::after {
+    width: 7px;
+    height: 7px;
+    flex: 0 0 auto;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    content: "";
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: transform 160ms ease;
+  }
+
+  .evidence-sources[open] summary::after {
+    transform: rotate(225deg) translate(-1px, -1px);
+  }
+
   .evidence-panel ol {
     display: grid;
-    margin: 11px 0 0;
-    padding: 0;
+    margin: 0;
+    padding: 4px 0 2px;
     gap: 8px;
     list-style: none;
   }
 
   .evidence-panel li {
     display: grid;
+    min-width: 0;
     gap: 2px;
+  }
+
+  .evidence-panel .astryx-citation {
+    max-width: 100%;
+    min-height: 36px;
   }
 
   .evidence-panel li > span {
     color: #59665f;
     font-size: 10px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
   }
 
   .assistant-scroll-bottom {
@@ -1549,7 +1633,10 @@
     width: 40px;
     height: 40px;
     margin: 0 0 7px auto;
+    border-color: #d4dfd9;
     border-radius: 50%;
+    color: var(--forest);
+    background: #fff;
     box-shadow: var(--shadow-sm);
   }
 
@@ -1559,7 +1646,7 @@
     bottom: 0;
     margin-top: auto;
     padding: 10px 0 12px;
-    background: linear-gradient(to bottom, transparent, #fbfcfa 18%);
+    background: linear-gradient(to bottom, transparent, #f8faf8 18%);
   }
 
   .assistant-composer-runtime,
@@ -1597,7 +1684,16 @@
   .composer-button {
     width: 44px;
     height: 44px;
+    border: 0;
     border-radius: 14px;
+    color: #fff;
+    background: #176852;
+  }
+
+  .composer-button:disabled {
+    color: #64736c;
+    background: #e0e8e4;
+    opacity: 1;
   }
 
   .assistant-composer-help {
@@ -1611,7 +1707,7 @@
     padding: 8px 16px 11px;
     border-top: 1px solid #edf0ed;
     color: #66726c;
-    background: #fbfcfa;
+    background: #f8faf8;
     font-size: 10px;
     line-height: 1.4;
     text-align: center;
@@ -1932,7 +2028,7 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: min(88dvh, 760px);
+      height: min(92dvh, 780px);
       border-right: 0;
       border-bottom: 0;
       border-left: 0;
@@ -1962,6 +2058,49 @@
 
     .assistant-privacy {
       padding-bottom: max(11px, env(safe-area-inset-bottom));
+    }
+
+    .assistant-composer-sticky {
+      padding-block: 8px 9px;
+    }
+
+    .assistant-composer-shell > div {
+      padding: 7px 7px 7px 14px;
+      align-items: center;
+      flex-direction: row;
+      gap: 8px;
+      border: 1px solid #d3ddd8;
+      box-shadow: 0 8px 24px rgb(23 48 39 / 10%);
+    }
+
+    .assistant-composer-shell > div > div:first-child {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .assistant-composer-shell > div > div:last-child {
+      min-height: 44px;
+      flex: 0 0 auto;
+    }
+
+    .assistant-composer-help {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .assistant-input {
+      min-height: 44px;
+      padding-block: 10px;
+    }
+
+    .evidence-panel .astryx-citation {
+      min-height: 44px;
     }
 
     .selection-question {
@@ -2066,6 +2205,10 @@
     .assistant-drawer,
     .stream-caret {
       animation: none;
+    }
+
+    .evidence-sources summary::after {
+      transition: none;
     }
   }
 }

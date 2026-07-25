@@ -68,6 +68,154 @@ test("mobile exposes navigation and assistant as touch-sized controls", async ({
   ).toBeVisible();
 });
 
+test("public reading surfaces fit a 320px mobile viewport", async ({
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== "mobile");
+  await page.setViewportSize({ width: 320, height: 568 });
+
+  for (const path of [
+    "/",
+    "/learn/easy/ai-is",
+    "/learn/standard/responsible-use",
+    "/sources",
+  ]) {
+    await page.goto(path);
+    const dimensions = await page.evaluate(() => ({
+      clientWidth: document.documentElement.clientWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    }));
+    expect(dimensions.scrollWidth, path).toBeLessThanOrEqual(
+      dimensions.clientWidth,
+    );
+  }
+});
+
+test("mobile assistant keeps the conversation chrome readable and inside the sheet", async ({
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== "mobile");
+  await page.setViewportSize({ width: 360, height: 640 });
+  await page.goto("/learn/standard/ai-is");
+  await page.getByRole("button", { name: "교재 도우미" }).click();
+  await page.getByRole("button", { name: "핵심 주장" }).click();
+  await expect(page.getByText("교재 근거로 답함")).toBeVisible({
+    timeout: 15_000,
+  });
+
+  const drawer = page.locator(".assistant-drawer");
+  const composer = page.getByRole("textbox", {
+    name: "AI 교재 도우미에게 질문",
+  });
+  const privacy = page.locator(".assistant-privacy");
+  await expect(drawer).toBeVisible();
+  await expect(composer).toBeInViewport();
+  await expect(privacy).toBeInViewport();
+  const sourceDisclosure = drawer.locator(".evidence-sources");
+  await expect(sourceDisclosure.locator("summary")).toContainText(
+    /출처 \d+개 보기/,
+  );
+  await expect(sourceDisclosure.locator("ol")).toBeHidden();
+
+  const layout = await drawer.evaluate((element) => {
+    const drawerRect = element.getBoundingClientRect();
+    const viewport = element.querySelector(".assistant-viewport");
+    const messageList = element.querySelector(".assistant-message-list");
+    const evidence = element.querySelector(".evidence-panel");
+    const composerShell = element.querySelector(".assistant-composer-shell");
+    const overflowing = [...element.querySelectorAll<HTMLElement>("*")]
+      .filter((child) => {
+        const style = getComputedStyle(child);
+        if (style.position === "fixed" || style.visibility === "hidden") {
+          return false;
+        }
+        const rect = child.getBoundingClientRect();
+        return (
+          rect.width > 0 &&
+          (rect.left < drawerRect.left - 1 || rect.right > drawerRect.right + 1)
+        );
+      })
+      .map((child) => child.className || child.tagName);
+
+    return {
+      drawer: {
+        top: drawerRect.top,
+        right: drawerRect.right,
+        bottom: drawerRect.bottom,
+        height: drawerRect.height,
+      },
+      viewport:
+        viewport instanceof HTMLElement
+          ? {
+              clientHeight: viewport.clientHeight,
+              scrollHeight: viewport.scrollHeight,
+            }
+          : null,
+      messageList:
+        messageList instanceof HTMLElement
+          ? {
+              clientHeight: messageList.clientHeight,
+              scrollHeight: messageList.scrollHeight,
+              bottom: messageList.getBoundingClientRect().bottom,
+            }
+          : null,
+      evidenceTop: evidence?.getBoundingClientRect().top ?? null,
+      composerHeight: composerShell?.getBoundingClientRect().height ?? null,
+      overflowing,
+    };
+  });
+
+  expect(layout.drawer.top).toBeGreaterThanOrEqual(0);
+  expect(layout.drawer.right).toBeLessThanOrEqual(360);
+  expect(layout.drawer.bottom).toBeLessThanOrEqual(640);
+  expect(layout.drawer.height).toBeGreaterThanOrEqual(576);
+  expect(layout.overflowing).toEqual([]);
+  expect(layout.messageList).not.toBeNull();
+  expect(layout.messageList!.clientHeight).toBeGreaterThanOrEqual(
+    layout.messageList!.scrollHeight,
+  );
+  expect(layout.evidenceTop).toBeGreaterThanOrEqual(
+    layout.messageList!.bottom,
+  );
+  expect(layout.composerHeight).not.toBeNull();
+  expect(layout.composerHeight!).toBeLessThanOrEqual(76);
+
+  const userBubble = page.locator(".chat-message-user .chat-message-body");
+  const userTextColors = await userBubble
+    .locator(".chat-speaker, p")
+    .evaluateAll((elements) =>
+      elements.map((element) => ({
+        background: getComputedStyle(
+          element.closest(".chat-message-body") ?? element,
+        ).backgroundColor,
+        foreground: getComputedStyle(element).color,
+      })),
+    );
+  expect(userTextColors.length).toBeGreaterThan(0);
+  expect(
+    userTextColors.every(
+      ({ foreground }) => foreground === "rgb(255, 255, 255)",
+    ),
+  ).toBe(true);
+  await sourceDisclosure.locator("summary").click();
+  const firstSource = sourceDisclosure.locator("a").first();
+  await expect(firstSource).toBeVisible();
+  const firstSourceBox = await firstSource.boundingBox();
+  expect(firstSourceBox).not.toBeNull();
+  expect(firstSourceBox!.height).toBeGreaterThanOrEqual(44);
+  const evidenceWidths = await sourceDisclosure.evaluate((element) => ({
+    clientWidth: element.clientWidth,
+    scrollWidth: element.scrollWidth,
+  }));
+  expect(evidenceWidths.scrollWidth).toBeLessThanOrEqual(
+    evidenceWidths.clientWidth,
+  );
+  await sourceDisclosure.locator("summary").click();
+  await page.setViewportSize({ width: 360, height: 360 });
+  await expect(composer).toBeInViewport();
+  await expect(privacy).toBeInViewport();
+});
+
 test("assistant never steals focus from the textbook", async ({ page }) => {
   await page.goto("/learn/easy/ai-is");
 

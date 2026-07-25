@@ -571,20 +571,23 @@ function EvidencePanel({ event }: { event: EvidenceEvent }) {
       </div>
       <p>{copy.detail}</p>
       {linkedSources.length > 0 ? (
-        <ol>
-          {linkedSources.map((source, index) => (
-            <li key={source.id}>
-              <Citation
-                source={{ title: source.title, url: source.url }}
-                number={index + 1}
-                variant="label"
-              />
-              <span>
-                {source.publisher} · 검토 {source.reviewedAt}
-              </span>
-            </li>
-          ))}
-        </ol>
+        <details className="evidence-sources">
+          <summary>출처 {linkedSources.length}개 보기</summary>
+          <ol>
+            {linkedSources.map((source, index) => (
+              <li key={source.id}>
+                <Citation
+                  source={{ title: source.title, url: source.url }}
+                  number={index + 1}
+                  variant="label"
+                />
+                <span>
+                  {source.publisher} · 검토 {source.reviewedAt}
+                </span>
+              </li>
+            ))}
+          </ol>
+        </details>
       ) : null}
     </Card>
   );
