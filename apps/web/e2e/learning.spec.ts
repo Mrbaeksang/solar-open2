@@ -209,8 +209,21 @@ test("mobile assistant keeps the conversation chrome readable and inside the she
   expect(layout.composerHeight!).toBeLessThanOrEqual(76);
 
   const userBubble = page.locator(".chat-message-user .chat-message-body");
+  await expect(page.locator(".chat-message-user .chat-speaker")).toHaveCount(0);
+  const userSurfaces = await page
+    .locator(".chat-message-user div")
+    .evaluateAll((elements) =>
+      elements
+        .filter((element) => {
+          const background = getComputedStyle(element).backgroundColor;
+          return background !== "rgba(0, 0, 0, 0)" && background !== "transparent";
+        })
+        .map((element) => element.className),
+    );
+  expect(userSurfaces).toHaveLength(1);
+  expect(String(userSurfaces[0])).toContain("chat-message-body");
   const userTextColors = await userBubble
-    .locator(".chat-speaker, p")
+    .locator("p")
     .evaluateAll((elements) =>
       elements.map((element) => ({
         background: getComputedStyle(

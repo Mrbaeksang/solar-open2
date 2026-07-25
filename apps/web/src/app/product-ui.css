@@ -1468,16 +1468,12 @@
     padding-left: 52px;
   }
 
-  .chat-speaker {
-    display: block;
-    margin-bottom: 4px;
-    color: #59665f;
-    font-size: 10px;
-    font-weight: 680;
-  }
-
-  .chat-message-user .chat-speaker {
-    margin: 0 4px 3px;
+  .chat-message-user > div {
+    max-width: 100%;
+    padding: 0;
+    border-radius: 0;
+    color: inherit;
+    background: transparent;
   }
 
   .chat-message-user .chat-message-body {

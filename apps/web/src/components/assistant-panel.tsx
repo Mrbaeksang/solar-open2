@@ -578,7 +578,6 @@ const UserMessage: FC = () => (
     >
       <ChatMessageBubble
         variant="filled"
-        name={<span className="chat-speaker">나</span>}
         className="chat-message-body"
       >
         <MessagePrimitive.Parts>
