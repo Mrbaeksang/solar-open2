@@ -28,7 +28,7 @@ test("desktop assistant keeps text contrast while opening", async ({
   test.skip(testInfo.project.name !== "desktop", "desktop drawer transition");
 
   await page.goto("/learn/easy/ai-is");
-  await page.getByRole("button", { name: "교재 도우미" }).click();
+  await page.getByRole("button", { name: "AI에 질문하기" }).click();
   const drawer = page.locator(".assistant-drawer");
   await expect(drawer).toHaveClass(/is-open/);
   await drawer.evaluate(async (element) => {
@@ -53,7 +53,7 @@ test("assistant conversation has no detectable WCAG A/AA violations", async ({
   page,
 }) => {
   await page.goto("/learn/easy/ai-is");
-  await page.getByRole("button", { name: "교재 도우미" }).click();
+  await page.getByRole("button", { name: "AI에 질문하기" }).click();
   await page.getByRole("button", { name: "한 문장으로" }).click();
   await expect(page.getByText("교재 근거로 답함")).toBeVisible({
     timeout: 15_000,

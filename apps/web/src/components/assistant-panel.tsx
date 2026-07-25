@@ -11,7 +11,6 @@ import {
   ChatMessageList,
   ChatSendButton,
 } from "@astryxdesign/core/Chat";
-import { Citation } from "@astryxdesign/core/Citation";
 import {
   AssistantRuntimeProvider,
   ComposerPrimitive,
@@ -27,13 +26,19 @@ import {
 } from "@assistant-ui/react-ag-ui";
 import {
   useEffect,
+  useId,
   useMemo,
   useRef,
   useState,
   type FC,
 } from "react";
 
-import { getSource, getTrack, type Source } from "@/lib/content";
+import {
+  getSource,
+  getSourceDisplayName,
+  getTrack,
+  type Source,
+} from "@/lib/content";
 import type { LearningTrack, ReadingContext } from "@/lib/reading-context";
 
 import { useReadingContext } from "./reading-context-provider";
@@ -353,8 +358,7 @@ function AssistantSurface({
     <>
       {!open ? (
         <Button
-          label="교재 도우미"
-          icon={<SparkIcon />}
+          label="AI에 질문하기"
           variant="primary"
           size="lg"
           className="assistant-fab"
@@ -366,25 +370,21 @@ function AssistantSurface({
       {open ? (
         <aside
           className="assistant-drawer is-open"
-          aria-label={`${trackInfo.label} AI 교재 도우미`}
+          aria-label={`${trackInfo.label} AI 설명 도우미`}
         >
           <header className="assistant-header">
             <div className="assistant-identity">
-              <span className="assistant-orb" aria-hidden="true">
-                <SparkIcon />
-              </span>
               <div>
                 <strong>{trackInfo.assistantName}</strong>
                 <span>
                   {track === "easy"
-                    ? "따뜻한 과학 길잡이"
-                    : "차분한 연구 멘토"}
-                  {" · "}Solar Open 2
+                    ? "쉬운 말과 예시로 설명합니다"
+                    : "원리와 근거를 차례로 설명합니다"}
                 </span>
               </div>
             </div>
             <Button
-              label="교재 도우미 닫기"
+              label="AI 설명 도우미 닫기"
               icon={<CloseIcon />}
               isIconOnly
               variant="ghost"
@@ -416,6 +416,7 @@ function AssistantSurface({
               <Conversation
                 track={track}
                 retrieval={visibleRetrieval}
+                evidence={evidence}
               />
 
               {evidence ? <EvidencePanel event={evidence} /> : null}
@@ -448,7 +449,7 @@ function AssistantSurface({
         <button
           type="button"
           className="assistant-mobile-backdrop"
-          aria-label="교재 도우미 닫기"
+          aria-label="AI 설명 도우미 닫기"
           onClick={() => setOpen(false)}
         />
       ) : null}
@@ -459,9 +460,11 @@ function AssistantSurface({
 function Conversation({
   track,
   retrieval,
+  evidence,
 }: {
   track: LearningTrack;
   retrieval?: RetrievalEvent;
+  evidence?: EvidenceEvent;
 }) {
   const isEmpty = useAuiState((state) => state.thread.messages.length === 0);
   const running = useAuiState((state) => state.thread.isRunning);
@@ -473,6 +476,29 @@ function Conversation({
     const messages = state.thread.messages;
     return messages[messages.length - 1]?.role;
   });
+  const [evidenceByMessageId, setEvidenceByMessageId] = useState<
+    Record<string, EvidenceEvent>
+  >({});
+  const evidenceSignature = evidence
+    ? `${evidence.status}:${evidence.sourceCount}:${evidence.sourceIds.join("|")}`
+    : "";
+
+  useEffect(() => {
+    if (!evidence || !lastMessageId || lastMessageRole !== "assistant") {
+      return;
+    }
+    setEvidenceByMessageId((current) => {
+      const previous = current[lastMessageId];
+      const previousSignature = previous
+        ? `${previous.status}:${previous.sourceCount}:${previous.sourceIds.join("|")}`
+        : "";
+      if (previousSignature === evidenceSignature) {
+        return current;
+      }
+      return { ...current, [lastMessageId]: evidence };
+    });
+  }, [evidence, evidenceSignature, lastMessageId, lastMessageRole]);
+
   if (isEmpty) {
     return <AssistantWelcome track={track} />;
   }
@@ -491,6 +517,10 @@ function Conversation({
             <AssistantMessage
               retrieval={
                 message.id === lastMessageId ? retrieval : undefined
+              }
+              evidence={
+                evidenceByMessageId[message.id] ??
+                (message.id === lastMessageId ? evidence : undefined)
               }
             />
           )
@@ -565,21 +595,19 @@ const UserMessage: FC = () => (
 
 function AssistantMessage({
   retrieval,
+  evidence,
 }: {
   retrieval?: RetrievalEvent;
+  evidence?: EvidenceEvent;
 }) {
   return (
     <MessagePrimitive.Root asChild>
       <article
         data-role="assistant"
         className="astryx-chat-message chat-message chat-message-assistant"
-        aria-label="교재 도우미 답변"
+        aria-label="AI 설명 도우미 답변"
       >
-        <span className="chat-avatar" aria-hidden="true">
-          <SparkIcon />
-        </span>
         <div className="chat-assistant-content">
-          <span className="chat-speaker">교재 도우미</span>
           {retrieval && retrieval.status !== "skipped" ? (
             <RetrievalActivity event={retrieval} />
           ) : null}
@@ -587,12 +615,9 @@ function AssistantMessage({
             {({ part }) =>
               part.type === "text" ? (
                 <p className="chat-answer">
-                  <MessagePartPrimitive.Text
-                    smooth={{
-                      drainMs: 650,
-                      maxCharsPerFrame: 10,
-                      minCommitMs: 16,
-                    }}
+                  <AssistantAnswerText
+                    text={part.text}
+                    sourceIds={evidence?.sourceIds}
                   />
                   <MessagePartPrimitive.InProgress>
                     <span
@@ -630,7 +655,7 @@ function Composer() {
             rows={1}
             maxLength={1_500}
             placeholder="읽다가 궁금한 점을 물어보세요"
-            aria-label="AI 교재 도우미에게 질문"
+            aria-label="AI 설명 도우미에게 질문"
             aria-describedby="assistant-composer-help"
             autoFocus={false}
             unstable_focusOnRunStart={false}
@@ -758,6 +783,61 @@ function RetrievalActivity({ event }: { event: RetrievalEvent }) {
   );
 }
 
+function AssistantAnswerText({
+  text,
+  sourceIds = [],
+}: {
+  text: string;
+  sourceIds?: string[];
+}) {
+  const sources = sourceIds
+    .map((sourceId) => getSource(sourceId))
+    .filter((source): source is Source => Boolean(source));
+
+  return text.split(/(\[\d+\])/g).map((part, index) => {
+    const match = part.match(/^\[(\d+)\]$/);
+    if (!match) {
+      return part;
+    }
+    const source = sources[Number(match[1]) - 1];
+    return source ? (
+      <AssistantSourceChip
+        key={`${source.id}-${index}`}
+        source={source}
+      />
+    ) : (
+      part
+    );
+  });
+}
+
+function AssistantSourceChip({ source }: { source: Source }) {
+  const tooltipId = useId();
+  return (
+    <span className="citation-anchor assistant-citation-anchor">
+      <a
+        href={source.url}
+        target="_blank"
+        rel="noreferrer"
+        className="citation-marker assistant-citation-chip"
+        aria-describedby={tooltipId}
+      >
+        근거 · {getSourceDisplayName(source)}
+      </a>
+      <span
+        id={tooltipId}
+        role="tooltip"
+        className="citation-tooltip assistant-citation-tooltip"
+      >
+        <span>출처 미리보기</span>
+        <strong>{source.title}</strong>
+        <span className="citation-tooltip-summary">{source.summary}</span>
+        <small>{source.publisher}</small>
+      </span>
+    </span>
+  );
+}
+
 function EvidencePanel({ event }: { event: EvidenceEvent }) {
   const copy = evidenceLabels[event.status];
   const linkedSources = event.sourceIds
@@ -780,13 +860,9 @@ function EvidencePanel({ event }: { event: EvidenceEvent }) {
         <details className="evidence-sources">
           <summary>출처 {linkedSources.length}개 보기</summary>
           <ol>
-            {linkedSources.map((source, index) => (
+            {linkedSources.map((source) => (
               <li key={source.id}>
-                <Citation
-                  source={{ title: source.title, url: source.url }}
-                  number={index + 1}
-                  variant="label"
-                />
+                <AssistantSourceChip source={source} />
                 <span>
                   {source.publisher} · 검토 {source.reviewedAt}
                 </span>
@@ -796,15 +872,6 @@ function EvidencePanel({ event }: { event: EvidenceEvent }) {
         </details>
       ) : null}
     </Card>
-  );
-}
-
-function SparkIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 2.8c.7 5 2.2 6.5 7.2 7.2-5 .7-6.5 2.2-7.2 7.2-.7-5-2.2-6.5-7.2-7.2 5-.7 6.5-2.2 7.2-7.2Z" />
-      <path d="M18.5 15.5c.3 2.1.9 2.7 3 3-2.1.3-2.7.9-3 3-.3-2.1-.9-2.7-3-3 2.1-.3 2.7-.9 3-3Z" />
-    </svg>
   );
 }
 

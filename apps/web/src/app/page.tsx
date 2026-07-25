@@ -7,19 +7,19 @@ const trackCards = [
     track: "easy",
     label: "쉬운 트랙",
     age: "초5–중3",
-    title: "먼저 예시로 만나고, 원리를 차근차근",
+    title: "생활 속 예시부터 차근차근",
     description:
-      "생활 속 상황 → 실제 원리 → 비유의 한계 순서로 읽어요. 아이 취급하지 않는 또렷한 문장을 씁니다.",
-    assistant: "따뜻한 과학 길잡이",
+      "짧은 설명과 익숙한 예시로 시작해 실제 원리와 한계까지 알아봅니다.",
+    assistant: "쉬운 말과 예시로 답합니다",
   },
   {
     track: "standard",
     label: "기본 트랙",
     age: "고등학생 이상",
-    title: "핵심 주장과 반례를 근거로 검토하기",
+    title: "원리와 사례를 조금 더 자세히",
     description:
-      "작동 원리 → 사례 → 한계와 반례 → 출처 순서로 읽어요. 비전공 성인에게도 필요한 깊이만 남겼습니다.",
-    assistant: "차분한 연구 멘토",
+      "핵심 원리, 실제 사례, 한계와 확인 방법을 비전공자도 이해할 수 있게 설명합니다.",
+    assistant: "원리와 근거를 차례로 설명합니다",
   },
 ] as const;
 
@@ -33,14 +33,14 @@ export default function HomePage() {
             공개 · 로그인 없음 · 주장별 원출처
           </p>
           <h1>
-            AI를 쉽게 배우되,
+            AI를 처음부터
             <br />
-            <em>쉽게 믿지는 않도록.</em>
+            <em>쉽게 이해하기</em>
           </h1>
           <p className="hero-summary">
-            두 수준으로 따로 쓴 AI 교과서입니다. 번호를 누르면 정확한
-            근거가 열리고, 궁금한 문장을 고르면 지금 읽는 자리를 아는
-            도우미에게 물을 수 있어요.
+            AI가 무엇인지, 어떻게 배우고 답을 만드는지, 왜 틀릴 수
+            있는지를 두 가지 난이도로 설명합니다. 근거 칩을 누르면
+            출처도 바로 확인할 수 있어요.
           </p>
           <div className="hero-actions">
             <Button
@@ -65,14 +65,14 @@ export default function HomePage() {
             <span>01</span>
             <div>
               <strong>문장 뒤에서 바로</strong>
-              <p>기관·판·날짜·정확한 위치까지 여는 출처 표식</p>
+              <p>근거 칩을 눌러 원문과 정확한 위치 확인</p>
             </div>
           </article>
           <article>
             <span>02</span>
             <div>
               <strong>지금 읽는 자리만</strong>
-              <p>원시 DOM 대신 짧은 읽기 맥락을 보내는 트랙 도우미</p>
+              <p>현재 챕터와 선택한 문장을 바탕으로 질문</p>
             </div>
           </article>
           <article>
@@ -91,7 +91,7 @@ export default function HomePage() {
           <h2 id="track-choice-title">내 읽기 방식 고르기</h2>
           <p>
             문장을 짧게 줄인 복제판이 아닙니다. 사례, 활동, 문제와 AI
-            도우미의 설명 순서를 각 트랙에 맞춰 따로 썼습니다.
+            설명 순서를 각 트랙에 맞춰 따로 썼습니다.
           </p>
         </div>
         <div className="track-card-grid">
@@ -115,7 +115,7 @@ export default function HomePage() {
                 <div className="track-assistant">
                   <span aria-hidden="true">AI</span>
                   <div>
-                    <small>전용 교재 도우미</small>
+                    <small>AI 설명 도우미</small>
                     <strong>{card.assistant}</strong>
                   </div>
                 </div>
@@ -161,8 +161,8 @@ export default function HomePage() {
           </div>
         </div>
         <p className="flow-note">
-          브라우저는 Upstage API를 직접 호출하지 않습니다. 대화 원문은
-          서버에 장기 저장하지 않습니다.
+          질문은 서버를 거쳐 처리하며, 대화 원문은 장기 저장하지
+          않습니다.
         </p>
       </section>
 

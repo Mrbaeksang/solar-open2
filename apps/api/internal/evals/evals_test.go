@@ -54,11 +54,119 @@ func TestGroundingPersonaScopeAndLatencyEval(t *testing.T) {
 			wantPhrase:   "AI는",
 		},
 		{
-			name:         "standard research mentor structure",
+			name:         "standard AI system boundary",
+			track:        domain.TrackStandard,
+			chapter:      "ai-is",
+			section:      "operational-definition",
+			question:     "AI 시스템의 목표, 입력, 출력과 사람의 역할은?",
+			wantEvidence: domain.EvidenceSupported,
+			wantPhrase:   "주장:",
+		},
+		{
+			name:         "easy learning from data",
+			track:        domain.TrackEasy,
+			chapter:      "learning-from-data",
+			section:      "examples-patterns",
+			question:     "AI는 데이터에서 어떻게 패턴을 배워?",
+			wantEvidence: domain.EvidenceSupported,
+			wantPhrase:   "AI는",
+		},
+		{
+			name:         "standard learning and generalization",
+			track:        domain.TrackStandard,
+			chapter:      "learning-from-data",
+			section:      "optimization",
+			question:     "학습과 일반화는 어떻게 다르고 어떤 한계가 있어?",
+			wantEvidence: domain.EvidenceSupported,
+			wantPhrase:   "주장:",
+		},
+		{
+			name:         "easy choosing an answer",
+			track:        domain.TrackEasy,
+			chapter:      "choosing-an-answer",
+			section:      "scores",
+			question:     "AI는 여러 답 가운데 하나를 어떻게 골라?",
+			wantEvidence: domain.EvidenceSupported,
+			wantPhrase:   "AI는",
+		},
+		{
+			name:         "standard logits and probabilities",
+			track:        domain.TrackStandard,
+			chapter:      "choosing-an-answer",
+			section:      "logits-probabilities",
+			question:     "로짓과 확률은 답을 고르는 과정에서 어떤 역할을 해?",
+			wantEvidence: domain.EvidenceSupported,
+			wantPhrase:   "주장:",
+		},
+		{
+			name:         "easy generative language model",
+			track:        domain.TrackEasy,
+			chapter:      "generative-ai",
+			section:      "generate",
+			question:     "언어 모델은 글을 어떻게 이어서 만들어?",
+			wantEvidence: domain.EvidenceSupported,
+			wantPhrase:   "AI는",
+		},
+		{
+			name:         "standard generative language model",
 			track:        domain.TrackStandard,
 			chapter:      "generative-ai",
-			section:      "language-patterns",
+			section:      "pretraining-inference",
 			question:     "언어 모델이 문장을 만드는 원리와 한계는?",
+			wantEvidence: domain.EvidenceSupported,
+			wantPhrase:   "주장:",
+		},
+		{
+			name:         "easy verify plausible errors",
+			track:        domain.TrackEasy,
+			chapter:      "verify-errors",
+			section:      "plausible-error",
+			question:     "AI 답이 자연스러워도 왜 원출처를 확인해야 해?",
+			wantEvidence: domain.EvidenceSupported,
+			wantPhrase:   "AI는",
+		},
+		{
+			name:         "standard confabulation verification",
+			track:        domain.TrackStandard,
+			chapter:      "verify-errors",
+			section:      "confabulation",
+			question:     "confabulation과 편향을 어떻게 검증해야 해?",
+			wantEvidence: domain.EvidenceSupported,
+			wantPhrase:   "주장:",
+		},
+		{
+			name:         "easy RAG and source chips",
+			track:        domain.TrackEasy,
+			chapter:      "rag-and-sources",
+			section:      "library-analogy",
+			question:     "RAG는 자료를 어떻게 찾고 근거 칩은 왜 필요해?",
+			wantEvidence: domain.EvidenceSupported,
+			wantPhrase:   "AI는",
+		},
+		{
+			name:         "standard hybrid retrieval provenance",
+			track:        domain.TrackStandard,
+			chapter:      "rag-and-sources",
+			section:      "pipeline",
+			question:     "하이브리드 검색과 근거 이력은 RAG에서 어떤 역할을 해?",
+			wantEvidence: domain.EvidenceSupported,
+			wantPhrase:   "주장:",
+		},
+		{
+			name:         "easy responsible use",
+			track:        domain.TrackEasy,
+			chapter:      "responsible-use",
+			section:      "privacy-copyright",
+			question:     "AI에 어떤 개인정보를 넣지 말아야 하고 언제 어른에게 물어봐야 해?",
+			wantEvidence: domain.EvidenceSupported,
+			wantPhrase:   "AI는",
+		},
+		{
+			name:         "standard responsibility and oversight",
+			track:        domain.TrackStandard,
+			chapter:      "responsible-use",
+			section:      "rights-data",
+			question:     "AI 사용에서 사람의 감독과 책임 주체를 어떻게 구분해?",
 			wantEvidence: domain.EvidenceSupported,
 			wantPhrase:   "주장:",
 		},
@@ -117,6 +225,55 @@ func TestGroundingPersonaScopeAndLatencyEval(t *testing.T) {
 				t.Fatal("supported answer lacks a source marker")
 			}
 		})
+	}
+}
+
+func TestHonestInsufficientEvidenceEval(t *testing.T) {
+	t.Parallel()
+
+	corpus, err := content.Load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	runner, err := agent.NewRunner(
+		context.Background(),
+		retrieval.NewMemoryStore(nil),
+		provider.Deterministic{},
+		provider.Deterministic{},
+		corpus.Sources,
+	)
+	if err != nil {
+		t.Fatal(err)
+	}
+	result, err := runner.Run(context.Background(), domain.AgentRequest{
+		ThreadID: "insufficient-eval-thread",
+		RunID:    "insufficient-eval-run",
+		Question: "AI가 데이터에서 패턴을 배우는 과정을 설명해 줘",
+		Reading: domain.ReadingContext{
+			Track:     domain.TrackEasy,
+			ChapterID: "learning-from-data",
+			SectionID: "examples-patterns",
+		},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if result.Evidence.Status != domain.EvidenceInsufficient {
+		t.Fatalf(
+			"evidence = %s, want %s",
+			result.Evidence.Status,
+			domain.EvidenceInsufficient,
+		)
+	}
+	if len(result.Evidence.SourceIDs) != 0 {
+		t.Fatal("insufficient answer must not expose sources")
+	}
+	answer := readAll(t, result.Stream)
+	if !strings.Contains(answer, "근거를 찾지 못했습니다") {
+		t.Fatalf("answer does not disclose missing evidence: %q", answer)
+	}
+	if strings.Contains(answer, "http") || strings.Contains(answer, "[1]") {
+		t.Fatalf("insufficient answer invented a source: %q", answer)
 	}
 }
 

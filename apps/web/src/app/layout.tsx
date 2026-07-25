@@ -17,15 +17,15 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://solar-open2.vercel.app",
   ),
   title: {
-    default: "밝은 AI 교과서",
-    template: "%s · 밝은 AI 교과서",
+    default: "AI 쉽게 이해하기",
+    template: "%s · AI 쉽게 이해하기",
   },
   description:
-    "두 읽기 수준으로 배우고, 주장마다 원출처를 확인하며, 읽는 자리에서 질문하는 공개 AI 리터러시 교과서.",
+    "AI의 기본 원리와 한계를 두 가지 난이도로 쉽게 배우고, 문장마다 근거를 확인하는 공개 학습 자료.",
   openGraph: {
-    title: "밝은 AI 교과서",
+    title: "AI 쉽게 이해하기",
     description:
-      "쉽게 읽고, 근거를 열고, 지금 읽는 부분을 AI 도우미에게 물어보세요.",
+      "AI가 무엇이고 어떻게 작동하며 왜 틀릴 수 있는지 쉬운 설명과 근거로 알아보세요.",
     type: "website",
     locale: "ko_KR",
   },
@@ -41,19 +41,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </a>
           <header className="site-header">
             <div className="site-header-inner">
-              <Link href="/" className="brand" aria-label="밝은 AI 교과서 홈">
-                <span className="brand-mark" aria-hidden="true">
-                  빛
-                </span>
+              <Link href="/" className="brand" aria-label="AI 쉽게 이해하기 홈">
                 <span>
-                  <strong>밝은 AI</strong>
-                  <small>근거가 보이는 교과서</small>
+                  <strong>AI 쉽게 이해하기</strong>
+                  <small>원리 · 한계 · 확인 방법</small>
                 </span>
               </Link>
               <nav aria-label="주요 메뉴">
                 <Link href="/learn/easy/ai-is">쉬운 트랙</Link>
                 <Link href="/learn/standard/ai-is">기본 트랙</Link>
-                <Link href="/sources">출처 인덱스</Link>
+                <Link href="/sources">출처</Link>
               </nav>
             </div>
           </header>
@@ -61,7 +58,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <footer className="site-footer">
             <div>
               <p>
-                <strong>밝은 AI 교과서</strong> · 로그인과 광고 없이
+                <strong>AI 쉽게 이해하기</strong> · 로그인과 광고 없이
                 공개합니다.
               </p>
               <p>
@@ -70,7 +67,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               </p>
             </div>
             <div>
-              <span>Solar Open 2로 답변</span>
+              <span>AI 모델로 답변 작성</span>
               <Link href="/sources">출처와 이용 조건</Link>
               <a
                 href="https://github.com/Mrbaeksang/solar-open2"

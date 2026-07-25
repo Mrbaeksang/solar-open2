@@ -4,14 +4,14 @@
     "easy": {
       "label": "쉬운 트랙",
       "audience": "초등 5학년–중학교 3학년",
-      "assistantName": "별빛 길잡이",
-      "assistantDescription": "따뜻하고 호기심 많은 과학 길잡이. 먼저 한 문장으로 답하고, 생활 예시와 실제 원리, 비유의 한계를 차례로 설명한다."
+      "assistantName": "AI 설명 도우미",
+      "assistantDescription": "먼저 짧게 답하고, 생활 속 예시와 실제 원리, 비유가 맞지 않는 지점을 쉬운 말로 설명한다."
     },
     "standard": {
       "label": "기본 트랙",
       "audience": "고등학생 이상·비전공 성인",
-      "assistantName": "근거 연구원",
-      "assistantDescription": "차분한 연구 멘토. 핵심 주장, 작동 원리, 사례, 한계·반례, 확인 방법 순서로 설명한다."
+      "assistantName": "AI 설명 도우미",
+      "assistantDescription": "핵심 답, 작동 원리, 사례, 한계와 확인 방법을 차례로 설명한다."
     }
   },
   "chapters": [
@@ -252,17 +252,17 @@
       "file": "easy/06-rag-and-sources.mdx",
       "title": "RAG와 출처 기반 답변",
       "eyebrow": "책장을 먼저 찾고, 찾은 쪽을 보며 답하기",
-      "description": "질문과 가까운 교재 부분을 찾은 뒤 답을 만드는 RAG와 출처 번호의 역할을 배운다.",
+      "description": "질문과 가까운 교재 부분을 찾은 뒤 답을 만드는 RAG와 근거 칩의 역할을 배운다.",
       "objectives": ["검색과 생성을 구별한다.", "source ID가 필요한 이유를 말한다.", "RAG도 틀릴 수 있는 지점을 찾는다."],
       "sections": [
         { "id": "library-analogy", "title": "도서관 길잡이처럼 찾기" },
-        { "id": "source-id", "title": "출처 번호는 찾아가는 표지판" },
+        { "id": "source-id", "title": "근거 칩은 출처로 가는 표지판" },
         { "id": "rag-limits", "title": "찾았다고 항상 맞는 것은 아니다" }
       ],
       "sourceIds": ["lewis-rag-2020", "nist-genai-profile", "oecd-ailit-2026"],
       "quiz": {
         "question": "RAG 답변이 틀릴 수 있는 경우는?",
-        "options": ["검색한 부분이 질문과 다르거나 생성 과정에서 뜻을 잘못 엮은 경우", "출처 번호가 있으면 생성한 문장도 자동으로 검증되므로 틀리지 않는다.", "질문과 같은 낱말이 많은 문서를 찾으면 언제나 정확하다."],
+        "options": ["검색한 부분이 질문과 다르거나 생성 과정에서 뜻을 잘못 엮은 경우", "근거 칩이 있으면 생성한 문장도 자동으로 검증되므로 틀리지 않는다.", "질문과 같은 낱말이 많은 문서를 찾으면 언제나 정확하다."],
         "correctIndex": 0,
         "explanation": "RAG에는 검색과 생성 두 단계가 있다. 잘못 찾거나, 맞게 찾은 내용을 잘못 사용하면 답이 틀릴 수 있다."
       },
@@ -287,7 +287,7 @@
         "question": "답변 뒤에 링크가 있다는 사실만으로 확인되지 않는 것은?",
         "options": ["답변에 출처 표시가 포함되어 있다.", "링크의 원문이 실제 주장과 정확히 연결된다.", "이동할 수 있는 주소가 제시되어 있다."],
         "correctIndex": 1,
-        "explanation": "인용 정확성은 별도 품질이다. 출처 번호가 등록되어 있어도 정확한 쪽·절이 해당 주장을 지지하는지 확인해야 한다."
+        "explanation": "인용 정확성은 별도 품질이다. 출처 ID가 등록되어 있어도 정확한 쪽·절이 해당 주장을 지지하는지 확인해야 한다."
       },
       "review": { "status": "external-review-pending", "issue": 12, "history": [{ "date": "2026-07-24", "reviewer": "internal-editorial", "decision": "ready-for-external-review" }] }
     },

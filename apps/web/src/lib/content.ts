@@ -104,6 +104,18 @@ export function getSource(sourceId: string) {
   return sourceById.get(sourceId);
 }
 
+export function getSourceDisplayName(source: Source) {
+  const publisher = source.publisher;
+  if (publisher.includes("OECD")) return "OECD";
+  if (publisher.includes("UNESCO")) return "UNESCO";
+  if (publisher.includes("UNICEF")) return "UNICEF";
+  if (publisher.includes("National Institute of Standards")) return "NIST";
+  if (publisher.includes("AI4K12")) return "AI4K12";
+  if (publisher.includes("NeurIPS")) return "NeurIPS";
+  if (publisher.includes("Upstage")) return "Upstage";
+  return publisher.split("·")[0]?.trim() || "출처";
+}
+
 export function getClaim(claimId: string) {
   return claimById.get(claimId);
 }

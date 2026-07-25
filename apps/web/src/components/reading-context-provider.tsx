@@ -237,7 +237,7 @@ export function ReadingContextProvider({
             );
           }}
         >
-          <span aria-hidden="true">✦</span> 이 부분 질문
+          이 부분 질문
         </button>
       ) : null}
     </ReadingContextContext.Provider>
@@ -281,7 +281,6 @@ export function AskSectionButton({ sectionId }: { sectionId: string }) {
       className="ask-section-button"
       onClick={() => askSection(sectionId)}
     >
-      <span aria-hidden="true">✦</span>
       이 절 질문
     </button>
   );

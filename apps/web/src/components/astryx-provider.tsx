@@ -16,7 +16,7 @@ const koreanOverrides = {
   "@astryx.chatLayout.newMessages": "새 답변",
   "@astryx.chatLayoutScrollButton.scrollToBottom": "최근 답변으로 이동",
   "@astryx.chatMessage.messageFrom":
-    "{sender, select, user {나} assistant {교재 도우미} system {시스템} other {도우미}}의 메시지",
+    "{sender, select, user {나} assistant {AI 설명 도우미} system {시스템} other {도우미}}의 메시지",
   "@astryx.popover.close": "닫기",
   "@astryx.sideNavCollapseButton.expandSidebar": "목차 펼치기",
   "@astryx.sideNavCollapseButton.collapseSidebar": "목차 접기",

@@ -5,8 +5,8 @@ import { createPortal } from "react-dom";
 
 import {
   getClaim,
-  getClaimNumber,
   getSource,
+  getSourceDisplayName,
   type Source,
 } from "@/lib/content";
 
@@ -21,7 +21,6 @@ export function Cite({ claim: claimId }: { claim: string }) {
   const [open, setOpen] = useState(false);
   const tooltipId = useId();
   const claim = getClaim(claimId);
-  const number = claim ? getClaimNumber(claim) : 0;
   const linkedSources = useMemo(
     () =>
       claim?.sources
@@ -53,9 +52,15 @@ export function Cite({ claim: claimId }: { claim: string }) {
     return () => document.removeEventListener("keydown", closeOnEscape);
   }, [open]);
 
-  if (!claim || number < 1 || linkedSources.length === 0) {
+  if (!claim || linkedSources.length === 0) {
     throw new Error(`검증되지 않은 claim ID: ${claimId}`);
   }
+
+  const primarySource = linkedSources[0];
+  const chipLabel =
+    linkedSources.length > 1
+      ? `근거 · ${getSourceDisplayName(primarySource.source)} 외 ${linkedSources.length - 1}`
+      : `근거 · ${getSourceDisplayName(primarySource.source)}`;
 
   return (
     <>
@@ -63,17 +68,20 @@ export function Cite({ claim: claimId }: { claim: string }) {
         <button
           type="button"
           className="citation-marker"
-          aria-label={`출처 ${number} 열기`}
+          aria-label={`${chipLabel} 자세히 보기`}
           aria-describedby={tooltipId}
           aria-expanded={open}
           onClick={() => setOpen(true)}
         >
-          {number}
+          {chipLabel}
         </button>
         <span id={tooltipId} role="tooltip" className="citation-tooltip">
-          <span>{linkedSources[0].source.publisher}</span>
-          <strong>{linkedSources[0].source.title}</strong>
-          <small>{linkedSources[0].locator}</small>
+          <span>출처 미리보기</span>
+          <strong>
+            {primarySource.source.publisher} · {primarySource.source.title}
+          </strong>
+          <span className="citation-tooltip-summary">{claim.text}</span>
+          <small>{primarySource.locator}</small>
         </span>
       </span>
       {open && typeof document !== "undefined"
@@ -90,12 +98,12 @@ export function Cite({ claim: claimId }: { claim: string }) {
               <section
                 role="dialog"
                 aria-modal="true"
-                aria-label={`출처 자세히 보기 ${number}`}
+                aria-label="출처 자세히 보기"
                 className="citation-dialog"
               >
                 <header>
                   <div>
-                    <span className="callout-kicker">주장 {number}의 근거</span>
+                    <span className="callout-kicker">이 문장의 근거</span>
                     <h2>출처 자세히 보기</h2>
                   </div>
                   <button
