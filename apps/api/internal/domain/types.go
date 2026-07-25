@@ -185,9 +185,39 @@ type AgentResult struct {
 	Stream   TextStream
 }
 
+// RetrievalProgressStatus is a safe, aggregate-only retrieval lifecycle state.
+type RetrievalProgressStatus string
+
+const (
+	RetrievalChecking  RetrievalProgressStatus = "checking"
+	RetrievalSearching RetrievalProgressStatus = "searching"
+	RetrievalComplete  RetrievalProgressStatus = "complete"
+	RetrievalSkipped   RetrievalProgressStatus = "skipped"
+	RetrievalError     RetrievalProgressStatus = "error"
+)
+
+// RetrievalProgress exposes counts and lifecycle only, never prompts or passages.
+type RetrievalProgress struct {
+	Status       RetrievalProgressStatus
+	PassageCount int
+	SourceCount  int
+}
+
+// RetrievalProgressReporter receives synchronous retrieval lifecycle updates.
+type RetrievalProgressReporter func(RetrievalProgress)
+
 // Runner prepares retrieval and returns a stream without persisting raw messages.
 type Runner interface {
 	Run(context.Context, AgentRequest) (*AgentResult, error)
+}
+
+// ProgressRunner additionally reports safe retrieval lifecycle updates.
+type ProgressRunner interface {
+	RunWithProgress(
+		context.Context,
+		AgentRequest,
+		RetrievalProgressReporter,
+	) (*AgentResult, error)
 }
 
 // RunMetric is deliberately aggregate-only: it contains no prompt, answer, IP, or ID.

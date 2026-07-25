@@ -45,6 +45,9 @@ func TestHandlerStreamsProtocolEventsAndRegistryBackedEvidence(t *testing.T) {
 	}
 
 	var eventTypes []string
+	var retrievalStatuses []string
+	var retrievedPassages int
+	var linkedSources int
 	scanner := bufio.NewScanner(bytes.NewReader(response.Body.Bytes()))
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -52,23 +55,51 @@ func TestHandlerStreamsProtocolEventsAndRegistryBackedEvidence(t *testing.T) {
 			continue
 		}
 		var event struct {
-			Type string `json:"type"`
-			Name string `json:"name"`
+			Type     string `json:"type"`
+			Name     string `json:"name"`
+			Snapshot struct {
+				Retrieval struct {
+					Status       string `json:"status"`
+					PassageCount int    `json:"passageCount"`
+					SourceCount  int    `json:"sourceCount"`
+				} `json:"retrieval"`
+			} `json:"snapshot"`
 		}
 		if err := json.Unmarshal([]byte(strings.TrimPrefix(line, "data: ")), &event); err != nil {
 			t.Fatal(err)
 		}
 		eventTypes = append(eventTypes, event.Type)
+		if event.Snapshot.Retrieval.Status != "" {
+			retrievalStatuses = append(
+				retrievalStatuses,
+				event.Snapshot.Retrieval.Status,
+			)
+			if event.Snapshot.Retrieval.Status == "complete" {
+				retrievedPassages = event.Snapshot.Retrieval.PassageCount
+				linkedSources = event.Snapshot.Retrieval.SourceCount
+			}
+		}
 	}
 
-	if len(eventTypes) < 7 {
+	if len(eventTypes) < 10 {
 		t.Fatalf("event sequence too short: %v", eventTypes)
 	}
-	if strings.Join(eventTypes[:4], ",") !=
-		"RUN_STARTED,STATE_SNAPSHOT,CUSTOM,TEXT_MESSAGE_START" {
-		t.Fatalf("event prefix = %v", eventTypes[:4])
+	if strings.Join(eventTypes[:7], ",") !=
+		"RUN_STARTED,STATE_SNAPSHOT,STATE_SNAPSHOT,STATE_SNAPSHOT,STATE_DELTA,CUSTOM,TEXT_MESSAGE_START" {
+		t.Fatalf("event prefix = %v", eventTypes[:7])
 	}
-	contentEvents := eventTypes[4 : len(eventTypes)-2]
+	if strings.Join(retrievalStatuses, ",") !=
+		"checking,searching,complete" {
+		t.Fatalf("retrieval statuses = %v", retrievalStatuses)
+	}
+	if retrievedPassages != 1 || linkedSources != 1 {
+		t.Fatalf(
+			"retrieval counts = passages:%d sources:%d",
+			retrievedPassages,
+			linkedSources,
+		)
+	}
+	contentEvents := eventTypes[7 : len(eventTypes)-2]
 	if len(contentEvents) < 2 {
 		t.Fatalf("answer was not delivered as incremental deltas: %v", eventTypes)
 	}

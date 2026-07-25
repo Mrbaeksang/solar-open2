@@ -40,6 +40,8 @@ type preparedRequest struct {
 	DirectAnswer string
 }
 
+type retrievalProgressContextKey struct{}
+
 // Runner executes Eino graphs for grounding and live model generation.
 type Runner struct {
 	grounding  compose.Runnable[domain.AgentRequest, preparedRequest]
@@ -153,21 +155,33 @@ func prepare(
 	request := evaluated.Request
 	result := preparedRequest{Request: request}
 	if evaluated.Policy.Blocked {
+		reportRetrievalProgress(ctx, domain.RetrievalProgress{
+			Status: domain.RetrievalSkipped,
+		})
 		result.Evidence = domain.Evidence{Status: domain.EvidenceOutOfScope}
 		result.DirectAnswer = evaluated.Policy.BlockReason
 		return result, nil
 	}
 	if evaluated.Policy.RequiresTrustedAdult {
+		reportRetrievalProgress(ctx, domain.RetrievalProgress{
+			Status: domain.RetrievalSkipped,
+		})
 		result.Evidence = domain.Evidence{Status: domain.EvidenceOutOfScope}
 		result.DirectAnswer = trustedAdultAnswer(request.Reading.Track)
 		return result, nil
 	}
 	if outsideTextbook(request.Question) {
+		reportRetrievalProgress(ctx, domain.RetrievalProgress{
+			Status: domain.RetrievalSkipped,
+		})
 		result.Evidence = domain.Evidence{Status: domain.EvidenceOutOfScope}
 		result.DirectAnswer = "이 질문은 지금 교재가 검증한 AI 기초 범위를 벗어납니다. 추측해서 답하지 않고, 교재의 AI 원리·검증·RAG·책임 있는 사용 질문만 도울게요."
 		return result, nil
 	}
 
+	reportRetrievalProgress(ctx, domain.RetrievalProgress{
+		Status: domain.RetrievalSearching,
+	})
 	searchText := domain.CompactText(strings.Join([]string{
 		evaluated.Policy.SanitizedQuestion,
 		request.Reading.Selection,
@@ -197,6 +211,11 @@ func prepare(
 		sourceCandidates = append(sourceCandidates, passage.SourceIDs...)
 	}
 	sourceIDs := domain.UniqueKnownSourceIDs(sourceCandidates, registry, 4)
+	reportRetrievalProgress(ctx, domain.RetrievalProgress{
+		Status:       domain.RetrievalComplete,
+		PassageCount: len(passages),
+		SourceCount:  len(sourceIDs),
+	})
 	if len(passages) == 0 || len(sourceIDs) == 0 {
 		result.Evidence = domain.Evidence{Status: domain.EvidenceInsufficient}
 		result.DirectAnswer = "이 질문에 답할 만한 검토된 교재 근거를 찾지 못했습니다. 내용을 지어내지 않을게요. 질문 범위를 지금 읽는 절의 개념으로 좁혀 주세요."
@@ -217,8 +236,34 @@ func prepare(
 	return result, nil
 }
 
-// Run invokes the compiled Eino graph and returns registry-constrained evidence.
+func reportRetrievalProgress(
+	ctx context.Context,
+	progress domain.RetrievalProgress,
+) {
+	reporter, _ := ctx.Value(retrievalProgressContextKey{}).(domain.RetrievalProgressReporter)
+	if reporter != nil {
+		reporter(progress)
+	}
+}
+
+// Run invokes the compiled Eino graph without progress reporting.
 func (r *Runner) Run(ctx context.Context, request domain.AgentRequest) (*domain.AgentResult, error) {
+	return r.run(ctx, request)
+}
+
+// RunWithProgress invokes the graph and reports safe retrieval lifecycle updates.
+func (r *Runner) RunWithProgress(
+	ctx context.Context,
+	request domain.AgentRequest,
+	reporter domain.RetrievalProgressReporter,
+) (*domain.AgentResult, error) {
+	if reporter != nil {
+		ctx = context.WithValue(ctx, retrievalProgressContextKey{}, reporter)
+	}
+	return r.run(ctx, request)
+}
+
+func (r *Runner) run(ctx context.Context, request domain.AgentRequest) (*domain.AgentResult, error) {
 	prepared, err := r.grounding.Invoke(ctx, request)
 	if err != nil {
 		return nil, err

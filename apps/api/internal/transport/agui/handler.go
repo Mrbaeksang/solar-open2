@@ -2,6 +2,7 @@ package agui
 
 import (
 	"bytes"
+	"context"
 	"crypto/rand"
 	"crypto/sha256"
 	"encoding/json"
@@ -119,16 +120,6 @@ func (h *Handler) ServeHTTP(response http.ResponseWriter, request *http.Request)
 		metric.LatencyMillis = time.Since(startedAt).Milliseconds()
 		h.recorder.Record(metric)
 	}()
-	result, err := h.runner.Run(request.Context(), input)
-	if err != nil {
-		metric.ErrorCategory = "runner_error"
-		http.Error(response, "agent run failed", http.StatusBadGateway)
-		return
-	}
-	metric.Evidence = result.Evidence.Status
-	metric.SourceCount = len(result.Evidence.SourceIDs)
-	defer result.Stream.Close()
-
 	response.Header().Set("Content-Type", "text/event-stream; charset=utf-8")
 	response.Header().Set("Cache-Control", "no-cache, no-transform")
 	response.Header().Set("Connection", "keep-alive")
@@ -143,16 +134,74 @@ func (h *Handler) ServeHTTP(response http.ResponseWriter, request *http.Request)
 	}); err != nil {
 		return
 	}
-	if err := writeEvent(response, map[string]any{
-		"type": "STATE_SNAPSHOT",
-		"snapshot": map[string]any{
-			"evidence": map[string]any{
-				"status":      result.Evidence.Status,
-				"sourceIds":   result.Evidence.SourceIDs,
-				"sourceCount": len(result.Evidence.SourceIDs),
-			},
-		},
-	}); err != nil {
+	progress := domain.RetrievalProgress{Status: domain.RetrievalChecking}
+	if err := writeRetrievalState(response, progress); err != nil {
+		return
+	}
+	if flusher != nil {
+		flusher.Flush()
+	}
+
+	runContext, cancelRun := context.WithCancel(request.Context())
+	defer cancelRun()
+	var progressWriteError error
+	reportProgress := func(next domain.RetrievalProgress) {
+		if progressWriteError != nil {
+			return
+		}
+		progress = next
+		progressWriteError = writeRetrievalState(response, progress)
+		if progressWriteError != nil {
+			cancelRun()
+			return
+		}
+		if flusher != nil {
+			flusher.Flush()
+		}
+	}
+
+	var result *domain.AgentResult
+	if progressRunner, ok := h.runner.(domain.ProgressRunner); ok {
+		result, err = progressRunner.RunWithProgress(
+			runContext,
+			input,
+			reportProgress,
+		)
+	} else {
+		result, err = h.runner.Run(runContext, input)
+	}
+	if progressWriteError != nil {
+		return
+	}
+	if err != nil {
+		metric.ErrorCategory = "runner_error"
+		progress.Status = domain.RetrievalError
+		_ = writeRetrievalState(response, progress)
+		_ = writeEvent(response, map[string]any{
+			"type":    "RUN_ERROR",
+			"message": "agent run failed",
+		})
+		if flusher != nil {
+			flusher.Flush()
+		}
+		return
+	}
+	if progress.Status == domain.RetrievalChecking ||
+		progress.Status == domain.RetrievalSearching {
+		progress = domain.RetrievalProgress{
+			Status:      domain.RetrievalComplete,
+			SourceCount: len(result.Evidence.SourceIDs),
+		}
+		if err := writeRetrievalState(response, progress); err != nil {
+			return
+		}
+	}
+
+	metric.Evidence = result.Evidence.Status
+	metric.SourceCount = len(result.Evidence.SourceIDs)
+	defer result.Stream.Close()
+
+	if err := writeEvidenceDelta(response, result.Evidence); err != nil {
 		return
 	}
 	if err := writeEvent(response, map[string]any{
@@ -352,6 +401,39 @@ func ensureJSONEnd(decoder *json.Decoder) error {
 		return errors.New("request must contain one JSON value")
 	}
 	return nil
+}
+
+func writeRetrievalState(
+	writer io.Writer,
+	progress domain.RetrievalProgress,
+) error {
+	return writeEvent(writer, map[string]any{
+		"type": "STATE_SNAPSHOT",
+		"snapshot": map[string]any{
+			"retrieval": map[string]any{
+				"status":       progress.Status,
+				"passageCount": progress.PassageCount,
+				"sourceCount":  progress.SourceCount,
+			},
+		},
+	})
+}
+
+func writeEvidenceDelta(writer io.Writer, evidence domain.Evidence) error {
+	return writeEvent(writer, map[string]any{
+		"type": "STATE_DELTA",
+		"delta": []map[string]any{
+			{
+				"op":   "add",
+				"path": "/evidence",
+				"value": map[string]any{
+					"status":      evidence.Status,
+					"sourceIds":   evidence.SourceIDs,
+					"sourceCount": len(evidence.SourceIDs),
+				},
+			},
+		},
+	})
 }
 
 func writeEvent(writer io.Writer, event any) error {

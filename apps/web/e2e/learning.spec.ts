@@ -38,6 +38,11 @@ test("assistant receives selected reading context through the Go AG-UI endpoint"
   await expect(page.getByText("교재 근거로 답함")).toBeVisible({
     timeout: 15_000,
   });
+  const retrieval = page.locator(".retrieval-activity");
+  await expect(retrieval).toContainText(
+    /시멘틱 검색 완료 · 근거 \d+개 · 출처 \d+개/,
+  );
+  await expect(retrieval).not.toHaveAttribute("open", "");
   await expect(page.locator(".astryx-chat-composer")).toBeVisible();
   await expect(page.locator(".astryx-chat-message-list")).toHaveAttribute(
     "aria-live",
